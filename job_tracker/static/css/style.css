@@ -1,0 +1,162 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap");
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --main-color: #dbe2ef;
+    --dark-color: #3f72b0;
+    --light-gray-color: #c9d6df;
+    --light-white-color: #fafafa;
+    --dark-gray-color: #3b3a3a;
+    font-size: 16px;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    background-color: var(--light-white-color);
+    color: var(--dark-gray-color);
+}
+
+nav {
+    background-color: var(--main-color);
+    height: 2rem;
+    width: 100vw;
+    line-height: 2rem;
+    position: sticky;
+    top: 0;
+    text-align: center;
+}
+
+.nav-logo {
+    display: block;
+    float: left;
+    height: 3rem;
+    width: auto;
+    margin-top: -5px;
+}
+
+nav label {
+    display: block;
+    float: right;
+    margin-right: 0.5rem;
+}
+
+.nav-li {
+    background-color: var(--main-color);
+    margin-right: 0;
+    width: 6rem;
+}
+
+nav ul li {
+    display: block;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--dark-color);
+    font-size: 0.9rem;
+}
+
+nav input {
+    display: none;
+}
+
+nav ul {
+    display: none;
+}
+
+nav input:checked ~ ul {
+    display: flex;
+    position: absolute;
+    right: 2px;
+    top: 25px;
+    height: 150px;
+    padding: 0;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav input:checked ~ ul li {
+    display: block;
+    border-bottom: 0.5px solid var(--light-gray-color);
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+    height: 2rem;
+    line-height: 2rem;
+    font-size: 0.8rem;
+    background-color: var(--main-color);
+}
+
+footer div {
+    float: right;
+    font-size: 0.6rem;
+}
+
+@media (min-width: 768px) {
+    #hamburger {
+        display: none;
+    }
+
+    nav label {
+        display: none;
+    }
+
+    nav {
+        height: 4.5rem;
+    }
+
+    .nav-logo {
+        height: auto;
+        width: 130px;
+        margin-top: -18px;
+    }
+
+    .nav-li {
+        display: flex;
+        justify-content: flex-end;
+        width: calc(100vw - 130px);
+        height: 4rem;
+        margin: 0;
+    }
+
+    nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        text-decoration: none;
+        display: flex;
+        align-items: right;
+        padding-top: 5px;
+    }
+
+    nav ul li {
+        padding: 0.9rem 0.7rem;
+    }
+
+    nav ul li:hover {
+        background-color: #c4d3f1;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    nav ul li a:focus {
+        outline: none;
+    }
+
+    nav ul li a {
+        color: var(--dark-color);
+        font-size: 1.5rem;
+    }
+
+    footer div {
+        font-size: 1rem;
+    }
+}
