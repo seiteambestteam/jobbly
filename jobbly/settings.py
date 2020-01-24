@@ -76,8 +76,8 @@ WSGI_APPLICATION = 'jobbly.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': ('jobbly'),
     }
 }
 
@@ -119,4 +119,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
-AUTH_USER_MODEL = 'job_tracker.User'
+LOGIN_REDIRECT_URL = '/applications/'
+LOGOUT_REDIRECT_URL = '/'
