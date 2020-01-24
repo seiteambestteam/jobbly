@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
 from django.contrib.auth import login, get_user_model
 from django.contrib.auth.forms import UserCreationForm
-from .models import User
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView
+from .models import User, Contact, Landmark
 from .forms import UserForm, ProfileForm
 
 def home(request):
@@ -12,6 +13,9 @@ def index(request):
     # users = User.objects.filter(user=request.user)
     return render(request, 'users/index.html')
     
+def about(request):
+    return render(request, 'about.html')
+
 def signup(request):
     error_message = ''
     if request.method == 'POST':
@@ -48,4 +52,18 @@ def edit_profile(request):
         'profile_form': profile_form,
         'error_message': error_message,
     })
-    
+
+class ContactCreate(CreateView):
+    model = Contact
+    fields = ['name', 'email', 'linkedin', 'notes', 'application']
+    success = '/home/'
+
+class ContactUpdate(UpdateView):
+    model = Contact
+    fields = ['name', 'email', 'linkedin', 'notes', 'application']
+    success = '/home/'
+
+class ContactDelete(DeleteView):
+    model = Contact
+    fields = ['name', 'email', 'linkedin', 'notes', 'application']
+    success ='/home/'
