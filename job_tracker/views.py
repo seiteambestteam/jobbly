@@ -6,7 +6,7 @@ from .models import User
 from .forms import UserForm, ProfileForm
 
 def home(request):
-    return HttpResponse('This is the home page')
+    return render(request, 'home.html')
 
 def signup(request):
     error_message = ''
@@ -44,3 +44,4 @@ def edit_profile(request):
         'profile_form': profile_form,
         'error_message': error_message,
     })
+    
