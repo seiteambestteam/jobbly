@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<img src="{% static 'images/logo.png' %}" alt="logo" />
+
+<div>
+    <h4>USER's Calendar</h4>
+    <div id="calendar"></div>
+</div>
+
+<div class="vert-line"></div>
+
+<div>
+    <h4>Today's News</h4>
+    <div id="news"></div>
+</div>
+
+<div class="hor-line"></div>
+
+<h3>Find a Job:</h3>
+<input type="text" name="" id="" />
+<button class="btn"><i class="fas fa-search"></i></button>
+
+<div class="hor-line"></div>
+
+<h3>SOMETHING</h3>
+
+{% endblock %}

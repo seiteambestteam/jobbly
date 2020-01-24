@@ -6,24 +6,13 @@ from django.views.generic import ListView, DetailView
 from .models import User, Contact, Landmark
 from .forms import UserForm, ProfileForm
 
-class ContactCreate(CreateView):
-    model = Contact
-    fields = ['name', 'email', 'linkedin', 'notes', 'application']
-    success = '/home/'
-
-class ContactUpdate(UpdateView):
-    model = Contact
-    fields = ['name', 'email', 'linkedin', 'notes', 'application']
-    success = '/home/'
-
-class ContactDelete(DeleteView):
-    model = Contact
-    fields = ['name', 'email', 'linkedin', 'notes', 'application']
-    success ='/home/'
-
 def home(request):
     return render(request, 'home.html')
 
+def index(request):
+    # users = User.objects.filter(user=request.user)
+    return render(request, 'users/index.html')
+    
 def about(request):
     return render(request, 'about.html')
 
@@ -64,3 +53,17 @@ def edit_profile(request):
         'error_message': error_message,
     })
 
+class ContactCreate(CreateView):
+    model = Contact
+    fields = ['name', 'email', 'linkedin', 'notes', 'application']
+    success = '/home/'
+
+class ContactUpdate(UpdateView):
+    model = Contact
+    fields = ['name', 'email', 'linkedin', 'notes', 'application']
+    success = '/home/'
+
+class ContactDelete(DeleteView):
+    model = Contact
+    fields = ['name', 'email', 'linkedin', 'notes', 'application']
+    success ='/home/'
