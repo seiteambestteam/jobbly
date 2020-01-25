@@ -469,9 +469,6 @@ footer div {
     #news {
         height: 17rem;
         width: 44vw;
-        margin: 8px auto;
-        overflow-y: scroll;
-        text-align: justify;
     }
 
     #news ul li {
