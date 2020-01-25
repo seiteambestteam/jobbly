@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap");
+
+/* basic */
 * {
     padding: 0;
     margin: 0;
@@ -18,8 +20,135 @@ body {
     font-family: "Roboto", sans-serif;
     background-color: var(--light-white-color);
     color: var(--dark-gray-color);
+    min-height: 100vh;
+    position: relative;
 }
 
+.center {
+    display: block;
+    margin: 0 auto;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.title {
+    font-size: 2rem;
+    margin: 1.7rem auto;
+    text-shadow: 2px 0 5px var(--light-gray-color);
+}
+
+.txt-medium {
+    font-size: 1.2rem;
+}
+
+.red-text {
+    color: red;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-wrapper {
+    padding-bottom: 4rem;
+}
+
+.container {
+    width: 50vw;
+}
+
+a {
+    text-decoration: none;
+    color: var(--dark-color);
+}
+
+h2 {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-top: 1rem;
+}
+
+p {
+    font-size: 1.3rem;
+    margin: 1.2rem 0;
+}
+
+hr {
+    display: block;
+    height: 6px;
+    background-color: var(--main-color);
+    border-style: none;
+}
+
+.btn {
+    padding: 10px;
+    background-color: var(--main-color);
+    border: 1.1px solid var(--dark-color);
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px var(--light-gray-color);
+}
+
+.btn-sml {
+    width: 1.1rem;
+    height: 1.1rem;
+}
+
+.btn-lg {
+    width: 5.5rem;
+    height: 3rem;
+}
+
+.btn:focus {
+    outline: none;
+}
+
+.form {
+    width: 70vw;
+}
+
+.form p label {
+    display: block;
+    text-align: center;
+    text-decoration: underline;
+    margin-top: 2rem;
+}
+
+.form p span {
+    font-size: 0.9rem;
+}
+
+.form ul li {
+    font-size: 0.9rem;
+}
+
+input {
+    display: block;
+    font-family: inherit;
+    font-size: 1rem;
+    text-align: center;
+    margin: 0.9rem auto;
+    width: 70vw;
+    border: none;
+    border-bottom: 1px solid var(--dark-gray-color);
+    background-color: inherit;
+}
+
+input:focus {
+    outline: none;
+}
+
+.form p > input {
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0),
+        inset 0 0 0 100px var(--light-white-color) !important;
+}
+
+/* nav bar */
 nav {
     background-color: var(--main-color);
     height: 2rem;
@@ -33,9 +162,17 @@ nav {
 .nav-logo {
     display: block;
     float: left;
-    height: 3rem;
+    height: 2rem;
     width: auto;
-    margin-top: -5px;
+    margin-top: 0px;
+    margin-left: 5px;
+    padding: 2px;
+}
+
+.name-logo {
+    height: 2rem;
+    display: inline;
+    margin: 0;
 }
 
 nav label {
@@ -85,6 +222,60 @@ nav input:checked ~ ul li {
     border-bottom: 0.5px solid var(--light-gray-color);
 }
 
+/* Specific elements */
+
+.api-block {
+    height: 13rem;
+}
+
+.line {
+    border-bottom: 6px solid var(--light-gray-color);
+    height: 1px;
+    width: 90vw;
+    margin: 0 auto;
+}
+
+.main-logo {
+    display: inline;
+    width: 6rem;
+}
+
+.scrapper {
+    background-color: var(--main-color);
+    height: 6rem;
+}
+
+.scrapper h2 {
+    margin-top: -5rem;
+}
+
+.scrapper div input {
+    display: inline;
+    width: 9rem;
+    margin-right: 0.4rem;
+    background-color: var(--main-color);
+}
+
+.icon {
+    display: block;
+    margin-top: -0.4rem;
+    margin-left: -0.3rem;
+    color: var(--dark-color);
+}
+
+.text {
+    display: none;
+}
+
+.main {
+    padding-top: 1rem;
+}
+
+.border-bottom {
+    border-bottom: 1px solid var(--dark-gray-color);
+}
+
+/* footer */
 footer {
     position: absolute;
     bottom: 0;
@@ -92,6 +283,7 @@ footer {
     height: 2rem;
     line-height: 2rem;
     font-size: 0.8rem;
+    margin-top: 1rem;
     background-color: var(--main-color);
 }
 
@@ -100,12 +292,15 @@ footer div {
     font-size: 0.6rem;
 }
 
+/* media queries */
 @media (min-width: 768px) {
-    #hamburger {
-        display: none;
+    .content-wrapper {
     }
 
-    nav label {
+    /* nav bar */
+    #hamburger,
+    nav label,
+    .name-logo {
         display: none;
     }
 
@@ -114,9 +309,9 @@ footer div {
     }
 
     .nav-logo {
-        height: auto;
-        width: 130px;
-        margin-top: -18px;
+        height: 4.4rem;
+        margin-top: 2px;
+        padding: 2px 20px;
     }
 
     .nav-li {
@@ -156,6 +351,109 @@ footer div {
         font-size: 1.5rem;
     }
 
+    /* ??? */
+
+    .line {
+        border-left: 6px solid var(--light-gray-color);
+        height: 20rem;
+        width: 1px;
+        position: absolute;
+        left: 50%;
+        margin-left: -3px;
+        top: 5rem;
+        z-index: 1;
+    }
+
+    .api-section {
+        display: flex;
+        width: 100vw;
+        height: 21rem;
+    }
+
+    .api-block {
+        width: 50vw;
+        height: 20rem;
+    }
+
+    .main-logo {
+        width: 13rem;
+    }
+
+    .scrapper {
+        height: 11rem;
+    }
+
+    .scrapper h2 {
+        margin-left: 1.2rem;
+        margin-top: -9rem;
+        font-size: 1.6rem;
+    }
+
+    .scrapper div {
+        padding-left: 2rem;
+    }
+
+    .scrapper div input {
+        font-size: 1.2rem;
+        margin-top: 1.5rem;
+        width: 20rem;
+        margin-right: 0.8rem;
+    }
+
+    .btn {
+        width: 4.5rem;
+        height: 2.5rem;
+        cursor: pointer;
+    }
+
+    .btn-lg {
+        width: auto;
+        height: 3rem;
+    }
+
+    .text {
+        font: inherit;
+        font-weight: bold;
+        font-size: 1rem;
+        color: var(--dark-color);
+        display: inline-block;
+    }
+
+    .icon {
+        display: none;
+    }
+
+    .main {
+        width: 100vw;
+        padding-top: 2.5rem;
+    }
+
+    .container {
+        width: 50vw;
+    }
+
+    .form {
+        width: 50vw;
+    }
+
+    .form ul li {
+        width: 30vw;
+        margin: 0 auto;
+    }
+
+    .helptext {
+        display: block;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    input {
+        font-size: 1.3rem;
+        text-align: center;
+        margin: 2rem auto;
+        width: 30vw;
+    }
+    /* footer */
     footer div {
         font-size: 1rem;
     }

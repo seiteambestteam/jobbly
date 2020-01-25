@@ -2,28 +2,46 @@
 {% load static %}
 {% block content %}
 
-<img src="{% static 'images/logo.png' %}" alt="logo" />
-
-<div>
-    <h4>USER's Calendar</h4>
+<section class="api-section">
+<div class="api-block">
+    <h2 class="text-center">USER's Calendar</h2>
     <div id="calendar"></div>
 </div>
 
-<div class="vert-line"></div>
+<div class="line"></div>
 
-<div>
-    <h4>Today's News</h4>
+<div class="api-block">
+    <h2 class="text-center">Today's News</h2>
     <div id="news"></div>
 </div>
+</section>
 
-<div class="hor-line"></div>
+<hr>
 
-<h3>Find a Job:</h3>
-<input type="text" name="" id="" />
-<button class="btn"><i class="fas fa-search"></i></button>
+<div class="scrapper">
+    <img class="main-logo" src="{% static 'images/logo_transparent.png' %}" alt="logo" />
+    <h2 class="text-center">Find a Job:</h2>
+    <div class="center flex container">
+    <input type="text" name="" id="" />
+    <button class="btn btn-sml"><span class="icon"><i class="fas fa-search search-icon"></i></span><span class="text">Search</span></button>
+    </div>
+    <div id="scrapper-results"></div>
+</div>
+<hr>
 
-<div class="hor-line"></div>
-
-<h3>SOMETHING</h3>
+<div class="main">
+{% if user.application_set %}
+    <h3 class="text-center">My Applications</h3>
+    {% for application in user.application_set.all %}
+        <ul>
+            <li></li>
+        </ul>
+    {% endfor %}
+{% else %}
+    <div class="flex">
+        <h3>You don't have any Applications yet.</h3>
+    </div>
+{% endif %}
+</div>
 
 {% endblock %}
