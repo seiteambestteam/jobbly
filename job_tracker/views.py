@@ -7,7 +7,7 @@ from .models import User, Contact, Landmark
 from .forms import UserForm, ProfileForm
 import os
 import requests
-
+ 
 def home(request):
     return render(request, 'home.html')
 
