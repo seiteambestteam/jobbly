@@ -275,6 +275,18 @@ nav input:checked ~ ul li {
     border-bottom: 1px solid var(--dark-gray-color);
 }
 
+#news {
+    height: 10rem;
+    width: 90vw;
+    margin: 8px auto;
+    overflow-y: scroll;
+    text-align: justify;
+}
+
+#news ul li {
+    width: 87vw;
+}
+
 /* footer */
 footer {
     position: absolute;
@@ -453,6 +465,19 @@ footer div {
         margin: 2rem auto;
         width: 30vw;
     }
+
+    #news {
+        height: 17rem;
+        width: 44vw;
+        margin: 8px auto;
+        overflow-y: scroll;
+        text-align: justify;
+    }
+
+    #news ul li {
+        width: 42vw;
+    }
+
     /* footer */
     footer div {
         font-size: 1rem;
