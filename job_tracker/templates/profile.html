@@ -1,9 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1> {{ user.username }} </h1>
-<p> Linkedin Account: {{ user.profile.linkedin }} </p>
-<p> Github Account: {{ user.profile.github }} </p>
-<p> Website/Portfolio: {{ user.profile.website }} </p>
-<p> Desired Position: {{ user.profile.jobsearch }} </p>
-<a href='{% url "edit_profile" %}'>Update profile</a>
+
+<h2 class="text-center title"> Username{{ user.username }} </h2>
+
+<div class="center main container">
+<p class="text-center"> Linkedin Account: </p>
+<p class="border-bottom text-center"> S{{ user.profile.linkedin }} </p>
+<br>
+<p class="text-center"> Github Account: </p>
+<p class="border-bottom text-center"> S{{ user.profile.github }} </p>
+<br>
+<p class="text-center"> Website/Portfolio: </p>
+<p class="border-bottom text-center"> S{{ user.profile.website }} </p>
+<br>
+<p class="text-center"> Desired Position: </p>
+<p class="border-bottom text-center"> S{{ user.profile.jobsearch }} </p>
+<br>
+<br>
+<button class="btn center txt-medium btn-lg"><a href='{% url "edit_profile" %}'>Update</a></button>
+
+</div>
+
 {% endblock %}

@@ -22,6 +22,11 @@
                     src="{% static 'images/just_logo.png' %}"
                     alt="logo"
                 />
+                <img
+                    class="name-logo"
+                    src="{% static 'images/name_logo.png' %}"
+                    alt="logo"
+                />
                 <label for="hamburger">&#9776;</label>
                 <input type="checkbox" id="hamburger" />
                 <ul>
@@ -45,7 +50,7 @@
                 </ul>
             </nav>
         </header>
-        <main class="container">
+        <main class="content-wrapper">
             {% block content %} {% endblock %}
         </main>
         <footer>
