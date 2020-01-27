@@ -8,7 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
 from .models import User, Contact, Landmark, Application
 from .forms import UserForm, ProfileForm
-from careerjet_api_client import CareerjetAPIClient
+from .packages import CareerjetAPIClient
 import requests
 from bs4 import BeautifulSoup
 import os
