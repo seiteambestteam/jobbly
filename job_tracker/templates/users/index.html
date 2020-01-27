@@ -7,14 +7,14 @@
 
 <section class="api-section">
 <div class="api-block">
-    <h2 class="text-center">USER's Calendar</h2>
+    <h2 class="txt-center">{{ user.username }}'s Calendar</h2>
     <div id="calendar"></div>
 </div>
 
 <div class="line"></div>
 
 <div class="api-block">
-    <h2 class="text-center">Today's Tech News</h2>
+    <h2 class="txt-center">Today's Tech News</h2>
     <div id="news">
         <ul>
         {% for new in news.articles %}
@@ -31,21 +31,29 @@
 
 <div class="scrapper">
     <img class="main-logo" src="{% static 'images/logo_transparent.png' %}" alt="logo" />
-    <h2 class="text-center">Find a Job:</h2>
-    <div class="center flex container">
-    <input type="text" name="search-term" id="search-term" />
-    <button class="btn btn-sml search-btn"><span class="icon"><i class="fas fa-search search-icon"></i></span><span class="text">Search</span></button>
+    <h2 class="txt-center">Find a Job:</h2>
+    <br>
+    <div class="center container">
+        <label class="txt-center center" for="search-term">I'm looking for:</label>
+        <input type="text" name="search-term" id="search-term" />
+        <br />
+        <label class="txt-center center" for="search-location">Location:</label>
+        <input type="text" name="search-location" id="search-location" />
+        <button class="btn btn-sml search-btn"><span class="icon"><i class="fas fa-search search-icon"></i></span><span class="text">Search</span></button>
     </div>
-    <div id="scrapper-results"></div>
+    <br>
+    <br>
+    <div class="txt-center txt-justify" id="scrapper-results">
+    </div>
 </div>
 <hr>
 
 <div class="main">
 {% if user.application_set %}
-    <h3 class="text-center">My Applications</h3>
+    <h3 class="txt-center">My Applications</h3>
     {% for application in user.application_set.all %}
         <ul>
-            <li></li>
+            <li>{{ application.jobtitle }}</li>
         </ul>
     {% endfor %}
 {% else %}
