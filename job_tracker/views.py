@@ -5,6 +5,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from .models import User, Contact, Landmark
 from .forms import UserForm, ProfileForm
+from careerjet_api_client import CareerjetAPIClient
 import os
 import requests
  
@@ -61,6 +62,19 @@ def edit_profile(request):
         'profile_form': profile_form,
         'error_message': error_message,
     })
+
+def job_search_api(request):
+    cj  =  CareerjetAPIClient("en_CA")
+    result_json = cj.search({
+                        'location'    : 'toronto',
+                        'keywords'    : 'full stack developer',
+                        'affid'       : os.environ['CAREERJET_API_KEY'],
+                        'user_ip'     : '72.143.53.170',
+                        'url'         : 'http://localhost:8000/jobsearch?q=python&l=london',
+                        'user_agent'  : 'Mozilla/5.0 (X11; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0'
+                      });
+    print(result_json)
+    return redirect('profile')
 
 class ContactCreate(CreateView):
     model = Contact
