@@ -140,23 +140,30 @@ class ContactDelete(DeleteView):
 def application(request):
     application = Application.objects.filter(user = request.user)
     profile_form = ProfileForm()
-    return render(request, 'application/index.html', { 'applications': application, 'application_form': application_form })
+    return render(request, 'applications/index.html', { 'applications': application })
+
+def applications_detail(request, application_id):
+    application = Application.objects.get(id=application_id)
+    return render(request, 'applications/detail.html', { 'application': application })
 
 class ApplicationCreate(CreateView):
     model = Application
-    fields = '__all__'
-    success = '/applications/'
+    fields = ['jobtitle', 'company', 'joblisting', 'resume', 'applied', 'applicationDate', 'dueDate', 'notes']
+    success_url = '/applications/'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 class ApplicationUpdate(UpdateView):
     model = Application
-    fields = '__all__'
-    success = '/applications/'
+    fields = ['jobtitle', 'company', 'joblisting', 'resume', 'applied', 'applicationDate', 'dueDate', 'notes']
+    success_url = '/applications/'
 
 class ApplicationDelete(DeleteView):
     model = Application
-    fields = '__all__'
-    success = '/applications/'
-
+    fields = ['jobtitle', 'company', 'joblisting', 'resume', 'applied', 'applicationDate', 'dueDate', 'notes']
+    success_url = '/applications/'
 
 class LandmarkList(ListView):
     model = Landmark

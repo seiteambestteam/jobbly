@@ -16,3 +16,8 @@ class ContactForm(ModelForm):
     class Meta:
         model = Contact
         fields = ('name', 'email', 'linkedin', 'notes')
+
+class ApplicationForm(ModelForm):
+    class Meta:
+        model = Application
+        fields = ('jobtitle', 'company', 'joblisting', 'resume', 'applied', 'applicationDate', 'dueDate', 'notes')
