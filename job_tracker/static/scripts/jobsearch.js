@@ -12,15 +12,18 @@ $('.search-btn').click(()=>{
         success: function(data) {
             if (!data.jobs){
                 $('#scrapper-results').append(`<p>No ${searchTerm} positions in ${locationTerm}.</p>`)
+            } else {
+                $('#scrapper-results').empty()
+                for (i = 0; i< data.jobs.length; i++) {
+                    const card= `<div class='card'>
+                        <span class='job-title'>${data.jobs[i].title} at ${data.jobs[i].company} in ${data.jobs[i].locations}</span>
+                        <p>${data.jobs[i].description}</p>
+                        <a href='${data.jobs[i].url}' class='btn'>Learn more!</a>
+                    </div>`
+                    $('#scrapper-results').append(card)
+                }
             }
-            for (i = 0; i< data.jobs.length; i++) {
-                const card= `<div class='card'>
-                    <span class='job-title'>${data.jobs[i].title} at ${data.jobs[i].company} in ${data.jobs[i].locations}</span>
-                    <p>${data.jobs[i].description}</p>
-                    <a href='${data.jobs[i].url}' class='btn'>Learn more!</a>
-                </div>`
-                $('#scrapper-results').append(card)
-            }
+            
         },
         error: function(err) {
             $('#scrapper-results').append('<p>Please try again</p>')
