@@ -12,13 +12,12 @@ urlpatterns = [
     path('contacts/create', views.ContactCreate.as_view(), name='contacts_create'),
     path('contacts/<int:pk>/update', views.ContactUpdate.as_view(), name='contacts_update'),
     path('contacts/<int:pk>/delete', views.ContactDelete.as_view(), name='contacts_delete'),
-    path('landmarks/', views.LandmarkList.as_view(),
-    name='landmarks_index'),
+    path('landmarks/', views.LandmarkList.as_view(), name='landmarks_index'),
     path('landmarks/<int:pk>/', views.LandmarkDetail.as_view(), name='landmarks_detail'),
     path('landmarks/create', views.LandmarkCreate.as_view(), name='landmarks_create'),
     path('landmarks/<int:pk>/update', views.LandmarkUpdate.as_view(), name='landmarks_update'),
     path('landmarks/<int:pk>/delete', views.LandmarkDelete.as_view(), name='landmarks_delete'),
     path('landmarks/<int:landmark_id>/assoc_app/<int:application_id>/', views.assoc_landmark, name='assoc_landmark'),
-  path('ajax/jobsearch/', views.job_search, name='job_search'),
-]
-
+    path('ajax/jobsearch/', views.job_search, name='job_search'),
+    path('ajax/job_search_api/', views.job_search_api, name='job_search_api'),
+  ]

@@ -8,6 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
 from .models import User, Contact, Landmark, Application
 from .forms import UserForm, ProfileForm
+from careerjet_api_client import CareerjetAPIClient
 import requests
 from bs4 import BeautifulSoup
 import os
@@ -25,11 +26,10 @@ def index(request):
     # users = User.objects.filter(user=request.user)
 
     news_key = os.environ['NEWS_API_KEY']
-
     news_url = ('https://newsapi.org/v2/top-headlines?''country=ca&''category=technology&' 'page=1&' 'pageSize=15&' f'apiKey={news_key}')
-    
-    news_response = requests.get(news_url)
-    news = news_response.json()
+    # news_response = request.get(news_url)
+    # news = news_response.json()
+    news={}
     return render(request, 'users/index.html', { 'news':news })
     
 def about(request):
@@ -71,6 +71,21 @@ def edit_profile(request):
         'profile_form': profile_form,
         'error_message': error_message,
     })
+
+
+def job_search_api(request):
+    search_term = request.GET.get('searchTerm')
+    location = request.user.profile.joblocation if request.user.profile.joblocation else '' 
+    cj  =  CareerjetAPIClient("en_CA")
+    job_data = cj.search({
+                        'location'    : location,
+                        'keywords'    : search_term,
+                        'affid'       : os.environ['CAREERJET_API_KEY'],
+                        'user_ip'     : '72.143.53.170',
+                        'url'         : 'http://localhost:8000/jobsearch?q=python&l=london',
+                        'user_agent'  : 'Mozilla/5.0 (X11; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0'
+                      })
+    return JsonResponse(job_data, safe=False)
 
 def job_search(request):
     url = request.GET.get('url')
