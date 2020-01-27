@@ -11,8 +11,16 @@
 <div class="line"></div>
 
 <div class="api-block">
-    <h2 class="text-center">Today's News</h2>
-    <div id="news"></div>
+    <h2 class="text-center">Today's Tech News</h2>
+    <div id="news">
+        <ul>
+        {% for new in news.articles %}
+
+            <li>{{ new.title }} <a href="{{ new.url }}" target="_blank">Read</a></li><br>
+
+        {% endfor %}
+        </ul>
+    </div>
 </div>
 </section>
 
