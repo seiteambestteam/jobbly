@@ -8,5 +8,6 @@ urlpatterns = [
     path('accounts/profile/', views.profile, name='profile'),
     path('accounts/profile/edit/', views.edit_profile, name='edit_profile'),
     path('users/', views.index, name='index'),
-    path('ajax/job_search_api/', views.job_search_api)
+    path('ajax/job_search_api/', views.job_search_api),
+    path('ajax/jobsearch/', views.job_search, name='job_search'),
 ]

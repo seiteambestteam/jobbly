@@ -3,12 +3,13 @@ from django.contrib.auth import login, get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
+from django.http import JsonResponse
 from .models import User, Contact, Landmark
 from .forms import UserForm, ProfileForm
 from careerjet_api_client import CareerjetAPIClient
 import os
-import requests
- 
+from bs4 import BeautifulSoup
+
 def home(request):
     return render(request, 'home.html')
 
@@ -63,6 +64,7 @@ def edit_profile(request):
         'error_message': error_message,
     })
 
+
 def job_search_api(request):
     cj  =  CareerjetAPIClient("en_CA")
     result_json = cj.search({
@@ -75,6 +77,31 @@ def job_search_api(request):
                       });
     print(result_json)
     return redirect('profile')
+
+def job_search(request):
+    url = request.GET.get('url')
+    if request.user:
+        location = request.user.profile.joblocation
+        location_string = location.replace(' ', '+').replace(',', '%2C')
+        url = url + '&l=' + location_string
+    base_url = 'https://www.simplyhired.ca'
+    page = requests.get(url)
+    soup = BeautifulSoup(page.content, 'html.parser')
+    results = soup.find(id='job-list')
+    job_elems = results.find_all('div', class_='SerpJob-jobCard')
+    job_data = []
+
+    for job in job_elems:
+        title_elem = job.find('a', class_='card-link')
+        info = {
+            'job_link' : base_url + title_elem['href'],
+            'title' : title_elem.text,
+            'company' : job.find('span', class_='jobposting-company').text,
+            'location' : job.find('span', class_='jobposting-location').text,
+            'description' : job.find('p', class_='jobposting-snippet').text,
+        }
+        job_data.append(info)
+    return JsonResponse(job_data, safe=False)
 
 class ContactCreate(CreateView):
     model = Contact
