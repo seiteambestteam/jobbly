@@ -1,13 +1,18 @@
 //api
 $('.search-btn').click(()=>{
     const searchTerm = $('#search-term').val()
+    const locationTerm = $('#search-location').val()
     $.ajax({
         url: '/ajax/job_search_api/',
         data: {
             'searchTerm' : searchTerm,
+            'location': locationTerm
         },
         dataType: 'json',
         success: function(data) {
+            if (!data.jobs){
+                $('#scrapper-results').append('<p>Please try again</p>')
+            }
             for (i = 0; i< data.jobs.length; i++) {
                 const card= `<div class='card'>
                     <span class='job-title'>${data.jobs[i].title} at ${data.jobs[i].company} in ${data.jobs[i].locations}</span>
@@ -18,7 +23,7 @@ $('.search-btn').click(()=>{
             }
         },
         error: function(err) {
-            $('#scrapper-results').append('Please try again')
+            $('#scrapper-results').append('<p>Please try again</p>')
         }
     })
 })
