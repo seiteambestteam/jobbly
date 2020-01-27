@@ -11,7 +11,7 @@ $('.search-btn').click(()=>{
         dataType: 'json',
         success: function(data) {
             if (!data.jobs){
-                $('#scrapper-results').append('<p>Please try again</p>')
+                $('#scrapper-results').append(`<p>No ${searchTerm} positions in ${locationTerm}.</p>`)
             }
             for (i = 0; i< data.jobs.length; i++) {
                 const card= `<div class='card'>
