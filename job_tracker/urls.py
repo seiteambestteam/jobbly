@@ -19,4 +19,6 @@ urlpatterns = [
     path('landmarks/<int:pk>/update', views.LandmarkUpdate.as_view(), name='landmarks_update'),
     path('landmarks/<int:pk>/delete', views.Landmark_delete.as_view(), name='landmarks_delete'),
     path('landmarks/<int:landmark_id>/assoc_app/<int:application_id>/', views.assoc_landmark, name='assoc_landmark'),
+  path('ajax/jobsearch/', views.job_search, name='job_search'),
 ]
+
