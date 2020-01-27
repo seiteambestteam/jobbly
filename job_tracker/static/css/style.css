@@ -29,14 +29,22 @@ body {
     margin: 0 auto;
 }
 
-.text-center {
-    text-align: center;
-}
-
 .title {
     font-size: 2rem;
     margin: 1.7rem auto;
     text-shadow: 2px 0 5px var(--light-gray-color);
+}
+
+.txt-center {
+    text-align: center;
+}
+
+.txt-justify {
+    text-align: justify;
+}
+
+.txt-bold {
+    font-weight: bold;
 }
 
 .txt-sml {
@@ -63,6 +71,10 @@ body {
 
 .container {
     width: 50vw;
+}
+
+.container-lg {
+    width: 80vw;
 }
 
 a {
@@ -102,6 +114,11 @@ hr {
     margin-left: 0.5rem;
     width: 1.1rem;
     height: 1.1rem;
+}
+
+.btn-md {
+    width: 3.5rem;
+    height: 2rem;
 }
 
 .btn-lg {
@@ -247,7 +264,7 @@ nav input:checked ~ ul li {
 
 .scrapper {
     background-color: var(--main-color);
-    min-height: 6rem;
+    min-height: 14rem;
 }
 
 .scrapper h2 {
@@ -256,12 +273,16 @@ nav input:checked ~ ul li {
 
 .scrapper div input {
     display: inline;
-    width: 9rem;
-    margin-right: 0.4rem;
+    width: 50vw;
+    margin-right: 0.6rem;
     background-color: var(--main-color);
 }
 
 #scrapper-results {
+    width: 85vw;
+    margin: 0 auto;
+    max-height: 20rem;
+    overflow-y: scroll;
 }
 
 .icon {
@@ -273,6 +294,11 @@ nav input:checked ~ ul li {
 
 .text {
     display: none;
+}
+
+.search-btn {
+    display: block;
+    margin: 0 auto;
 }
 
 .main {
@@ -401,22 +427,16 @@ footer div {
     }
 
     .scrapper {
-        height: 11rem;
+        min-height: 25rem;
     }
 
     .scrapper h2 {
-        margin-left: 1.2rem;
         margin-top: -9rem;
         font-size: 1.6rem;
     }
 
-    .scrapper div {
-        padding-left: 2rem;
-    }
-
     .scrapper div input {
         font-size: 1.2rem;
-        width: 20rem;
         margin: 1.5rem 0;
     }
 
@@ -454,6 +474,10 @@ footer div {
 
     .container {
         width: 50vw;
+    }
+
+    .container-lg {
+        width: 75vw;
     }
 
     .form {

@@ -3,11 +3,21 @@ from django.contrib.auth import login, get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
-from .models import User, Contact, Landmark
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import JsonResponse
+from .models import User, Contact, Landmark, Application
 from .forms import UserForm, ProfileForm
-import os
 import requests
- 
+from bs4 import BeautifulSoup
+import os
+import uuid
+import boto3
+
+
+S3_BASE_URL = 'https://s3.amazonaws.com/'
+BUCKET = 'jobbly'
+
 def home(request):
     return render(request, 'home.html')
 
@@ -62,10 +72,38 @@ def edit_profile(request):
         'error_message': error_message,
     })
 
+def job_search(request):
+    url = request.GET.get('url')
+    if request.user:
+        location = request.user.profile.joblocation
+        location_string = location.replace(' ', '+').replace(',', '%2C')
+        url = url + '&l=' + location_string
+    base_url = 'https://www.simplyhired.ca'
+    page = requests.get(url)
+    soup = BeautifulSoup(page.content, 'html.parser')
+    results = soup.find(id='job-list')
+    job_elems = results.find_all('div', class_='SerpJob-jobCard')
+    job_data = []
+
+    for job in job_elems:
+        title_elem = job.find('a', class_='card-link')
+        info = {
+            'job_link' : base_url + title_elem['href'],
+            'title' : title_elem.text,
+            'company' : job.find('span', class_='jobposting-company').text,
+            'location' : job.find('span', class_='jobposting-location').text,
+            'description' : job.find('p', class_='jobposting-snippet').text,
+        }
+        job_data.append(info)
+    return JsonResponse(job_data, safe=False)
+
 class ContactCreate(CreateView):
     model = Contact
     fields = ['name', 'email', 'linkedin', 'notes', 'application']
     success = '/home/'
+
+    # def form_valid(self, form):
+    # form.instance.user = self.request.user
 
 class ContactUpdate(UpdateView):
     model = Contact
@@ -76,3 +114,30 @@ class ContactDelete(DeleteView):
     model = Contact
     fields = ['name', 'email', 'linkedin', 'notes', 'application']
     success ='/home/'
+
+def application(request):
+    application = Application.objects.filter(user = request.user)
+    profile_form = ProfileForm()
+    return render(request, 'application/index.html', { 'applications': application, 'application_form': application_form })
+
+class LandmarkList(ListView):
+    model = Landmark
+
+class LandmarkDetail(DetailView):
+    model = Landmark
+
+class LandmarkCreate(CreateView):
+    model = Landmark
+    fields = '__all__'
+
+class LandmarkUpdate(UpdateView):
+    model = Landmark
+    fields = '__all__'
+
+class LandmarkDelete(DeleteView):
+    model = Landmark
+    success_url = '/accounts/index'
+
+def assoc_landmark(request, application_id, landmark_id):
+    Application.objects.get(id=application_id).landmark.add(landmark_id)
+    return redirect('application', application_id=application_id)
