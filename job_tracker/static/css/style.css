@@ -39,6 +39,10 @@ body {
     text-shadow: 2px 0 5px var(--light-gray-color);
 }
 
+.txt-sml {
+    font-size: 0.8rem;
+}
+
 .txt-medium {
     font-size: 1.2rem;
 }
@@ -243,7 +247,7 @@ nav input:checked ~ ul li {
 
 .scrapper {
     background-color: var(--main-color);
-    height: 6rem;
+    min-height: 6rem;
 }
 
 .scrapper h2 {
@@ -255,6 +259,9 @@ nav input:checked ~ ul li {
     width: 9rem;
     margin-right: 0.4rem;
     background-color: var(--main-color);
+}
+
+#scrapper-results {
 }
 
 .icon {
@@ -362,7 +369,7 @@ footer div {
 
     nav ul li a {
         color: var(--dark-color);
-        font-size: 1.5rem;
+        font-size: 1.3rem;
     }
 
     /* ??? */
@@ -430,6 +437,10 @@ footer div {
         font-size: 1rem;
         color: var(--dark-color);
         display: inline-block;
+    }
+
+    .txt-sml {
+        font-size: 1.3rem;
     }
 
     .icon {

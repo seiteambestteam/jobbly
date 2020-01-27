@@ -1,20 +1,20 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h2 class="text-center title"> Username{{ user.username }} </h2>
+<h2 class="text-center title">{{ user.username }} </h2>
 
 <div class="center main container">
 <p class="text-center"> Linkedin Account: </p>
-<p class="border-bottom text-center"> {{ user.profile.linkedin }} </p>
+<p class="border-bottom text-center txt-sml"> {{ user.profile.linkedin }} </p>
 <br>
 <p class="text-center"> Github Account: </p>
-<p class="border-bottom text-center"> {{ user.profile.github }} </p>
+<p class="border-bottom text-center center txt-sml"> {{ user.profile.github }} </p>
 <br>
 <p class="text-center"> Website/Portfolio: </p>
-<p class="border-bottom text-center"> {{ user.profile.website }} </p>
+<p class="border-bottom text-center center txt-sml"> {{ user.profile.website }} </p>
 <br>
 <p class="text-center"> Desired Position: </p>
-<p class="border-bottom text-center"> {{ user.profile.jobsearch }} </p>
+<p class="border-bottom text-center txt-sml"> {{ user.profile.jobsearch }} </p>
 <br>
 <br>
 <button class="btn center txt-medium btn-lg"><a href='{% url "edit_profile" %}'>Update</a></button>
