@@ -8,13 +8,22 @@ from .models import User, Contact, Landmark
 from .forms import UserForm, ProfileForm
 import requests
 from bs4 import BeautifulSoup
+import os
+
 
 def home(request):
     return render(request, 'home.html')
 
 def index(request):
     # users = User.objects.filter(user=request.user)
-    return render(request, 'users/index.html')
+
+    news_key = os.environ['NEWS_API_KEY']
+
+    news_url = ('https://newsapi.org/v2/top-headlines?''country=ca&''category=technology&' 'page=1&' 'pageSize=15&' f'apiKey={news_key}')
+    
+    news_response = requests.get(news_url)
+    news = news_response.json()
+    return render(request, 'users/index.html', { 'news':news })
     
 def about(request):
     return render(request, 'about.html')
