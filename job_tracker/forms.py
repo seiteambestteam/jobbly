@@ -10,7 +10,7 @@ class UserForm(ModelForm):
 class ProfileForm(ModelForm):
     class Meta:
         model = Profile
-        fields = ('linkedin', 'github', 'website', 'jobsearch')
+        fields = ('linkedin', 'github', 'website', 'jobsearch', 'joblocation')
 
 class ContactForm(ModelForm):
     class Meta:
