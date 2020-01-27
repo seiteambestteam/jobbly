@@ -74,7 +74,7 @@ def edit_profile(request):
 
 def job_search_api(request):
     search_term = request.GET.get('searchTerm')
-    location = request.user.profile.joblocation if request.user.profile.joblocation else '' 
+    location = request.GET.get('location') 
     cj  =  CareerjetAPIClient("en_CA")
     job_data = cj.search({
                         'location'    : location,
