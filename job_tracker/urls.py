@@ -8,7 +8,8 @@ urlpatterns = [
     path('accounts/profile/', views.profile, name='profile'),
     path('accounts/profile/edit', views.edit_profile, name='edit_profile'),
     path('accounts/index/', views.index, name='index'),
-    path('applications/', views.application, name='application')
+    path('applications/index', views.application, name='application')
+    # path('contacts/index', views.),
     path('contacts/create', views.ContactCreate.as_view(), name='contacts_create'),
     path('contacts/<int:pk>/update', views.ContactUpdate.as_view(), name='contacts_update'),
     path('contacts/<int:pk>/delete', views.ContactDelete.as_view(), name='contacts_delete'),
@@ -18,7 +19,7 @@ urlpatterns = [
     path('landmarks/create', views.LandmarkCreate.as_view(), name='landmarks_create'),
     path('landmarks/<int:pk>/update', views.LandmarkUpdate.as_view(), name='landmarks_update'),
     path('landmarks/<int:pk>/delete', views.Landmark_delete.as_view(), name='landmarks_delete'),
-    path('landmarks/<int:landmark_id>/assoc_app/<int:application_id>/', views.assoc_landmark, name='assoc_landmark'),
+    path('landmarks/<int:landmark_id>/assoc_landmark/<int:application_id>/', views.assoc_landmark, name='assoc_landmark'),
   path('ajax/jobsearch/', views.job_search, name='job_search'),
 ]
 
