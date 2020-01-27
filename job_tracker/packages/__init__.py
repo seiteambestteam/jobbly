@@ -3,7 +3,7 @@ import platform
 import pkg_resources
 import requests
 import json
-from careerjet_api_client.constants import Constants
+from .constants import Constants
 #Note: urlparse is renamed to urllib.parse in Python 3
 from urllib import parse
 
@@ -109,7 +109,7 @@ class CareerjetAPIClient(object):
 		if referer_uri.scheme != 'http' and referer_uri.scheme != 'https':
 			raise Exception('Invalid param url \''+ search_params['url'] +'\'')
 
-		user_agent = 'careerjet-api-client-v' + pkg_resources.require("careerjet_api_client")[0].version +'-python-v'+platform.python_version()
+		user_agent = 'careerjet-api-client-v3.0.1' +'-python-v'+platform.python_version()
 
 		try:
 			response  = requests.get(Constants.API_URL + '/search', headers={ 'user-agent':user_agent ,'referer' : referer_uri.geturl() } ,params=search_params)
