@@ -10,8 +10,8 @@ import boto3
 from .models import User, Contact, Landmark
 from .forms import UserForm, ProfileForm
 
-S3_BASE_URL = 'https://s3-us-west-1.amazonaws.com/'
-BUCKET = 'friendscollector'
+S3_BASE_URL = 'https://s3.amazonaws.com/'
+BUCKET = 'jobbly'
 
 def home(request):
     return render(request, 'home.html')
