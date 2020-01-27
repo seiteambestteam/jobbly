@@ -17,10 +17,8 @@ def index(request):
     # users = User.objects.filter(user=request.user)
 
     news_key = os.environ['NEWS_API_KEY']
-
     news_url = ('https://newsapi.org/v2/top-headlines?''country=ca&''category=technology&' 'page=1&' 'pageSize=15&' f'apiKey={news_key}')
-    
-    news_response = requests.get(news_url)
+    news_response = request.get(news_url)
     news = news_response.json()
     return render(request, 'users/index.html', { 'news':news })
     

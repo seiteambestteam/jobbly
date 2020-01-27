@@ -16,8 +16,16 @@ $('.search-btn').click(()=>{
             //         <a href='${data[i].job_link}' class='btn'>Learn more!</a>
             //     </div>`
             //     $('#scrapper-results').append(card)
-            // }
+            
+            // },
             console.log(data)
+        },
+        error: function(err) {
+            console.log(err)
+        }
+    })
+})
+            
 
 //scraper
 $('.search-btn').click(()=>{
