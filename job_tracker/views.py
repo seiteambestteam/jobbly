@@ -3,12 +3,21 @@ from django.contrib.auth import login, get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
-from .models import User, Contact, Landmark
+from .models import User, Contact, Landmark, Application
 from .forms import UserForm, ProfileForm
 from careerjet_api_client import CareerjetAPIClient
-import os
+import requests
 from bs4 import BeautifulSoup
+import os
+import uuid
+import boto3
+
+
+S3_BASE_URL = 'https://s3.amazonaws.com/'
+BUCKET = 'jobbly'
 
 def home(request):
     return render(request, 'home.html')
@@ -106,6 +115,9 @@ class ContactCreate(CreateView):
     fields = ['name', 'email', 'linkedin', 'notes', 'application']
     success = '/home/'
 
+    # def form_valid(self, form):
+    # form.instance.user = self.request.user
+
 class ContactUpdate(UpdateView):
     model = Contact
     fields = ['name', 'email', 'linkedin', 'notes', 'application']
@@ -115,3 +127,30 @@ class ContactDelete(DeleteView):
     model = Contact
     fields = ['name', 'email', 'linkedin', 'notes', 'application']
     success ='/home/'
+
+def application(request):
+    application = Application.objects.filter(user = request.user)
+    profile_form = ProfileForm()
+    return render(request, 'application/index.html', { 'applications': application, 'application_form': application_form })
+
+class LandmarkList(ListView):
+    model = Landmark
+
+class LandmarkDetail(DetailView):
+    model = Landmark
+
+class LandmarkCreate(CreateView):
+    model = Landmark
+    fields = '__all__'
+
+class LandmarkUpdate(UpdateView):
+    model = Landmark
+    fields = '__all__'
+
+class LandmarkDelete(DeleteView):
+    model = Landmark
+    success_url = '/accounts/index'
+
+def assoc_landmark(request, application_id, landmark_id):
+    Application.objects.get(id=application_id).landmark.add(landmark_id)
+    return redirect('application', application_id=application_id)
