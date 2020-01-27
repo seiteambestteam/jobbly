@@ -27,9 +27,8 @@ def index(request):
 
     news_key = os.environ['NEWS_API_KEY']
     news_url = ('https://newsapi.org/v2/top-headlines?''country=ca&''category=technology&' 'page=1&' 'pageSize=15&' f'apiKey={news_key}')
-    # news_response = request.get(news_url)
-    # news = news_response.json()
-    news={}
+    news_response = requests.get(news_url)
+    news = news_response.json()
     return render(request, 'users/index.html', { 'news':news })
     
 def about(request):
@@ -75,7 +74,7 @@ def edit_profile(request):
 
 def job_search_api(request):
     search_term = request.GET.get('searchTerm')
-    location = request.user.profile.joblocation if request.user.profile.joblocation else '' 
+    location = request.GET.get('location') 
     cj  =  CareerjetAPIClient("en_CA")
     job_data = cj.search({
                         'location'    : location,

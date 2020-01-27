@@ -1,24 +1,32 @@
 //api
 $('.search-btn').click(()=>{
     const searchTerm = $('#search-term').val()
+    const locationTerm = $('#search-location').val()
     $.ajax({
         url: '/ajax/job_search_api/',
         data: {
             'searchTerm' : searchTerm,
+            'location': locationTerm
         },
         dataType: 'json',
         success: function(data) {
-            for (i = 0; i< data.jobs.length; i++) {
-                const card= `<div class='card'>
-                    <span class='job-title'>${data.jobs[i].title} at ${data.jobs[i].company} in ${data.jobs[i].locations}</span>
-                    <p>${data.jobs[i].description}</p>
-                    <a href='${data.jobs[i].url}' class='btn'>Learn more!</a>
-                </div>`
-                $('#scrapper-results').append(card)
+            if (!data.jobs){
+                $('#scrapper-results').append(`<p>No ${searchTerm} positions in ${locationTerm}.</p>`)
+            } else {
+                $('#scrapper-results').empty()
+                for (i = 0; i< data.jobs.length; i++) {
+                    const card= `<div class='card'>
+                        <span class='job-title'>${data.jobs[i].title} at ${data.jobs[i].company} in ${data.jobs[i].locations}</span>
+                        <p>${data.jobs[i].description}</p>
+                        <a href='${data.jobs[i].url}' class='btn'>Learn more!</a>
+                    </div>`
+                    $('#scrapper-results').append(card)
+                }
             }
+            
         },
         error: function(err) {
-            $('#scrapper-results').append('Please try again')
+            $('#scrapper-results').append('<p>Please try again</p>')
         }
     })
 })
