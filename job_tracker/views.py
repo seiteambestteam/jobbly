@@ -113,7 +113,7 @@ def job_search(request):
     return JsonResponse(job_data, safe=False)
 
 def contacts_index(request):
-    contact = Contact.objects.filter(user=request.User)
+    contacts = Contact.objects.filter(user=request.User)
     return render(request, 'contacts/index.html', { 'contacts': contacts})
 
 class ContactCreate(CreateView):
