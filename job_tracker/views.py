@@ -6,7 +6,7 @@ from django.views.generic import ListView, DetailView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
-from .models import User, Contact, Landmark
+from .models import User, Contact, Landmark, Application
 from .forms import UserForm, ProfileForm
 import requests
 from bs4 import BeautifulSoup
@@ -133,6 +133,10 @@ class LandmarkCreate(CreateView):
 class LandmarkUpdate(UpdateView):
     model = Landmark
     fields = '__all__'
+
+class LandmarkDelete(DeleteView):
+    model = Landmark
+    success_url = '/accounts/index'
 
 def assoc_landmark(request, application_id, landmark_id):
     Application.objects.get(id=application_id).landmark.add(landmark_id)
