@@ -3,6 +3,7 @@ from datetime import date, datetime
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.urls import reverse
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -40,6 +41,10 @@ class Contact(models.Model):
     notes = models.TextField(max_length=400)
     application = models.ForeignKey(Application, blank=True, null=True, on_delete=models.SET_NULL)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def get_absolute_url(self):
+        return reverse("contacts_detail", kwargs={"contact_id": self.id})
+    
 
 class Landmark(models.Model):
     #drop down

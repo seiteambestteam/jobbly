@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
 from .models import User, Contact, Landmark, Application
-from .forms import UserForm, ProfileForm
+from .forms import *
 from .packages import CareerjetAPIClient
 import requests
 from bs4 import BeautifulSoup
@@ -27,9 +27,8 @@ def index(request):
 
     news_key = os.environ['NEWS_API_KEY']
     news_url = ('https://newsapi.org/v2/top-headlines?''country=ca&''category=technology&' 'page=1&' 'pageSize=15&' f'apiKey={news_key}')
-    # news_response = request.get(news_url)
-    # news = news_response.json()
-    news={}
+    news_response = requests.get(news_url)
+    news = news_response.json()
     return render(request, 'users/index.html', { 'news':news })
     
 def about(request):
@@ -84,7 +83,7 @@ def job_search_api(request):
                         'user_ip'     : '72.143.53.170',
                         'url'         : 'http://localhost:8000/jobsearch?q=python&l=london',
                         'user_agent'  : 'Mozilla/5.0 (X11; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0'
-                      })
+    })
     return JsonResponse(job_data, safe=False)
 
 def job_search(request):
@@ -113,25 +112,29 @@ def job_search(request):
     return JsonResponse(job_data, safe=False)
 
 def contacts_index(request):
-    contacts = Contact.objects.filter(user=request.User)
+    contacts = Contact.objects.filter(user=request.user)
     return render(request, 'contacts/index.html', { 'contacts': contacts})
+
+def contacts_detail(request, contact_id):
+    contact = Contact.objects.get(id=contact_id)
+    return render(request, 'contacts/detail.html', { 'contact': contact })
 
 class ContactCreate(CreateView):
     model = Contact
     fields = ['name', 'email', 'linkedin', 'notes', 'application']
     success = '/contacts/index/'
 
-    # def form_valid(self, form):
-    # form.instance.user = self.request.user
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 class ContactUpdate(UpdateView):
     model = Contact
-    fields = ['name', 'email', 'linkedin', 'notes', 'application']
+    fields = ['name', 'email', 'linkedin', 'notes']
     success = '/contacts/index/'
 
 class ContactDelete(DeleteView):
     model = Contact
-    fields = ['name', 'email', 'linkedin', 'notes', 'application']
     success ='/contacts/index/'
 
 def application(request):

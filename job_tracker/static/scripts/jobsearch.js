@@ -1,28 +1,27 @@
 //api
-$('.search-btn').click(()=>{
-    const searchTerm = $('#search-term').val()
+$(".search-btn").click(() => {
+    const searchTerm = $("#search-term").val();
     $.ajax({
-        url: '/ajax/job_search_api/',
+        url: "/ajax/job_search_api/",
         data: {
-            'searchTerm' : searchTerm,
+            searchTerm: searchTerm
         },
-        dataType: 'json',
+        dataType: "json",
         success: function(data) {
-            for (i = 0; i< data.jobs.length; i++) {
-                const card= `<div class='card'>
-                    <span class='job-title'>${data.jobs[i].title} at ${data.jobs[i].company} in ${data.jobs[i].locations}</span>
-                    <p>${data.jobs[i].description}</p>
-                    <a href='${data.jobs[i].url}' class='btn'>Learn more!</a>
-                </div>`
-                $('#scrapper-results').append(card)
+            for (i = 0; i < data.jobs.length; i++) {
+                const card = `<div class='card'>
+                    <p class="txt-center">${data.jobs[i].title} at ${data.jobs[i].company} in ${data.jobs[i].locations}</p>
+                    <p class="txt-sml">${data.jobs[i].description}</p>
+                    <button class='btn btn-md center txt-center'><a href='${data.jobs[i].url}' target="_blank">More!</a></button>
+                </div>`;
+                $("#scrapper-results").append(card);
             }
         },
         error: function(err) {
-            $('#scrapper-results').append('Please try again')
+            $("#scrapper-results").append("Please try again");
         }
-    })
-})
-            
+    });
+});
 
 //web scraper
 // $('.search-btn').click(()=>{
