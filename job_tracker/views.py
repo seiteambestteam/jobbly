@@ -112,14 +112,14 @@ def job_search(request):
         job_data.append(info)
     return JsonResponse(job_data, safe=False)
 
-def contact_index(request):
+def contacts_index(request):
     contact = Contact.objects.filter(user=request.User)
     return render(request, 'contacts/index.html', { 'contacts': contacts})
 
 class ContactCreate(CreateView):
     model = Contact
     fields = ['name', 'email', 'linkedin', 'notes', 'application']
-    success = '/contact_index/'
+    success = '/contacts/index/'
 
     # def form_valid(self, form):
     # form.instance.user = self.request.user
@@ -127,12 +127,12 @@ class ContactCreate(CreateView):
 class ContactUpdate(UpdateView):
     model = Contact
     fields = ['name', 'email', 'linkedin', 'notes', 'application']
-    success = '/contact_index/'
+    success = '/contacts/index/'
 
 class ContactDelete(DeleteView):
     model = Contact
     fields = ['name', 'email', 'linkedin', 'notes', 'application']
-    success ='/contact_index/'
+    success ='/contacts/index/'
 
 def application(request):
     application = Application.objects.filter(user = request.user)
@@ -142,17 +142,17 @@ def application(request):
 class ApplicationCreate(CreateView):
     model = Application
     fields = '__all__'
-    success = '/application/'
+    success = '/applications/'
 
 class ApplicationUpdate(UpdateView):
     model = Application
     fields = '__all__'
-    success = '/application/'
+    success = '/applications/'
 
 class ApplicationDelete(DeleteView):
     model = Application
     fields = '__all__'
-    success = '/application/'
+    success = '/applications/'
 
 
 class LandmarkList(ListView):
