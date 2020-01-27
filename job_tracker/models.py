@@ -10,6 +10,7 @@ class Profile(models.Model):
     github = models.CharField(max_length=200, blank=True)
     website = models.CharField(max_length=200, blank=True)
     jobsearch = models.CharField(max_length=200, default='Web Developer')
+    joblocation = models.CharField(max_length=200, default='Toronto, ON')
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
