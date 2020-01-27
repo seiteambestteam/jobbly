@@ -10,8 +10,8 @@ urlpatterns = [
     path('accounts/index/', views.index, name='index'),
     path('applications/', views.application, name='application')
     path('contacts/create', views.ContactCreate.as_view(), name='contacts_create'),
-    path('contacts/update', views.ContactUpdate.as_view(), name='contacts_update'),
-    path('contacts/delete', views.ContactDelete.as_view(), name='contacts_delete'),
+    path('contacts/<int:pk>/update', views.ContactUpdate.as_view(), name='contacts_update'),
+    path('contacts/<int:pk>/delete', views.ContactDelete.as_view(), name='contacts_delete'),
     path('landmarks/', views.LandmarkList.as_view(),
     name='landmarks_index'),
     path('landmarks/<int:pk>/', views.LandmarkDetail.as_view(), name='landmarks_detail'),
