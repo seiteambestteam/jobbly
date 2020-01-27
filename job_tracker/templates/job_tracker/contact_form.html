@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if object %}
+    <h2 class="text-center title">Edit <span class="txt-bold">{{object.name}}</span></h2>
+{% else %}
+    <h2 class="text-center title">Add Contact</h2>
+{% endif %}
+<form class="form center" action="" method="post">
+    {% csrf_token %}
+    <table>
+    {{ form.as_table }}
+    </table>
+    <input class="btn center txt-medium btn-lg" type="submit" value="Submit" class="btn">
+</form>
+<br>
+<button class="btn center txt-medium btn-lg"><a href='{% url "contacts_index" %}'>Cancel</a></button>
+{% endblock %}

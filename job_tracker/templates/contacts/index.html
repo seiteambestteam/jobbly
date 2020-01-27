@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2 class="text-center title">Contacts</h2>
+
+<div>
+    <ul>
+    {% for contact in contacts %}
+    <li><a href="{% url 'contacts_detail' contact.id %}"><span class="txt-bold">{{ contact.name }}</span></a></li>
+        <ol>Email: {{ contact.email }}</ol>
+        <ol>LinkedIn: {{ contact.linkedin }}</ol>
+        <ol>Notes: {{ contact.notes }}</ol>
+        {% if contact.application %}
+            <ol>Application: {{ contact.application }}</ol>
+        {% endif %}
+    {% endfor %}
+    </ul>
+</div>
+
+
+
+
+{% endblock %}

@@ -411,6 +411,13 @@ footer div {
         z-index: 1;
     }
 
+    .line-lg {
+        position: relative;
+        height: 25rem;
+        left: 0.5%;
+        top: 1.3rem;
+    }
+
     .api-section {
         display: flex;
         width: 100vw;
@@ -460,7 +467,7 @@ footer div {
     }
 
     .txt-sml {
-        font-size: 1.3rem;
+        font-size: 1rem;
     }
 
     .icon {
@@ -509,6 +516,13 @@ footer div {
 
     #news ul li {
         width: 42vw;
+    }
+
+    .about-pg {
+        width: 95vw;
+        justify-self: center;
+        margin-top: 8rem;
+        margin-bottom: 8rem;
     }
 
     /* footer */
