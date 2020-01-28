@@ -138,7 +138,7 @@ def contacts_detail(request, contact_id):
 class ContactCreate(CreateView):
     model = Contact
     fields = ['name', 'email', 'linkedin', 'notes', 'application']
-    success = '/contacts/index/'
+    success_url = '/contacts/index/'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -147,32 +147,37 @@ class ContactCreate(CreateView):
 class ContactUpdate(UpdateView):
     model = Contact
     fields = ['name', 'email', 'linkedin', 'notes']
-    success = '/contacts/index/'
+    success_url = '/contacts/index/'
 
 class ContactDelete(DeleteView):
     model = Contact
-    success ='/contacts/index/'
+    success_url ='/contacts/index/'
 
 def application(request):
     application = Application.objects.filter(user = request.user)
     profile_form = ProfileForm()
-    return render(request, 'application/index.html', { 'applications': application, 'application_form': application_form })
+    return render(request, 'applications/index.html', { 'applications': application })
+
+def applications_detail(request, application_id):
+    application = Application.objects.get(id=application_id)
+    return render(request, 'applications/detail.html', { 'application': application })
 
 class ApplicationCreate(CreateView):
     model = Application
-    fields = '__all__'
-    success = '/applications/'
+    fields = ['jobtitle', 'company', 'joblisting', 'resume', 'applied', 'applicationDate', 'dueDate', 'notes']
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 class ApplicationUpdate(UpdateView):
     model = Application
-    fields = '__all__'
-    success = '/applications/'
+    fields = ['jobtitle', 'company', 'joblisting', 'resume', 'applied', 'applicationDate', 'dueDate', 'notes']
 
 class ApplicationDelete(DeleteView):
     model = Application
-    fields = '__all__'
-    success = '/applications/'
-
+    fields = ['jobtitle', 'company', 'joblisting', 'resume', 'applied', 'applicationDate', 'dueDate', 'notes']
+    success_url = '/applications/'
 
 class LandmarkList(ListView):
     model = Landmark
@@ -184,13 +189,17 @@ class LandmarkCreate(CreateView):
     model = Landmark
     fields = '__all__'
 
-class LandmarkUpdate(UpdateView):
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+class LandmarkUpdate(UpdateView): 
     model = Landmark
     fields = '__all__'
 
 class LandmarkDelete(DeleteView):
     model = Landmark
-    success_url = '/accounts/index'
+    success_url = '/landmarks/'
 
 def assoc_landmark(request, application_id, landmark_id):
     Application.objects.get(id=application_id).landmark.add(landmark_id)

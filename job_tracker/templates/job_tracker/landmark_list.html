@@ -1,0 +1,19 @@
+{% extends 'base.html' %} {% block content %}
+
+<h2 class="text-center title">Events</h2>
+
+<div class="center container-sml">
+    <ol class="txt-justify">
+    {% for landmark in landmark_list %}
+        <li><a href="{% url 'landmarks_detail' landmark.id %}"><span class="card-title">{{ landmark.name }}</span></a>
+            <p class="txt-medium">Date:</p>
+            <p class="txt-sml">{{ landmark.datetime }}</p>
+            <p class="txt-medium">Location:</p>
+            <p class="txt-sml">{{ landmark.location }}</p>
+            <p class="txt-medium">Follow-up:</p>
+            <p class="txt-sml">{{ landmark.followup }}</p>
+            <p class="txt-medium">Application:</p>
+            <p class="txt-sml">{{ landmark.application }}</p>
+    </ol>
+</div>
+{% endfor %} {% endblock %}

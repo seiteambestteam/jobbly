@@ -9,6 +9,7 @@ urlpatterns = [
     path('accounts/profile/edit/', views.edit_profile, name='edit_profile'),
     path('accounts/index/', views.index, name='index'),
     path('applications/', views.application, name='application'),
+    path('applications/<int:application_id>/', views.applications_detail, name='applications_detail'),
     path('applications/create/', views.ApplicationCreate.as_view(), name='applications_create'),
     path('applications/<int:pk>/update/', views.ApplicationUpdate.as_view(), name='applications_update'),
     path('applications/<int:pk>/delete/', views.ApplicationDelete.as_view(), name='applications_delete'),

@@ -1,0 +1,33 @@
+{% extends 'base.html' %} {% block content %}
+
+<h2 class="text-center title">Applications</h2>
+
+<div class="center container-lg">
+    <button class="btn center txt-sml btn-md side"><a href="{% url 'applications_create' %}">Add</a></button>
+
+    <br />
+
+<div class="center container-sml">
+    <ol class="txt-justify">
+        {% for application in applications %}
+            <li><a href="{% url 'applications_detail' application.id %}"><span>{{ application.company }}</span></a>
+            <p class="txt-medium">Job Title:</p>
+            <p class="txt-sml">{{ application.jobtitle }}</p>
+            <p class="txt-medium">Job Listing:</p>
+            <p class="txt-sml">{{ application.joblisting }}</p>
+            <p class="txt-medium">Resume:</p>
+            <p class="txt-sml">{{ application.resume }}</p>
+            <p class="txt-medium">Applied:</p>
+            <p class="txt-sml">{{ application.applied }}</p>
+            <p class="txt-medium">Apply Date:</p>
+            <p class="txt-sml">{{ application.applicationDate }}</p>
+            <p class="txt-medium">Apply By:</p>
+            <p class="txt-sml">{{ application.dueDate }}</p>
+            <p class="txt-medium">Notes:</p>
+            <p class="txt-sml">{{ application.notes }}</p>
+            </li>
+        {% endfor %}
+    </ol>
+</div>
+
+{% endblock %}

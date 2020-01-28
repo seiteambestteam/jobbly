@@ -16,3 +16,13 @@ class ContactForm(ModelForm):
     class Meta:
         model = Contact
         fields = ('name', 'email', 'linkedin', 'notes')
+
+class ApplicationForm(ModelForm):
+    class Meta:
+        model = Application
+        fields = ('jobtitle', 'company', 'joblisting', 'resume', 'applied', 'applicationDate', 'dueDate', 'notes')
+
+class LandmarkForm(ModelForm):
+    class Meta:
+        model = Landmark
+        fields = ('name', 'datetime', 'location', 'followup', 'application')
