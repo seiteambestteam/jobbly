@@ -394,6 +394,10 @@ footer div {
     height: 150px !important;
 }
 
+.hidden {
+    display: none;
+}
+
 /* media queries */
 @media (min-width: 768px) {
     .content-wrapper {

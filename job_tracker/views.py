@@ -160,7 +160,8 @@ def application(request):
 
 def applications_detail(request, application_id):
     application = Application.objects.get(id=application_id)
-    return render(request, 'applications/detail.html', { 'application': application })
+    landmark_form = LandmarkForm()
+    return render(request, 'applications/detail.html', { 'application': application, 'landmark_form': landmark_form })
 
 class ApplicationCreate(CreateView):
     model = Application
@@ -179,27 +180,26 @@ class ApplicationDelete(DeleteView):
     fields = ['jobtitle', 'company', 'joblisting', 'resume', 'applied', 'applicationDate', 'dueDate', 'notes']
     success_url = '/applications/'
 
-class LandmarkList(ListView):
-    model = Landmark
-
-class LandmarkDetail(DetailView):
-    model = Landmark
-
-class LandmarkCreate(CreateView):
-    model = Landmark
-    fields = '__all__'
-
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
+def add_landmark(request, application_id):
+    form = LandmarkForm(request.POST)
+    if form.is_valid():
+        new_landmark = form.save(commit=False)
+        new_landmark.application_id = application_id
+        new_landmark.save()
+    return redirect('applications_detail', application_id = application_id)
 
 class LandmarkUpdate(UpdateView): 
     model = Landmark
-    fields = '__all__'
+    fields = ['name', 'start_date_time', 'end_date_time', 'location', 'followup']
+
+    def get_success_url(self):
+        return reverse('applications_detail', kwargs={'application_id': self.object.application_id})
 
 class LandmarkDelete(DeleteView):
     model = Landmark
-    success_url = '/landmarks/'
+
+    def get_success_url(self):
+        return reverse('applications_detail', kwargs={'application_id': self.object.application_id})
 
 def assoc_landmark(request, application_id, landmark_id):
     Application.objects.get(id=application_id).landmark.add(landmark_id)
