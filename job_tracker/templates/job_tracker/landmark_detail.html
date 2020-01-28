@@ -1,22 +1,20 @@
 {% extends 'base.html' %} {% block content %}
 
-<h1>Landmark Details</h1>
-
-<div class="row">
-    <div class="col s6 col-offset-3">
-        <div class="card">
-            <div class="card-content">
-                <span class="card-title">{{ landmark.name }}</span>
-                <p>Date: {{ landmark.datetime }}</p>
-                <p>Location: {{ landmark.location }}</p>
-                <p>Follow-up: {{ landmark.followup }}</p>
-                <p>Application: {{ landmark.application }}</p>
-            </div>
-            <div class="card-action">
-                <a href="{% url 'landmarks_update' landmark.id %}">Edit</a>
-                <a href="{% url 'landmarks_delete' landmark.id %}">Delete</a>
-            </div>
-        </div>
+<h2 class="text-center title">{{ landmark.name }}'s Details</h2>
+<br>
+<div class="center container-lg txt-center">
+    <p class="txt-medium">Date:</p>
+    <p class="txt-sml">{{ landmark.datetime }}</p>
+    <p class="txt-medium">Location:</p>
+    <p class="txt-sml">{{ landmark.location }}</p>
+    <p class="txt-medium">Follow-up:</p>
+    <p class="txt-sml">{{ landmark.followup }}</p>
+    <p class="txt-medium">Application:</p>
+    <p class="txt-sml">{{ landmark.application }}</p>
+    <br>
+    <div class="flex">
+        <button class="btn center txt-sml btn-md forced-margin"><a href="{% url 'landmarks_update' landmark.id %}">Edit</a></button>
+        <button class="btn center txt-sml btn-md forced-margin"><a href="{% url 'landmarks_delete' landmark.id %}">Delete</a></button>
     </div>
 </div>
 {% endblock %}

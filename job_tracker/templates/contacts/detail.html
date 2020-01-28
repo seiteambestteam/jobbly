@@ -1,23 +1,26 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} {% block content %} 
 
-<h2>Contact Details</h2>
-
-<div class="row">
-    <div class="col s6">
-        <div class="card">
-            <div class="card-content">
-                <span class="card-title">{{ contact.name }}</span>
-                <p>Email: {{ contact.email }}</p>
-                <p>LinkedIn: {{ contact.linkedin }}</p>
-                <p>Notes: {{ contact.notes }}</p>
-                {% if contact.application %}
-                <p>Application: {{ contact.application }}</p>
-                {% endif %}
-            </div>
-            <div class="card-action">
+    <h2 class="text-center title">{{ contact.name }}'s Details</h2>
+    <br />
+    <div class="center container-lg txt-center">
+        <p class="txt-medium">Email:</p>
+        <p class="txt-sml">{{ contact.email }}</p>
+        <p class="txt-medium">LinkedIn:</p>
+        <p class="txt-sml">{{ contact.linkedin }}</p>
+        <p class="txt-medium">Notes:</p>
+        <p class="txt-sml">{{ contact.notes }}</p>
+        {% if contact.application %}
+        <p class="txt-medium">Application:</p>
+        <p class="txt-sml">{{ contact.application }}</p>
+        {% endif %}
+        <br />
+        <div class="flex">
+            <button class="btn center txt-sml btn-md forced-margin">
                 <a href="{% url 'contacts_update' contact.id %}">Edit</a>
+            </button>
+            <button class="btn center txt-sml btn-md forced-margin">
                 <a href="{% url 'contacts_delete' contact.id %}">Delete</a>
-            </div>
+            </button>
         </div>
     </div>
     {% endblock %}
