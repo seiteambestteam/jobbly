@@ -7,9 +7,9 @@ from django.urls import reverse
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    linkedin = models.CharField(max_length=200, blank=True)
-    github = models.CharField(max_length=200, blank=True)
-    website = models.CharField(max_length=200, blank=True)
+    linkedin = models.CharField(max_length=200, blank=True, null=True)
+    github = models.CharField(max_length=200, blank=True, null=True)
+    website = models.CharField(max_length=200, blank=True, null=True)
     jobsearch = models.CharField(max_length=200, default='Web Developer')
     joblocation = models.CharField(max_length=200, default='Toronto, ON')
 
@@ -25,20 +25,20 @@ def save_user_profile(sender, instance, **kwargs):
 class Application(models.Model):
     jobtitle = models.CharField(max_length=100)
     company = models.CharField(max_length=50)
-    joblisting = models.CharField(max_length=300, blank=True)
-    resume = models.CharField(max_length=200, blank=True)
-    resumekey = models.CharField(max_length=50, blank=True)
+    joblisting = models.CharField(max_length=300, blank=True, null=True)
+    resume = models.CharField(max_length=200, blank=True, null=True)
+    resumekey = models.CharField(max_length=50, blank=True, null=True)
     applied = models.BooleanField()
-    applicationDate = models.DateField(blank=True)
-    dueDate = models.DateField(blank=True)
-    notes = models.TextField(max_length=500, blank=True)
+    applicationDate = models.DateField(blank=True, null=True)
+    dueDate = models.DateField(blank=True, null=True)
+    notes = models.TextField(max_length=500, blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 class Contact(models.Model):
     name = models.CharField(max_length=200)
-    email = models.CharField(max_length=100, blank=True)
-    linkedin = models.CharField(max_length=100, blank=True)
-    notes = models.TextField(max_length=400, blank=True)
+    email = models.CharField(max_length=100, blank=True, null=True)
+    linkedin = models.CharField(max_length=100, blank=True, null=True)
+    notes = models.TextField(max_length=400, blank=True, null=True)
     application = models.ForeignKey(Application, blank=True, null=True, on_delete=models.SET_NULL)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
@@ -49,8 +49,8 @@ class Contact(models.Model):
 class Landmark(models.Model):
     #drop down
     name = models.CharField(max_length=50)
-    start_date_time = models.DateTimeField()
-    end_date_time = models.DateTimeField(null=True)
-    location = models.CharField(max_length=200, blank=True)
-    followup = models.DateTimeField(blank=True)
+    start_date_time = models.DateTimeField(blank=True, null=True)
+    end_date_time = models.DateTimeField(blank=True, null=True)
+    location = models.CharField(max_length=200, blank=True, null=True)
+    followup = models.DateTimeField(blank=True, null=True)
     application = models.ForeignKey(Application, on_delete=models.CASCADE)
