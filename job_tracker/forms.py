@@ -25,4 +25,4 @@ class ApplicationForm(ModelForm):
 class LandmarkForm(ModelForm):
     class Meta:
         model = Landmark
-        fields = ('name', 'start_date_time', 'end_date_time', 'location', 'followup', 'application')
+        fields = ('name', 'start_date_time', 'end_date_time', 'location', 'followup')

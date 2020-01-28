@@ -2,13 +2,13 @@
 <h2 class="text-center title">Delete Application</h2>
 
 <div class="center container-lg container-sml">
-<h4 class="text-center">
-    Are you sure you want to delete
-    <span class="txt-bold">{{ object.company }}</span>?
-</h4>
+    <h4 class="text-center">
+        Are you sure you want to delete
+        <span class="txt-bold">{{ object.company }}</span>?
+    </h4>
 
-	<br>
-	<br>
+    <br />
+    <br />
 
 <form class="form center" action="" method="POST">
     {% csrf_token %}
@@ -18,3 +18,4 @@
 		</div>
 </form>
 {% endblock %}
+
