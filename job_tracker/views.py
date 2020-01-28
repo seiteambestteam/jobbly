@@ -6,6 +6,7 @@ from django.views.generic import ListView, DetailView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
+from django.core import serializers
 from .models import User, Contact, Landmark, Application
 from .forms import *
 from .packages import CareerjetAPIClient
@@ -24,7 +25,6 @@ def home(request):
 
 def index(request):
     # users = User.objects.filter(user=request.user)
-
     news_key = os.environ['NEWS_API_KEY']
     news_url = ('https://newsapi.org/v2/top-headlines?''country=ca&''category=technology&' 'page=1&' 'pageSize=15&' f'apiKey={news_key}')
     news_response = requests.get(news_url)
@@ -110,6 +110,19 @@ def job_search(request):
         }
         job_data.append(info)
     return JsonResponse(job_data, safe=False)
+
+def get_calendar(request):
+    user = request.user
+    event_qs = Landmark.objects.filter(application__user_id=user.id)
+    data = []
+    for event in event_qs:
+        data.append({
+            'title': event.name,
+            'start': event.start_date_time,
+            'end': event.end_date_time,
+            'url': f'/applications/{event.application.id}'
+        })
+    return JsonResponse(data, safe=False)
 
 def contacts_index(request):
     contacts = Contact.objects.filter(user=request.user)

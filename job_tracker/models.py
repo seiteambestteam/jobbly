@@ -25,20 +25,20 @@ def save_user_profile(sender, instance, **kwargs):
 class Application(models.Model):
     jobtitle = models.CharField(max_length=100)
     company = models.CharField(max_length=50)
-    joblisting = models.CharField(max_length=300)
-    resume = models.CharField(max_length=200)
-    resumekey = models.CharField(max_length=50)
+    joblisting = models.CharField(max_length=300, blank=True)
+    resume = models.CharField(max_length=200, blank=True)
+    resumekey = models.CharField(max_length=50, blank=True)
     applied = models.BooleanField()
-    applicationDate = models.DateField()
-    dueDate = models.DateField()
-    notes = models.TextField(max_length=500)
+    applicationDate = models.DateField(blank=True)
+    dueDate = models.DateField(blank=True)
+    notes = models.TextField(max_length=500, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 class Contact(models.Model):
     name = models.CharField(max_length=200)
-    email = models.CharField(max_length=100)
-    linkedin = models.CharField(max_length=100)
-    notes = models.TextField(max_length=400)
+    email = models.CharField(max_length=100, blank=True)
+    linkedin = models.CharField(max_length=100, blank=True)
+    notes = models.TextField(max_length=400, blank=True)
     application = models.ForeignKey(Application, blank=True, null=True, on_delete=models.SET_NULL)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
@@ -49,7 +49,8 @@ class Contact(models.Model):
 class Landmark(models.Model):
     #drop down
     name = models.CharField(max_length=50)
-    datetime = models.DateTimeField()
-    location = models.CharField(max_length=200)
-    followup = models.DateTimeField()
+    start_date_time = models.DateTimeField()
+    end_date_time = models.DateTimeField(null=True)
+    location = models.CharField(max_length=200, blank=True)
+    followup = models.DateTimeField(blank=True)
     application = models.ForeignKey(Application, on_delete=models.CASCADE)

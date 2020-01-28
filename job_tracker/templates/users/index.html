@@ -2,6 +2,20 @@
 {% load static %}
 {% block scripts %}
 <script src="{% static 'scripts/jobsearch.js' %}" defer></script>
+<script src="{% static 'scripts/calendar.js' %}" defer></script>
+{% comment %} <script src="unpkg.com/@fullcalendar/core/"></script> {% endcomment %}
+<script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous">
+</script>
+<link href="{% static 'scripts/packages/core/main.css' %}" rel='stylesheet' />
+<link href="{% static 'scripts/packages/daygrid/main.css' %}" rel='stylesheet' />
+<link href="{% static 'scripts/packages/list/main.css' %}" rel='stylesheet' />
+<script src="{% static 'scripts/packages/core/main.js' %}"></script>
+<script src="{% static 'scripts/packages/daygrid/main.js' %}"></script>
+<script src="{% static 'scripts/packages/list/main.js' %}"></script>
+
 {% endblock %}
 {% block content %}
 

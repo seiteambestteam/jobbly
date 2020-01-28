@@ -25,4 +25,5 @@ urlpatterns = [
     path('landmarks/<int:landmark_id>/assoc_app/<int:application_id>/', views.assoc_landmark, name='assoc_landmark'),
     path('ajax/jobsearch/', views.job_search, name='job_search'),
     path('ajax/job_search_api/', views.job_search_api, name='job_search_api'),
+    path('ajax/get_calendar/', views.get_calendar, name='get_calendar'),
   ]
