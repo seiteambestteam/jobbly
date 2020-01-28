@@ -1,0 +1,22 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>Landmark Details</h1>
+
+<div class="row">
+    <div class="col s6 col-offset-3">
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">{{ landmark.name }}</span>
+                <p>Date: {{ landmark.datetime }}</p>
+                <p>Location: {{ landmark.location }}</p>
+                <p>Follow-up: {{ landmark.followup }}</p>
+                <p>Application: {{ landmark.application }}</p>
+            </div>
+            <div class="card-action">
+                <a href="{% url 'landmarks_update' landmark.id %}">Edit</a>
+                <a href="{% url 'landmarks_delete' landmark.id %}">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

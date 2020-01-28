@@ -35,10 +35,10 @@
     <br>
     <div class="center container">
         <label class="txt-center center" for="search-term">I'm looking for:</label>
-        <input type="text" name="search-term" id="search-term" />
+        <input type="text" name="search-term" id="search-term" value='{{ user.profile.jobsearch }}'/>
         <br />
         <label class="txt-center center" for="search-location">Location:</label>
-        <input type="text" name="search-location" id="search-location" />
+        <input type="text" name="search-location" id="search-location" value='{{ user.profile.joblocation }}' />
         <button class="btn btn-sml search-btn"><span class="icon"><i class="fas fa-search search-icon"></i></span><span class="text">Search</span></button>
     </div>
     <br>

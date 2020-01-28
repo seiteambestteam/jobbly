@@ -1,0 +1,21 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>Application List</h1>
+
+{% for application in applications %}
+<a href="{% url 'applications_detail' application.id %}">
+    <div>
+        <ol>
+            <li><span> Company: {{ application.company }}</span></li>
+            <p>Job Title: {{ application.jobtitle }}</p>
+            <p>Job Listing: {{ application.joblisting }}</p>
+            <p>Resume: {{ application.resume }}</p>
+            <p>Applied: {{ application.applied }}</p>
+            <p>Apply Date: {{ application.applicationDate }}</p>
+            <p>Apply By: {{ application.dueDate }}</p>
+            <p>Notes: {{ application.notes }}</p>
+        </ol>
+    </div>
+</a>
+
+{% endfor %} {% endblock %}

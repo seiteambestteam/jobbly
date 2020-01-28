@@ -1,0 +1,22 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>Application</h1>
+
+<div>
+    <ol>
+        <li><span> Company: {{ application.company }}</span></li>
+        <p>Job Title: {{ application.jobtitle }}</p>
+        <p>Job Listing: {{ application.joblisting }}</p>
+        <p>Resume: {{ application.resume }}</p>
+        <p>Applied: {{ application.applied }}</p>
+        <p>Apply Date: {{ application.applicationDate }}</p>
+        <p>Apply By: {{ application.dueDate }}</p>
+        <p>Notes: {{ application.notes }}</p>
+    </ol>
+    <div class="card-action">
+        <a href="{% url 'applications_update' application.id %}">Edit</a>
+        <a href="{% url 'applications_delete' application.id %}">Delete</a>
+    </div>
+</div>
+
+{% endblock %}
