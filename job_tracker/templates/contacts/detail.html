@@ -1,24 +1,24 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 
 <h2>Contact Details</h2>
 
 <div class="row">
-  <div class="col s6">
-    <div class="card">
-      <div class="card-content">
-        <span class="card-title">{{ contact.name }}</span>
-        <p>Email: {{ contact.email }}</p>
-        <p>LinkedIn: {{ contact.linkedin }}</p>
-        <p>Notes: {{ contact.notes }}</p>
-        {% if contact.application %}
-          <p>Application: {{ contact.application }}</p>
-        {% endif %}
-      </div>
-      <div class="card-action">
-        <a href="{% url 'contacts_update' contact.id %}">Edit</a>
-        <a href="{% url 'contacts_delete' contact.id %}">Delete</a>
-      </div>
+    <div class="col s6">
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">{{ contact.name }}</span>
+                <p>Email: {{ contact.email }}</p>
+                <p>LinkedIn: {{ contact.linkedin }}</p>
+                <p>Notes: {{ contact.notes }}</p>
+                {% if contact.application %}
+                <p>Application: {{ contact.application }}</p>
+                {% endif %}
+            </div>
+            <div class="card-action">
+                <a href="{% url 'contacts_update' contact.id %}">Edit</a>
+                <a href="{% url 'contacts_delete' contact.id %}">Delete</a>
+            </div>
+        </div>
     </div>
+    {% endblock %}
 </div>
-{% endblock %}

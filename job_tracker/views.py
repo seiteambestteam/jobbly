@@ -188,3 +188,7 @@ class LandmarkDelete(DeleteView):
 def assoc_landmark(request, application_id, landmark_id):
     Application.objects.get(id=application_id).landmark.add(landmark_id)
     return redirect('application', application_id=application_id)
+
+def unassoc_landmark(request, application_id, landmark_id):
+    Application.objects.get(id=application_id).landmarks.remove(landmark_id)
+    return redirect('detail', application_id=application_id)
