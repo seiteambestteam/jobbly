@@ -29,9 +29,9 @@ class Application(models.Model):
     resume = models.CharField(max_length=200, blank=True)
     resumekey = models.CharField(max_length=50, blank=True)
     applied = models.BooleanField()
-    applicationDate = models.DateField(blank=True)
-    dueDate = models.DateField(blank=True)
-    notes = models.TextField(max_length=500, blank=True)
+    applicationDate = models.DateField(blank=True, null=True)
+    dueDate = models.DateField(blank=True, null=True)
+    notes = models.TextField(max_length=500, blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def get_absolute_url(self):
@@ -52,10 +52,10 @@ class Contact(models.Model):
 class Landmark(models.Model):
     #drop down
     name = models.CharField(max_length=50)
-    start_date_time = models.DateTimeField()
-    end_date_time = models.DateTimeField(null=True)
+    start_date_time = models.DateTimeField(blank=True, null=True)
+    end_date_time = models.DateTimeField(blank=True, null=True)
     location = models.CharField(max_length=200, blank=True)
-    followup = models.DateTimeField(blank=True)
+    followup = models.DateTimeField(blank=True, null=True)
     application = models.ForeignKey(Application, on_delete=models.CASCADE)
 
     def get_absolute_url(self):
