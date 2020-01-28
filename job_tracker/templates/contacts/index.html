@@ -1,41 +1,52 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 
 <h2 class="text-center title">Contacts</h2>
 
 <div class="center container-lg">
-    <button class="btn center txt-sml btn-md side"><a href="{% url 'contacts_create' %}">Add</a></button>
+    <button class="btn center txt-sml btn-md side">
+        <a href="{% url 'contacts_create' %}">Add</a>
+    </button>
 
     <br />
 
     <form class="form center" action="" method="get" id="contacts-search-form">
-        <label class="txt-center center txt-medium" for="contacts-search">Search a Contact:</label>
-        <input class="border-bottom txt-center txt-sml" type="text" name="contacts-search" id="contacts-search" autocomplete="off" />
+        <label class="txt-center center txt-medium" for="contacts-search"
+            >Search a Contact:</label
+        >
+        <input
+            class="border-bottom txt-center txt-sml"
+            type="text"
+            name="contacts-search"
+            id="contacts-search"
+            autocomplete="off"
+        />
     </form>
 
     <br />
     <div class="center container-sml">
         <ol class="txt-justify">
-        {% for contact in contacts %}
-            <li><a href="{% url 'contacts_detail' contact.id %}"><span class="txt-bold txt-medium">{{ contact.name }}</span></a>
-            <p class="txt-medium">Email:</p> 
-            <p class="txt-sml">{{ contact.email }}</p>
-            <p class="txt-medium">LinkedIn:</p>
-            <p class="txt-sml">{{ contact.linkedin }}</p>
-            <p class="txt-medium">Notes:</p>
-            <p class="txt-sml">{{ contact.notes }}</p>
-            {% if contact.application %}
+            {% for contact in contacts %}
+            <li>
+                <a href="{% url 'contacts_detail' contact.id %}"
+                    ><span class="txt-bold txt-medium"
+                        >{{ contact.name }}</span
+                    ></a
+                >
+                <p class="txt-medium">Email:</p>
+                <p class="txt-sml">{{ contact.email }}</p>
+                <p class="txt-medium">LinkedIn:</p>
+                <p class="txt-sml">{{ contact.linkedin }}</p>
+                <p class="txt-medium">Notes:</p>
+                <p class="txt-sml">{{ contact.notes }}</p>
+                {% if contact.application %}
                 <p class="txt-medium">Application:</p>
-                <p class="txt-sml">{{ contact.application }}</p>
-            {% endif %}
-        </li>
-        <br>
-        {% endfor %}
+                <p class="txt-sml">{{ contact.application.company }}</p>
+                {% endif %}
+            </li>
+            <br />
+            {% endfor %}
         </ol>
     </div>
 </div>
-
-
-
 
 {% endblock %}
