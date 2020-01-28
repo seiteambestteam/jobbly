@@ -1,13 +1,19 @@
-{% extends 'base.html' %} {% block content %}
-<h1>Delete Landmark</h1>
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="txt-center title">Delete Landmark</h2>
 
-<h4>
-    Are you sure you want to delete
-    <span class="teal-text">{{ object.name }}</span>?
+<div class="center container-lg container-sml">
+<h4>Are you sure you want to delete<span class="txt-bold">{{ object.name }}</span>?
 </h4>
 
-<form action="" method="POST">
+	<br>
+	<br>
+
+<form class="form center" action="" method="POST">
     {% csrf_token %}
-    <input type="submit" value="Yes - Delete!" class="btn" />
+    <div class="flex">
+			<input class="btn center txt-sml btn-md forced-margin" type="submit" value="Yes">
+			<button class="btn center txt-sml btn-md forced-margin txt-center"><a href="{% url 'landmarks_index' %}">No</a></button>
+	</div>
 </form>
 {% endblock %}

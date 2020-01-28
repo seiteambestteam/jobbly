@@ -1,21 +1,28 @@
 {% extends 'base.html' %} {% block content %}
 
-<h1>Application</h1>
+<h2 class="txt-center title">{{ application.company }}'s Application</h2>
 
-<div>
-    <ol>
-        <li><span> Company: {{ application.company }}</span></li>
-        <p>Job Title: {{ application.jobtitle }}</p>
-        <p>Job Listing: {{ application.joblisting }}</p>
-        <p>Resume: {{ application.resume }}</p>
-        <p>Applied: {{ application.applied }}</p>
-        <p>Apply Date: {{ application.applicationDate }}</p>
-        <p>Apply By: {{ application.dueDate }}</p>
-        <p>Notes: {{ application.notes }}</p>
-    </ol>
-    <div class="card-action">
-        <a href="{% url 'applications_update' application.id %}">Edit</a>
-        <a href="{% url 'applications_delete' application.id %}">Delete</a>
+<div class="center container-lg container-sml">
+        <p class="txt-medium"> Company:</p>
+        <p class="txt-sml">{{ application.company }}</p>
+        <p class="txt-medium">Job Title:</p>
+        <p class="txt-sml">{{ application.jobtitle }}</p>
+        <p class="txt-medium">Job Listing:</p>
+        <p class="txt-sml">{{ application.joblisting }}</p>
+        <p class="txt-medium">Resume:</p>
+        <p class="txt-sml">{{ application.resume }}</p>
+        <p class="txt-medium">Applied:</p>
+        <p class="txt-sml">{{ application.applied }}</p>
+        <p class="txt-medium">Apply Date:</p>
+        <p class="txt-sml">{{ application.applicationDate }}</p>
+        <p class="txt-medium">Apply By:</p>
+        <p class="txt-sml">{{ application.dueDate }}</p>
+        <p class="txt-medium">Notes:</p>
+        <p class="txt-sml">{{ application.notes }}</p>
+
+    <div class="flex">
+        <button class="btn center txt-sml btn-md forced-margin"><a href="{% url 'applications_update' application.id %}">Edit</a></button>
+        <button class="btn center txt-sml btn-md forced-margin"><a href="{% url 'applications_delete' application.id %}">Delete</a></button>
     </div>
 </div>
 

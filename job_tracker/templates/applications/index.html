@@ -1,21 +1,33 @@
 {% extends 'base.html' %} {% block content %}
 
-<h1>Application List</h1>
+<h2 class="text-center title">Applications</h2>
 
-{% for application in applications %}
-<a href="{% url 'applications_detail' application.id %}">
-    <div>
-        <ol>
-            <li><span> Company: {{ application.company }}</span></li>
-            <p>Job Title: {{ application.jobtitle }}</p>
-            <p>Job Listing: {{ application.joblisting }}</p>
-            <p>Resume: {{ application.resume }}</p>
-            <p>Applied: {{ application.applied }}</p>
-            <p>Apply Date: {{ application.applicationDate }}</p>
-            <p>Apply By: {{ application.dueDate }}</p>
-            <p>Notes: {{ application.notes }}</p>
-        </ol>
-    </div>
-</a>
+<div class="center container-lg">
+    <button class="btn center txt-sml btn-md side"><a href="{% url 'applications_create' %}">Add</a></button>
 
-{% endfor %} {% endblock %}
+    <br />
+
+<div class="center container-sml">
+    <ol class="txt-justify">
+        {% for application in applications %}
+            <li><a href="{% url 'applications_detail' application.id %}"><span>{{ application.company }}</span></a>
+            <p class="txt-medium">Job Title:</p>
+            <p class="txt-sml">{{ application.jobtitle }}</p>
+            <p class="txt-medium">Job Listing:</p>
+            <p class="txt-sml">{{ application.joblisting }}</p>
+            <p class="txt-medium">Resume:</p>
+            <p class="txt-sml">{{ application.resume }}</p>
+            <p class="txt-medium">Applied:</p>
+            <p class="txt-sml">{{ application.applied }}</p>
+            <p class="txt-medium">Apply Date:</p>
+            <p class="txt-sml">{{ application.applicationDate }}</p>
+            <p class="txt-medium">Apply By:</p>
+            <p class="txt-sml">{{ application.dueDate }}</p>
+            <p class="txt-medium">Notes:</p>
+            <p class="txt-sml">{{ application.notes }}</p>
+            </li>
+        {% endfor %}
+    </ol>
+</div>
+
+{% endblock %}
