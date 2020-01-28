@@ -3,7 +3,7 @@
 <h1>Application List</h1>
 
 {% for application in applications %}
-<a href="{% url 'detail' application.id %}">
+<a href="{% url 'applications_detail' application.id %}">
     <div>
         <ol>
             <li><span> Company: {{ application.company }}</span></li>

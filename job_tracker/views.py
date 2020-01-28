@@ -149,7 +149,6 @@ def applications_detail(request, application_id):
 class ApplicationCreate(CreateView):
     model = Application
     fields = ['jobtitle', 'company', 'joblisting', 'resume', 'applied', 'applicationDate', 'dueDate', 'notes']
-    success_url = '/applications/'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -158,7 +157,6 @@ class ApplicationCreate(CreateView):
 class ApplicationUpdate(UpdateView):
     model = Application
     fields = ['jobtitle', 'company', 'joblisting', 'resume', 'applied', 'applicationDate', 'dueDate', 'notes']
-    success_url = '/applications/'
 
 class ApplicationDelete(DeleteView):
     model = Application
@@ -175,13 +173,17 @@ class LandmarkCreate(CreateView):
     model = Landmark
     fields = '__all__'
 
-class LandmarkUpdate(UpdateView):
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+class LandmarkUpdate(UpdateView): 
     model = Landmark
     fields = '__all__'
 
 class LandmarkDelete(DeleteView):
     model = Landmark
-    success_url = '/accounts/index'
+    success_url = '/landmarks/'
 
 def assoc_landmark(request, application_id, landmark_id):
     Application.objects.get(id=application_id).landmark.add(landmark_id)

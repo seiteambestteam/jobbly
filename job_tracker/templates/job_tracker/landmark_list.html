@@ -1,0 +1,17 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>Landmarks List</h1>
+
+{% for landmark in landmark_list %}
+<a href="{% url 'landmarks_detail' landmark.id %}">
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">{{ landmark.name }}</span>
+            <p>Date: {{ landmark.datetime }}</p>
+            <p>Location: {{ landmark.location }}</p>
+            <p>Follow-up: {{ landmark.followup }}</p>
+            <p>Application: {{ landmark.application }}</p>
+        </div>
+    </div>
+</a>
+{% endfor %} {% endblock %}

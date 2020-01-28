@@ -56,3 +56,6 @@ class Landmark(models.Model):
     location = models.CharField(max_length=200)
     followup = models.DateTimeField()
     application = models.ForeignKey(Application, on_delete=models.CASCADE)
+
+    def get_absolute_url(self):
+        return reverse("landmarks_detail", kwargs={'pk': self.id})
