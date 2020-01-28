@@ -129,16 +129,9 @@ def calendar(request):
 
 def contacts_index(request):
     contacts = Contact.objects.filter(user=request.user)
-    contacts_data = []
-    for contact in contacts:
-        contacts_data.append({
-            'name': f'{}',
-            'name': f'{}',
-            'name': f'{}',
-            'name': f'{}',
-            'name': f'{}',
-        })
-    return render(request, 'contacts/index.html', {'contacts': contacts})
+    all_contacts = contacts.order_by('name')
+    return render(request, 'contacts/index.html', { 'contacts': all_contacts})
+
 
 def contacts_detail(request, contact_id):
     contact = Contact.objects.get(id=contact_id)
