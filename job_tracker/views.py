@@ -132,6 +132,7 @@ def contacts_index(request):
     all_contacts = contacts.order_by('name')
     return render(request, 'contacts/index.html', { 'contacts': all_contacts})
 
+
 def contacts_detail(request, contact_id):
     contact = Contact.objects.get(id=contact_id)
     return render(request, 'contacts/detail.html', { 'contact': contact })
@@ -166,10 +167,26 @@ def applications_detail(request, application_id):
 
 class ApplicationCreate(CreateView):
     model = Application
-    fields = ['jobtitle', 'company', 'joblisting', 'resume', 'applied', 'applicationDate', 'dueDate', 'notes']
+    fields = ['jobtitle', 'company', 'joblisting', 'applied', 'applicationDate', 'dueDate', 'notes']
+
+# 'resume',
 
     def form_valid(self, form):
         form.instance.user = self.request.user
+        resume_file = self.request.FILES.get('resume-file', None)
+        if resume_file:
+            session = boto3.Session(profile_name='jobbly')
+            jobbly_s3 = session.client('s3')
+            key = uuid.uuid4().hex[:6] + resume_file.name[resume_file.name.rfind('.'):]
+            try:
+                jobbly_s3.upload_fileobj(resume_file, BUCKET, key)
+                url = f"{S3_BASE_URL}{BUCKET}/{key}"
+                form.instance.resume = url
+                form.instance.resumekey = key                
+            except Exception as e:
+                # return error handling here if it doesn't upload
+                print(e)
+                print('Sorry, an error occurred uploading the file to AWS S3')
         return super().form_valid(form)
 
 class ApplicationUpdate(UpdateView):
