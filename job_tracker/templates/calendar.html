@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block scripts %}
+<script src="{% static 'scripts/calendarGrid.js' %}" defer></script>
+<script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous">
+</script>
+<link href="{% static 'scripts/packages/core/main.css' %}" rel='stylesheet' />
+<link href="{% static 'scripts/packages/daygrid/main.css' %}" rel='stylesheet' />
+<script src="{% static 'scripts/packages/core/main.js' %}"></script>
+<script src="{% static 'scripts/packages/daygrid/main.js' %}"></script>
+
+<script>
+    $(document).ready(function() {
+        var calendarEl = document.getElementById('calendar');
+        let events = [];
+        let calendar = new FullCalendar.Calendar(calendarEl, {
+                events: {{ events }},
+                plugins: [ 'dayGrid' ],
+                defaultView: 'dayGridMonth',
+                height: 'parent',
+                aspectRatio: 4
+            });
+        calendar.render();
+  });
+</script>
+{% endblock %}
+{% block content %}
+    <div id='calendar' class='max-height'></div>
+{% endblock %}

@@ -382,6 +382,18 @@ footer div {
     font-size: 0.6rem;
 }
 
+.fc-toolbar h2 {
+    font-size: 1rem;
+}
+
+#calendar > div.fc-toolbar.fc-header-toolbar {
+    margin: 1.1rem;
+}
+
+#calendar > div.fc-view-container > div > div {
+    height: 150px !important;
+}
+
 /* media queries */
 @media (min-width: 768px) {
     .content-wrapper {
