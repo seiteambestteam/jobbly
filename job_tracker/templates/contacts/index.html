@@ -3,16 +3,19 @@
 
 <h2 class="text-center title">Contacts</h2>
 
-<div>
+<button class="btn"><a href="{% url 'contacts_create' %}">Add a Contact</a></button>
+
+<div class="center main container">
     <ul>
     {% for contact in contacts %}
     <li><a href="{% url 'contacts_detail' contact.id %}"><span class="txt-bold">{{ contact.name }}</span></a></li>
-        <ol>Email: {{ contact.email }}</ol>
-        <ol>LinkedIn: {{ contact.linkedin }}</ol>
-        <ol>Notes: {{ contact.notes }}</ol>
+        <p>Email: {{ contact.email }}</p>
+        <p>LinkedIn: {{ contact.linkedin }}</p>
+        <p>Notes: {{ contact.notes }}</p>
         {% if contact.application %}
-            <ol>Application: {{ contact.application }}</ol>
+            <p>Application: {{ contact.application }}</p>
         {% endif %}
+        <br>
     {% endfor %}
     </ul>
 </div>

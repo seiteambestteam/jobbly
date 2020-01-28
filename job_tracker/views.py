@@ -122,7 +122,7 @@ def contacts_detail(request, contact_id):
 class ContactCreate(CreateView):
     model = Contact
     fields = ['name', 'email', 'linkedin', 'notes', 'application']
-    success = '/contacts/index/'
+    success_url = '/contacts/index/'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -131,11 +131,11 @@ class ContactCreate(CreateView):
 class ContactUpdate(UpdateView):
     model = Contact
     fields = ['name', 'email', 'linkedin', 'notes']
-    success = '/contacts/index/'
+    success_url = '/contacts/index/'
 
 class ContactDelete(DeleteView):
     model = Contact
-    success ='/contacts/index/'
+    success_url ='/contacts/index/'
 
 def application(request):
     application = Application.objects.filter(user = request.user)

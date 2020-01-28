@@ -8,5 +8,6 @@
   <form action="" method="POST">
     {% csrf_token %}
     <input class="btn center txt-medium btn-lg" type="submit" value="Yes" class="btn">
+    <button> <a href="{% url 'contacts_index' %}">Cancel</a></button>
   </form>
 {% endblock %}
