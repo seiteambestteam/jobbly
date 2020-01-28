@@ -124,6 +124,9 @@ def get_calendar(request):
         })
     return JsonResponse(data, safe=False)
 
+def calendar(request):
+    return render(request, 'calendar.html')
+
 def contacts_index(request):
     contacts = Contact.objects.filter(user=request.user)
     return render(request, 'contacts/index.html', { 'contacts': contacts})
