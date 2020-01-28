@@ -117,10 +117,10 @@ def get_calendar(request):
     data = []
     for event in event_qs:
         data.append({
-            'title': event.name,
+            'title': f'{event.name}, {event.application.company}',
             'start': event.start_date_time,
             'end': event.end_date_time,
-            'url': f'/applications/{event.application.id}'
+            'url': f'/applications/{event.application.id}',
         })
     return JsonResponse(data, safe=False)
 

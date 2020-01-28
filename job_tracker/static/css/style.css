@@ -347,6 +347,10 @@ footer div {
     margin: 1.1rem;
 }
 
+#calendar > div.fc-view-container > div > div {
+    height: 150px !important;
+}
+
 /* media queries */
 @media (min-width: 768px) {
     .content-wrapper {
