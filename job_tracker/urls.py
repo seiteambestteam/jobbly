@@ -28,4 +28,4 @@ urlpatterns = [
     path('ajax/job_search_api/', views.job_search_api, name='job_search_api'),
     path('ajax/get_calendar/', views.get_calendar, name='get_calendar'),
     path('calendar/', views.calendar, name='calendar'),
-  ]
+]
