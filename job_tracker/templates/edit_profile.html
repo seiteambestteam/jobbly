@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2 class="text-center title"> {{ user.username }} </h2>
+<h2 class="txt-center title"> {{ user.username }} </h2>
 {% if error_message %}<p class="red-text">{{ error_message }}</p>{% endif %}
 <form class="form center" method="post">
   {% csrf_token %}
   {{ user_form.as_p }}
   {{ profile_form.as_p }}
-  <button class="btn center txt-medium btn-lg" type="submit">Save</button>
+  <div class="flex">
+  <button class="btn center txt-medium btn-lg forced-margin" type="submit">Save</button>
+  <button class="btn center txt-medium btn-lg forced-margin"><a href='{% url "profile" %}'>Cancel</a></button>
+  </div>
 </form>
-<br>
-<button class="btn center txt-medium btn-lg"><a href='{% url "profile" %}'>Cancel</a></button>
+
 {% endblock %}

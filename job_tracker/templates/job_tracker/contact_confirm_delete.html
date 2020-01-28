@@ -1,13 +1,20 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h2 class="text-center title">Delete Contact</h2>
+<h2 class="txt-center title">Delete Contact</h2>
 
-  <h4 class="text-center">Are you sure you want to delete <span class="txt-bold">{{ object.name }}</span>?</h4>
+<div class="center container-lg container-sml">
+	<h4 class="txt-center">Are you sure you want to delete <span class="txt-bold">{{ object.name }}</span>?</h4>
 
-  <form action="" method="POST">
-    {% csrf_token %}
-    <input class="btn center txt-medium btn-lg" type="submit" value="Yes" class="btn">
-    <button> <a href="{% url 'contacts_index' %}">Cancel</a></button>
-  </form>
+	<br>
+	<br>
+
+	<form class="form center" action="" method="POST">
+	{% csrf_token %}
+		<div class="flex">
+			<input class="btn center txt-sml btn-md forced-margin" type="submit" value="Yes">
+			<button class="btn center txt-sml btn-md forced-margin txt-center"><a href="{% url 'contacts_index' %}">No</a></button>
+		</div>
+	</form>
+</div>
 {% endblock %}

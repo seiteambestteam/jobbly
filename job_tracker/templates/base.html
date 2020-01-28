@@ -37,17 +37,16 @@
                 <input type="checkbox" id="hamburger" />
                 <ul>
                     <div class="nav-li">
+                        <li><a href="{% url "about" %}">About</a></li>
                         {% if user.is_authenticated %}
                         <li><a href="{% url "index" %}">Home</a></li>
-                        <li><a href="{% url "about" %}">About</a></li>
                         <li><a href="{% url "profile" %}">Profile</a></li>
                         <li>
-                            <a href="#">Applications</a>
+                            <a href="{% url "application" %}">Applications</a>
                         </li>
                         <li><a href="{% url "contacts_index" %}">Contacts</a></li>
                         <li><a href="{% url "logout" %}">Log Out</a></li>
                         {% else %}
-                        <li><a href="{% url "about" %}">About</a></li>
                         <li><a href="{% url "signup" %}">Sign Up</a></li>
                         <li><a href="{% url "login" %}">Log In</a></li>
                         {% endif %}
