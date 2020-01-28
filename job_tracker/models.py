@@ -34,6 +34,9 @@ class Application(models.Model):
     notes = models.TextField(max_length=500)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    def get_absolute_url(self):
+        return reverse("applications_detail", kwargs={"application_id": self.id})
+
 class Contact(models.Model):
     name = models.CharField(max_length=200)
     email = models.CharField(max_length=100)
@@ -53,3 +56,6 @@ class Landmark(models.Model):
     location = models.CharField(max_length=200)
     followup = models.DateTimeField()
     application = models.ForeignKey(Application, on_delete=models.CASCADE)
+
+    def get_absolute_url(self):
+        return reverse("landmarks_detail", kwargs={'pk': self.id})

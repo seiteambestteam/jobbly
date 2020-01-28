@@ -1,0 +1,18 @@
+{% extends 'base.html' %} {% block content %}
+<h2 class="text-center title">Delete Application</h2>
+
+<h4 class="text-center">
+    Are you sure you want to delete
+    <span class="txt-bold">{{ object.company }}</span>?
+</h4>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <input
+        class="btn center txt-medium btn-lg"
+        type="submit"
+        value="Yes"
+        class="btn"
+    />
+</form>
+{% endblock %}
