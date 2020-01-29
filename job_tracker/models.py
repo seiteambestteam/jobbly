@@ -25,9 +25,9 @@ def save_user_profile(sender, instance, **kwargs):
 class Application(models.Model):
     jobtitle = models.CharField(max_length=100)
     company = models.CharField(max_length=50)
-    joblisting = models.CharField(max_length=300, blank=True)
-    resume = models.CharField(max_length=200, blank=True)
-    resumekey = models.CharField(max_length=50, blank=True)
+    joblisting = models.CharField(max_length=300, blank=True, null=True)
+    resume = models.CharField(max_length=200, blank=True, null=True)
+    resumekey = models.CharField(max_length=50, blank=True, null=True)
     applied = models.BooleanField()
     applicationDate = models.DateField(blank=True, null=True)
     dueDate = models.DateField(blank=True, null=True)
@@ -39,9 +39,10 @@ class Application(models.Model):
 
 class Contact(models.Model):
     name = models.CharField(max_length=200)
-    email = models.CharField(max_length=100, blank=True)
-    linkedin = models.CharField(max_length=100, blank=True)
-    notes = models.TextField(max_length=400, blank=True)
+    email = models.CharField(max_length=100, blank=True, null=True)
+    phone_number = models.CharField(max_length=20, blank=True, null=True)
+    linkedin = models.CharField(max_length=100, blank=True, null=True)
+    notes = models.TextField(max_length=400, blank=True, null=True)
     application = models.ForeignKey(Application, blank=True, null=True, on_delete=models.SET_NULL)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
@@ -54,7 +55,7 @@ class Landmark(models.Model):
     name = models.CharField(max_length=50)
     start_date_time = models.DateTimeField(blank=True, null=True)
     end_date_time = models.DateTimeField(blank=True, null=True)
-    location = models.CharField(max_length=200, blank=True)
+    location = models.CharField(max_length=200, blank=True, null=True)
     followup = models.DateTimeField(blank=True, null=True)
     application = models.ForeignKey(Application, on_delete=models.CASCADE)
 
