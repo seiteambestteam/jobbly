@@ -1,4 +1,13 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %}
+{% load static %}
+{% block scripts %}
+    <link href="{% static 'scripts/packages/datetime/jquery.datetimepicker.min.css' %}" rel='stylesheet' />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+    <script src="{% static 'scripts/packages/datetime/jquery.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+    <script src={% static 'scripts/appPicker.js' %} defer></script>
+{% endblock %}
+{% block content %}
 <div class="center container-lg">
     {% if object %}
     <h2 class="text-center title">

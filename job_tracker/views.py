@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
 from django.core import serializers
+from django import forms
 from .models import User, Contact, Landmark, Application
 from .forms import *
 from .packages import CareerjetAPIClient
@@ -176,9 +177,7 @@ def applications_detail(request, application_id):
 
 class ApplicationCreate(CreateView):
     model = Application
-    fields = ['jobtitle', 'company', 'joblisting', 'applied', 'applicationDate', 'dueDate', 'notes']
-
-# 'resume',
+    form_class = ApplicationForm
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -200,7 +199,7 @@ class ApplicationCreate(CreateView):
 
 class ApplicationUpdate(UpdateView):
     model = Application
-    fields = ['jobtitle', 'company', 'joblisting', 'resume', 'applied', 'applicationDate', 'dueDate', 'notes']
+    form_class = ApplicationForm
 
 class ApplicationDelete(DeleteView):
     model = Application
