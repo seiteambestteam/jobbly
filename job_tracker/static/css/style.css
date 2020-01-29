@@ -1,11 +1,11 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap");
+/* @import url("https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap"); */
 
 /* basic */
-* {
+/* * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-}
+} */
 
 :root {
     --main-color: #dbe2ef;
@@ -17,11 +17,14 @@
 }
 
 body {
-    font-family: "Roboto", sans-serif;
     background-color: var(--light-white-color);
     color: var(--dark-gray-color);
     min-height: 100vh;
     position: relative;
+}
+
+.gray {
+    border-top: 1px solid #bdc8cf;
 }
 
 .center {
@@ -81,9 +84,22 @@ body {
     width: 80vw;
 }
 
+.container-sml {
+    width: 35vw;
+    height: 8rem;
+}
+
+.cards {
+    margin: 1rem auto;
+}
+
 a {
     text-decoration: none;
     color: var(--dark-color);
+}
+
+a:hover {
+    text-decoration: none !important;
 }
 
 h2 {
@@ -101,7 +117,6 @@ p {
 
 hr {
     display: block;
-    height: 6px;
     background-color: var(--main-color);
     border-style: none;
 }
@@ -123,7 +138,7 @@ hr {
 
 .btn-md {
     width: 3.5rem;
-    height: 2rem;
+    height: 2.5rem;
 }
 
 .btn-lg {
@@ -203,6 +218,19 @@ textarea:focus {
     outline: none;
 }
 
+.table {
+    width: 85vw;
+}
+
+.table th {
+    padding: 0 0.3rem;
+}
+
+.table td {
+    padding: 0.1rem;
+    font-size: 1rem;
+}
+
 /* nav bar */
 nav {
     background-color: var(--main-color);
@@ -212,6 +240,10 @@ nav {
     position: sticky;
     top: 0;
     text-align: center;
+}
+
+.mynav {
+    padding: 0 1rem;
 }
 
 .nav-logo {
@@ -238,7 +270,7 @@ nav label {
 
 .nav-li {
     background-color: var(--main-color);
-    margin-right: 0;
+    margin-right: 1rem;
     width: 6rem;
 }
 
@@ -280,7 +312,17 @@ nav input:checked ~ ul li {
 /* Specific elements */
 
 .api-block {
-    height: 13rem;
+    min-height: 13rem;
+    margin: 1rem;
+}
+
+.fc-button {
+    width: 3rem;
+    height: auto;
+}
+
+.fc-today-button {
+    font-size: 0.7rem;
 }
 
 .line {
@@ -288,6 +330,12 @@ nav input:checked ~ ul li {
     height: 1px;
     width: 90vw;
     margin: 0 auto;
+}
+
+.line-margin {
+    border-bottom: none;
+    width: 0;
+    margin-top: 1rem;
 }
 
 .main-logo {
@@ -305,10 +353,13 @@ nav input:checked ~ ul li {
 }
 
 .scrapper div input {
-    display: inline;
     width: 50vw;
-    margin-right: 0.6rem;
+    /* margin-right: 0.6rem; */
     background-color: var(--main-color);
+}
+
+.scrapper div input {
+    margin: 1rem auto !important;
 }
 
 #scrapper-results {
@@ -320,8 +371,8 @@ nav input:checked ~ ul li {
 
 .icon {
     display: block;
-    margin-top: -0.4rem;
-    margin-left: -0.3rem;
+    margin-top: -0.65rem;
+    margin-left: -0.5rem;
     color: var(--dark-color);
 }
 
@@ -365,6 +416,10 @@ nav input:checked ~ ul li {
     margin: 0 1rem;
 }
 
+.profile-div-parent {
+    margin: 0 2rem;
+}
+
 /* footer */
 footer {
     position: absolute;
@@ -380,6 +435,7 @@ footer {
 footer div {
     float: right;
     font-size: 0.6rem;
+    margin-right: 1rem;
 }
 
 .fc-toolbar h2 {
@@ -425,7 +481,6 @@ footer div {
         justify-content: flex-end;
         width: calc(100vw - 130px);
         height: 4rem;
-        margin: 0;
     }
 
     nav ul {
@@ -470,6 +525,10 @@ footer div {
         z-index: 1;
     }
 
+    .line-margin {
+        margin-top: 160px;
+    }
+
     .line-lg {
         position: relative;
         height: 25rem;
@@ -484,8 +543,9 @@ footer div {
     }
 
     .api-block {
-        width: 50vw;
         height: 20rem;
+        width: 45vw;
+        margin: auto 2rem;
     }
 
     .main-logo {
@@ -497,11 +557,18 @@ footer div {
     }
 
     .scrapper h2 {
-        margin-top: -9rem;
+        margin-top: -6rem;
         font-size: 1.6rem;
     }
 
+    .myflex {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
     .scrapper div input {
+        display: inline;
         font-size: 1.2rem;
         margin: 1.5rem 0;
     }
@@ -602,6 +669,54 @@ footer div {
     .side {
         margin-right: 25%;
     }
+
+    .card {
+        height: 8rem;
+    }
+
+    .profile-div-parent {
+        margin: 0;
+    }
+
+    .profile-div {
+        width: 40vw;
+        padding: 0 10vw;
+    }
+
+    /* .table {
+        width: 30vw;
+        margin: 0 auto;
+    }
+
+    tr {
+    }
+
+    .table th {
+        padding: 0 1rem;
+        font-size: 1.2rem;
+    }
+
+    .table td {
+        padding: 0;
+        font-size: 1.2rem;
+    }
+
+    .profile-grid {
+        display: grid;
+        grid-template: "table1 table2";
+        grid-gap: 1.5rem;
+        justify-items: center;
+        width: 80vw;
+        margin: 1rem auto;
+    }
+
+    .table1 {
+        grid-area: table1;
+    }
+
+    .table2 {
+        grid-area: table2;
+    } */
 
     /* footer */
     footer div {

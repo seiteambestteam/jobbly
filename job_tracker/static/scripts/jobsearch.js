@@ -1,33 +1,34 @@
 //api
 
-$('.search-btn').click(()=>{
-    const searchTerm = $('#search-term').val()
-    const locationTerm = $('#search-location').val()
+$(".search-btn").click(() => {
+    const searchTerm = $("#search-term").val();
+    const locationTerm = $("#search-location").val();
     $.ajax({
         url: "/ajax/job_search_api/",
         data: {
-            'searchTerm' : searchTerm,
-            'location': locationTerm
+            searchTerm: searchTerm,
+            location: locationTerm
         },
         dataType: "json",
         success: function(data) {
-            if (!data.jobs){
-                $('#scrapper-results').append(`<p>No ${searchTerm} positions in ${locationTerm}.</p>`)
+            if (!data.jobs) {
+                $("#scrapper-results").append(
+                    `<p>No ${searchTerm} positions in ${locationTerm}.</p>`
+                );
             } else {
-                $('#scrapper-results').empty()
-                for (i = 0; i< data.jobs.length; i++) {
-                    const card= `<div class='card'>
+                $("#scrapper-results").empty();
+                for (i = 0; i < data.jobs.length; i++) {
+                    const card = `<div>
                         <p class="txt-center">${data.jobs[i].title} at ${data.jobs[i].company} in ${data.jobs[i].locations}</p>
                         <p class="txt-sml">${data.jobs[i].description}</p>
-                        <button class='btn btn-md center txt-center'><a href='${data.jobs[i].url}' target="_blank">More!</a></button>
-                    </div>`
-                    $('#scrapper-results').append(card)
+                        <button class='btn center txt-center'><a href='${data.jobs[i].url}' target="_blank">More!</a></button>
+                    </div>`;
+                    $("#scrapper-results").append(card);
                 }
             }
-            
         },
         error: function(err) {
-            $('#scrapper-results').append('<p>Please try again</p>')
+            $("#scrapper-results").append("<p>Please try again</p>");
         }
     });
 });

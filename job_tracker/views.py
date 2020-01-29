@@ -8,8 +8,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
 from django.core import serializers
 from django import forms
-from django.db.models import Q
-
 from .models import User, Contact, Landmark, Application
 from .forms import *
 from .packages import CareerjetAPIClient
@@ -27,7 +25,6 @@ def home(request):
     return render(request, 'home.html')
 
 def index(request):
-    # users = User.objects.filter(user=request.user)
     news_key = os.environ['NEWS_API_KEY']
     news_url = ('https://newsapi.org/v2/top-headlines?''country=ca&''category=technology&' 'page=1&' 'pageSize=15&' f'apiKey={news_key}')
     news_response = requests.get(news_url)
