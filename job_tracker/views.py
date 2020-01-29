@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
 from django.core import serializers
+from django.db.models import Q
 from .models import User, Contact, Landmark, Application
 from .forms import *
 from .packages import CareerjetAPIClient
@@ -128,10 +129,23 @@ def calendar(request):
     return render(request, 'calendar.html')
 
 def contacts_index(request):
-    contacts = Contact.objects.filter(user=request.user)
-    all_contacts = contacts.order_by('name')
-    return render(request, 'contacts/index.html', { 'contacts': all_contacts})
+    contacts = Contact.objects.filter(user=request.user).order_by('name')
+    return render(request, 'contacts/index.html', {'contacts': contacts })
 
+def get_contacts(request):
+    contacts = Contact.objects.filter(user=request.user)
+    print('in views')
+    contacts_data = []
+    for contact in contacts:
+        contacts_data.append({
+            'name': f'{contact.name}',
+            'email': f'{contact.email}',
+            'linkedin': f'{contact.linkedin}',
+            'notes': f'{contact.notes}',
+            'application': f'{contact.application}',
+        })
+    print(contacts_data)
+    return JsonResponse(contacts_data, safe=False)
 
 def contacts_detail(request, contact_id):
     contact = Contact.objects.get(id=contact_id)
