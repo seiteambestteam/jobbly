@@ -1,6 +1,51 @@
-{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        {% block scripts %} {% endblock %}
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="{% static 'css/home.css' %}"
+        />
+        <script src="https://kit.fontawesome.com/d364971e6c.js" crossorigin="anonymous"></script>
+        <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous">
+        </script>
+        <title>Jobbly</title>
+    </head>
 {% block content %}
+<body>
+    
+    <div class="hero-image">
+        <div class="hero-text">
+        <h1><img src="static/images/name_logo.png"></span></h1>
+        <p>Stay on Track</p>
+        <br>
+        <a href="{% url "signup" %}" class=" btn btn-white btn-animated"
+        >Sign Up</a>
+        <br>
+    <a href="{% url "login" %}" class="btn btn-white btn-animated"
+    >Log In</a>
+        </div>
+    </div>
 
-<h1 class="text-center">Jobbly</h1>
 
-{% endblock %}
+
+
+    {% endblock %}
+</body>
+
+
+
+
+
+
+
+
+
