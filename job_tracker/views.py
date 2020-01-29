@@ -196,16 +196,27 @@ class ApplicationUpdate(UpdateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
-        # session = boto3.Session(profile_name='jobbly')
-        # jobbly_s3 = session.client('s3')
-        s3 = boto3.resource('s3')
+        session = boto3.Session(profile_name='jobbly')
+        jobbly_s3 = session.client('s3')
+        # s3 = boto3.resource('s3')
+        try:
+            print(BUCKET)
+            print(self.object.resumekey)
+            jobbly_s3.delete_object(Bucket=BUCKET, Key=self.object.resumekey)
+            # url = f"{S3_BASE_URL}{BUCKET}/{key}"
+            # form.instance.resume = url
+            # form.instance.resumekey = key                
+        except Exception as e:
+            # return error handling here if it doesn't upload
+            print(e)
+
         # object = s3.Object(BUCKET, self.resumekey)
-        print(self)
-      # check that a new resume has been uploaded,  if so, continue with the s3 code  else continue with the form
-      # get the object from S3
-      # call delete on that instance of the object
-        form.instance.resume = ''
-        form.instance.resumekey = ''
+        # print(self)
+        # check that a new resume has been uploaded,  if so, continue with the s3 code  else continue with the form
+        # get the object from S3
+        # call delete on that instance of the object
+        # form.instance.resume = ''
+        # form.instance.resumekey = ''
         return super().form_valid(form)
 
 class ApplicationDelete(DeleteView):
@@ -221,9 +232,6 @@ class ApplicationDelete(DeleteView):
     #     form.instance.resume = ''
     #     form.instance.resumekey = ''
     #     return super().form_valid(form)
-
-
-
 
 def add_landmark(request, application_id):
     form = LandmarkForm(request.POST)
