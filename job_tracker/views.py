@@ -147,13 +147,18 @@ def get_contacts(request):
     print(contacts_data)
     return JsonResponse(contacts_data, safe=False)
 
-def contacts_detail(request, contact_id):
-    contact = Contact.objects.get(id=contact_id)
-    return render(request, 'contacts/detail.html', { 'contact': contact })
+def add_contact(request, application_id):
+    form = ContactForm(request.POST)
+    if form.is_valid():
+        new_contact = form.save(commit=False)
+        new_contact.application_id = application_id
+        new_contact.user_id = request.user.id
+        new_contact.save()
+    return redirect('applications_detail', application_id = application_id)
 
 class ContactCreate(CreateView):
     model = Contact
-    fields = ['name', 'email', 'linkedin', 'notes', 'application']
+    fields = ['name', 'email', 'phone_number', 'linkedin', 'notes']
     success_url = '/contacts/index/'
 
     def form_valid(self, form):
@@ -162,7 +167,7 @@ class ContactCreate(CreateView):
 
 class ContactUpdate(UpdateView):
     model = Contact
-    fields = ['name', 'email', 'linkedin', 'notes']
+    fields = ['name', 'email', 'phone_number', 'linkedin', 'notes']
     success_url = '/contacts/index/'
 
 class ContactDelete(DeleteView):
@@ -177,7 +182,8 @@ def application(request):
 def applications_detail(request, application_id):
     application = Application.objects.get(id=application_id)
     landmark_form = LandmarkForm()
-    return render(request, 'applications/detail.html', { 'application': application, 'landmark_form': landmark_form })
+    contact_form = ContactForm()
+    return render(request, 'applications/detail.html', { 'application': application, 'landmark_form': landmark_form, 'contact_form': contact_form })
 
 class ApplicationCreate(CreateView):
     model = Application

@@ -42,9 +42,18 @@
                         {% if contact.application %}
                             <p class="txt-medium">Application: {{ contact.application.company }}</p>
                         {% endif %}
+                        {% if contact.email %}
                             <p class="txt-medium">Email: {{ contact.email }}</p>
-                            <p class="txt-medium">LinkedIn: {{ contact.linkedin }}</p>
+                        {% endif %}
+                        {% if contact.phone_number %}
+                            <p class="txt-medium">LinkedIn: {{ contact.phone_number }}</p>
+                        {% endif %}
+                        {% if contact.linkedin %}
+                          <p class="txt-medium"><a href='{{ contact.linkedin }}'>LinkedIn</a></p>
+                        {% endif %}
+                        {% if contact.notes %}
                             <p class="txt-medium">Notes: {{ contact.notes }}</p>
+                        {% endif %}
                         </div>
                     </div>
                 </div>
