@@ -216,14 +216,14 @@ def add_landmark(request, application_id):
 
 class LandmarkUpdate(UpdateView): 
     model = Landmark
-    fields = ['name', 'start_date_time', 'end_date_time', 'location', 'followup']
+    form_class = LandmarkForm
 
     def get_success_url(self):
         return reverse('applications_detail', kwargs={'application_id': self.object.application_id})
 
 class LandmarkDelete(DeleteView):
     model = Landmark
-
+    form_class = LandmarkForm
     def get_success_url(self):
         return reverse('applications_detail', kwargs={'application_id': self.object.application_id})
 

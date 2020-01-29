@@ -13,6 +13,10 @@ class ProfileForm(ModelForm):
     class Meta:
         model = Profile
         fields = ('linkedin', 'github', 'website', 'jobsearch', 'joblocation')
+        labels = {
+            'jobsearch': 'Ideal Job Position',
+            'joblocation': 'Desired Job Location',
+        }
 
 class ContactForm(ModelForm):
     class Meta:
@@ -34,3 +38,8 @@ class LandmarkForm(ModelForm):
     class Meta:
         model = Landmark
         fields = ('name', 'start_date_time', 'end_date_time', 'location', 'followup')
+        labels = {
+            'start_date_time': 'Event Start Time',
+            'end_date_time': 'Event End Time',
+            'followup': 'Follow-up Date',
+        }
