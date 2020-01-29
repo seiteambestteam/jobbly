@@ -1,27 +1,49 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h2 class="text-center title">{{ user.username }}</h2>
+<h2 class="text-center title">{{ user.username }}'s Profile</h2>
 
-<div class="center main container txt-center">
-<p> Linkedin Account: </p>
-<p class="border-bottom txt-center txt-sml"><a href='{{user.profile.linkedin}}' target="_blank">{{ user.profile.linkedin }}</a></p>
-<br>
-<p> Github Account: </p>
-<p class="border-bottom txt-center center txt-sml"><a href='{{user.profile.github}}' target="_blank">{{ user.profile.github }}</a></p>
-<br>
-<p> Website/Portfolio: </p>
-<p class="border-bottom txt-center center txt-sml"><a href='{{user.profile.github}}' target="_blank">{{ user.profile.website }}</a></p>
-<br>
-<p> Desired Position: </p>
-<p class="border-bottom txt-center txt-sml"> {{ user.profile.jobsearch }} </p>
-<br>
-<p> Desired Location: </p>
-<p class="border-bottom txt-center txt-sml"> {{ user.profile.joblocation }} </p>
-<br>
-<br>
-<button class="btn center txt-medium btn-lg"><a href='{% url "edit_profile" %}'>Update</a></button>
 
+<div class="center main">
+    <button class="btn center txt-sml btn-md side"><a class="update-btn" href="{% url 'edit_profile' %}">Update</a></button>
+
+    <br />
+
+    <div class="row mt-5 profile-div-parent">
+        <div class="profile-div col-sm col-md pr-2">
+            <div>
+            <span class="txt-medium txt-bold">LinkedIn Account:</span>
+            <span class="txt-medium"><a href='{{user.profile.linkedin}}' target="_blank">{{ user.profile.linkedin }}</a></span>
+            </div>
+            <br>
+            <div>
+            <span class="txt-medium txt-bold">Github Account:</span>
+            <span class="txt-medium"><a href='{{user.profile.github}}' target="_blank">{{ user.profile.github }}</a></span>
+            </div>
+            <br>
+            <div>
+            <span class="txt-medium txt-bold">Website / Portfolio:</span>
+            {% if user.profile.website %}
+            <span class="txt-medium"><a href='{{user.profile.website}}' target="_blank">{{ user.profile.website }}</a></span>
+            {% else %}
+            <span class="txt-medium txt-bold">None</a></span>
+            {% endif %}
+            </div>
+        </div>
+            <div class="line line-margin"></div>
+        <div class="profile-div col-sm col-md">
+        <div>
+        <br>
+            <span class="txt-medium txt-bold">Desired Position:</span>
+            <span class="txt-medium">{{ user.profile.jobsearch }}</span>
+            </div>
+            <br>
+            <div>
+            <span class="txt-medium txt-bold">Desired Location:</span>
+            <span class="txt-medium">{{ user.profile.joblocation }}</span>
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock %}
