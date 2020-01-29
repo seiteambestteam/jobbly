@@ -1,4 +1,8 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block scripts %}
+<script src="{% static 'scripts/contactSearch.js' %}" defer></script>
+{% endblock %}
 {% block content %}
 
 <h2 class="text-center title">Contacts</h2>
@@ -15,23 +19,28 @@
 
     <br />
     <div class="center container-sml">
-        <ol class="txt-justify">
-        {% for contact in contacts %}
-            <li><a href="{% url 'contacts_detail' contact.id %}"><span class="txt-bold txt-medium">{{ contact.name }}</span></a>
-            <p class="txt-medium">Email:</p> 
-            <p class="txt-sml">{{ contact.email }}</p>
-            <p class="txt-medium">LinkedIn:</p>
-            <p class="txt-sml">{{ contact.linkedin }}</p>
-            <p class="txt-medium">Notes:</p>
-            <p class="txt-sml">{{ contact.notes }}</p>
-            {% if contact.application %}
-                <p class="txt-medium">Application:</p>
-                <p class="txt-sml">{{ contact.application.company }}</p>
-            {% endif %}
-        </li>
-        <br>
-        {% endfor %}
-        </ol>
+        <div id="display-contacts">
+            {% for contact in contacts %}
+                <div class="flex-item">
+                    <div class="card">
+                        <div class="card-title-div">
+                            <div class="card-title">
+                                <a href="{% url 'contacts_detail' contact.id %}"><span class="txt-bold txt-medium">{{ contact.name }}</span></a>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                        {% if contact.application %}
+                            <p class="txt-medium">Application: {{ contact.application.company }}</p>
+                        {% endif %}
+                            <p class="txt-medium">Email: {{ contact.email }}</p>
+                            <p class="txt-medium">LinkedIn: {{ contact.linkedin }}</p>
+                            <p class="txt-medium">Notes: {{ contact.notes }}</p>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            {% endfor %}
+        </div>
     </div>
 </div>
 
