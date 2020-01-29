@@ -8,6 +8,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
 from django.core import serializers
 from django import forms
+from django.db.models import Q
+
 from .models import User, Contact, Landmark, Application
 from .forms import *
 from .packages import CareerjetAPIClient
@@ -129,13 +131,23 @@ def calendar(request):
     return render(request, 'calendar.html')
 
 def contacts_index(request):
+    contacts = Contact.objects.filter(user=request.user).order_by('name')
+    return render(request, 'contacts/index.html', {'contacts': contacts })
+
+def get_contacts(request):
     contacts = Contact.objects.filter(user=request.user)
+    print('in views')
     contacts_data = []
     for contact in contacts:
         contacts_data.append({
-            
+            'name': f'{contact.name}',
+            'email': f'{contact.email}',
+            'linkedin': f'{contact.linkedin}',
+            'notes': f'{contact.notes}',
+            'application': f'{contact.application}',
         })
-    return render(request, 'contacts/index.html', {'contacts': contacts})
+    print(contacts_data)
+    return JsonResponse(contacts_data, safe=False)
 
 def add_contact(request, application_id):
     form = ContactForm(request.POST)
@@ -178,6 +190,7 @@ def applications_detail(request, application_id):
 class ApplicationCreate(CreateView):
     model = Application
     form_class = ApplicationForm
+    #success_url = '/applications/'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -201,10 +214,44 @@ class ApplicationUpdate(UpdateView):
     model = Application
     form_class = ApplicationForm
 
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        session = boto3.Session(profile_name='jobbly')
+        jobbly_s3 = session.client('s3')
+        # s3 = boto3.resource('s3')
+        try:
+            print(BUCKET)
+            print(self.object.resumekey)
+            jobbly_s3.delete_object(Bucket=BUCKET, Key=self.object.resumekey)
+            # url = f"{S3_BASE_URL}{BUCKET}/{key}"
+            # form.instance.resume = url
+            # form.instance.resumekey = key                
+        except Exception as e:
+            # return error handling here if it doesn't upload
+            print(e)
+
+        # object = s3.Object(BUCKET, self.resumekey)
+        # print(self)
+        # check that a new resume has been uploaded,  if so, continue with the s3 code  else continue with the form
+        # get the object from S3
+        # call delete on that instance of the object
+        # form.instance.resume = ''
+        # form.instance.resumekey = ''
+        return super().form_valid(form)
+
 class ApplicationDelete(DeleteView):
     model = Application
     fields = ['jobtitle', 'company', 'joblisting', 'resume', 'applied', 'applicationDate', 'dueDate', 'notes']
     success_url = '/applications/'
+
+    # def form_valid(self, form):
+    #     form.instance.user = self.request.user
+    #     session = boto3.Session(profile_name='jobbly')
+    #     jobbly_s3 = session.client('s3')
+    #     jobbly_s3.delete_object(Bucket=f'{BUCKET}', Key='{self.resumekey}')
+    #     form.instance.resume = ''
+    #     form.instance.resumekey = ''
+    #     return super().form_valid(form)
 
 def add_landmark(request, application_id):
     print('add landmark route')
