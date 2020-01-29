@@ -1,8 +1,7 @@
-$(document).ready(function(){
-  $('#id_applicationDate').datetimepicker({
-    format: 'd/m/Y H:i',
+const dateEl = document.getElementById('id_dueDate');
+  M.Datepicker.init(dateEl, {
+    format: 'yyyy-mm-dd',
+    defaultDate: new Date(),
+    setDefaultDate: true,
+    autoClose: true
   });
-  $('#id_dueDate').datetimepicker({
-    format: 'd/m/Y H:i',
-  });
-});
