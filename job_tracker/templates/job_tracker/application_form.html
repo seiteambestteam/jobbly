@@ -1,10 +1,11 @@
-{% extends 'base.html' %} 
-{% block content %} 
+{% extends 'base.html' %} {% block content %}
 <div class="center container-lg">
     {% if object %}
-        <h2 class="text-center title">Edit <span class="txt-bold">{{object.company}}</span></h2>
+    <h2 class="text-center title">
+        Edit <span class="txt-bold">{{object.company}}</span>
+    </h2>
     {% else %}
-        <h2 class="text-center title">Add Application</h2>
+    <h2 class="text-center title">Add Application</h2>
     {% endif %}
     <form class="form center" enctype="multipart/form-data" action="" method="post">
         {% csrf_token %}
@@ -17,8 +18,14 @@
             {% comment %} <input type="submit" class="btn" value="Upload Resume"> {% endcomment %}
         {% comment %} </form> {% endcomment %}
         <div class="flex">
-            <input class="btn txt-medium btn-lg forced-margin" type="submit" value="Submit">
-            <button class="btn txt-medium btn-lg forced-margin"><a href='{% url "application" %}'>Cancel</a></button>
+            <input
+                class="btn txt-medium btn-lg forced-margin"
+                type="submit"
+                value="Submit"
+            />
+            <button class="btn txt-medium btn-lg forced-margin">
+                <a href='{% url "application" %}'>Cancel</a>
+            </button>
         </div>
     </form>
 </div>

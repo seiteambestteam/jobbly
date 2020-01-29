@@ -13,18 +13,31 @@
             <li><a href="{% url 'applications_detail' application.id %}"><span>{{ application.company }}</span></a>
             <p class="txt-medium">Job Title:</p>
             <p class="txt-sml">{{ application.jobtitle }}</p>
-            <p class="txt-medium">Job Listing:</p>
-            <p class="txt-sml">{{ application.joblisting }}</p>
-            <p class="txt-medium">Resume:</p>
-            <p class="txt-sml">{{ application.resume }}</p>
-            <p class="txt-medium">Applied:</p>
-            <p class="txt-sml">{{ application.applied }}</p>
-            <p class="txt-medium">Apply Date:</p>
-            <p class="txt-sml">{{ application.applicationDate }}</p>
-            <p class="txt-medium">Apply By:</p>
-            <p class="txt-sml">{{ application.dueDate }}</p>
-            <p class="txt-medium">Notes:</p>
-            <p class="txt-sml">{{ application.notes }}</p>
+            {% if application.joblisting %}
+                <p class="txt-medium">Job Listing:</p>
+                <p class="txt-sml">{{ application.joblisting }}</p>
+            {% endif %}
+            {% if application.resume %}
+                <p class="txt-medium">Resume:</p>
+                <p class="txt-sml">{{ application.resume }}</p>
+            {% endif %}
+            {% if application.applied == True %}
+            <p>Applied</p>
+            {% else %}
+            <p>Not applied yet<p>
+            {% endif %} 
+            {% if application.applicationDate %}
+                <p class="txt-medium">Apply Date:</p>
+                <p class="txt-sml">{{ application.applicationDate }}</p>
+            {% endif %}
+            {% if application.dueDate %}
+                <p class="txt-medium">Apply By:</p>
+                <p class="txt-sml">{{ application.dueDate }}</p>
+            {% endif %}
+            {% if application.notes %}
+                <p class="txt-medium">Notes:</p>
+                <p class="txt-sml">{{ application.notes }}</p>
+            {% endif %}
             </li>
         {% endfor %}
     </ol>
