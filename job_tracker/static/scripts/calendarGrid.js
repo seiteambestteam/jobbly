@@ -9,6 +9,7 @@ $(document).ready(function() {
       
     }).done(function(response) {
         let calendar = new FullCalendar.Calendar(calendarEl, {
+            timeZone: 'UTC',
             events: response,
             plugins: [ 'dayGrid' ],
             defaultView: 'dayGridMonth',
