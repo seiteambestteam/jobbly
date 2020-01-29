@@ -14,8 +14,6 @@ $(document).ready(function() {
         }
     });
 
-    console.log(contacts);
-
     $("#contacts-search").on("input", function(e) {
         const search = $(this).val();
         const re = new RegExp(search, "i");
