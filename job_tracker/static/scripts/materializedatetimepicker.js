@@ -15,7 +15,7 @@ var MaterialDateTimePicker = {
             var defaultDate = new Date();
             element.off('click');
             element.datepicker({
-                format:  'yyyy/mm/dd',
+                format:  'yyyy-mm-dd',
                 selectMonths: true,
                 dismissable: false,
                 autoClose: true,
@@ -23,6 +23,7 @@ var MaterialDateTimePicker = {
                     element.datepicker('destroy');
                     element.timepicker({
                         dismissable: false,
+                        twelveHour: false,
                         onSelect: function(hr, min){
                             element.attr('selectedTime', (hr + ":" + min).toString());
                         },
@@ -38,7 +39,7 @@ var MaterialDateTimePicker = {
                     }
                     else
                     {
-                        element.val(defaultDate.getFullYear().toString() + "/" + (defaultDate.getMonth() + 1).toString() + "/" + defaultDate.getDate().toString())
+                        element.val(defaultDate.getFullYear().toString() + "-" + (defaultDate.getMonth() + 1).toString() + "-" + defaultDate.getDate().toString())
                         element.attr('selectedDate', element.val().toString());
                     }
                     element.timepicker('open');

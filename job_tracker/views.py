@@ -207,8 +207,10 @@ class ApplicationDelete(DeleteView):
     success_url = '/applications/'
 
 def add_landmark(request, application_id):
+    print('add landmark route')
     form = LandmarkForm(request.POST)
     if form.is_valid():
+        print('is valid')
         new_landmark = form.save(commit=False)
         new_landmark.application_id = application_id
         new_landmark.save()
