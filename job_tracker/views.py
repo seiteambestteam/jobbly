@@ -7,7 +7,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
 from django.core import serializers
+from django import forms
 from django.db.models import Q
+
 from .models import User, Contact, Landmark, Application
 from .forms import *
 from .packages import CareerjetAPIClient
@@ -187,10 +189,8 @@ def applications_detail(request, application_id):
 
 class ApplicationCreate(CreateView):
     model = Application
-    fields = ['jobtitle', 'company', 'joblisting', 'resume', 'applied', 'applicationDate', 'dueDate', 'notes']
-    success_url = '/applications/'
-
-# 'resume',
+    form_class = ApplicationForm
+    #success_url = '/applications/'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -212,7 +212,7 @@ class ApplicationCreate(CreateView):
 
 class ApplicationUpdate(UpdateView):
     model = Application
-    fields = ['jobtitle', 'company', 'joblisting', 'resume', 'applied', 'applicationDate', 'dueDate', 'notes']
+    form_class = ApplicationForm
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -254,8 +254,10 @@ class ApplicationDelete(DeleteView):
     #     return super().form_valid(form)
 
 def add_landmark(request, application_id):
+    print('add landmark route')
     form = LandmarkForm(request.POST)
     if form.is_valid():
+        print('is valid')
         new_landmark = form.save(commit=False)
         new_landmark.application_id = application_id
         new_landmark.save()
@@ -263,14 +265,14 @@ def add_landmark(request, application_id):
 
 class LandmarkUpdate(UpdateView): 
     model = Landmark
-    fields = ['name', 'start_date_time', 'end_date_time', 'location', 'followup']
+    form_class = LandmarkForm
 
     def get_success_url(self):
         return reverse('applications_detail', kwargs={'application_id': self.object.application_id})
 
 class LandmarkDelete(DeleteView):
     model = Landmark
-
+    form_class = LandmarkForm
     def get_success_url(self):
         return reverse('applications_detail', kwargs={'application_id': self.object.application_id})
 
