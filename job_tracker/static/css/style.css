@@ -397,9 +397,7 @@ footer div {
 .hidden {
     display: none;
 }
-.picker__date-display, .picker__weekday-display{
-    background-color: #3f72b0;
-}
+
 /* media queries */
 @media (min-width: 768px) {
     .content-wrapper {

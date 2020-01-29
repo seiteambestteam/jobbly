@@ -1,9 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block scripts %}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src={% static 'scripts/appPicker.js' %} defer></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/materialize.min.css' %}">
 {% endblock %}
 {% block content %}
 <div class="center container-lg">
@@ -17,13 +16,9 @@
     <form class="form center" enctype="multipart/form-data" action="" method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        {% comment %} <form action="" enctype="multipart/form-data" method="POST">
-            {% csrf_token %} {% endcomment %}
             <input type="file" name="resume-file">
             <br>
             <br>
-            {% comment %} <input type="submit" class="btn" value="Upload Resume"> {% endcomment %}
-        {% comment %} </form> {% endcomment %}
         <div class="flex">
             <input
                 class="btn txt-medium btn-lg forced-margin"
@@ -36,13 +31,28 @@
         </div>
     </form>
 </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    <script src={% static 'scripts/materializedatetimepicker.js' %} defer></script>
 <script>
-  // create a datepicker
-  var dateEl = document.getElementById('id_dueDate');
-  M.Datepicker.init(dateEl, {
-    format: 'yyyy-mm-dd',
-    setDefaultDate: false,
-    autoClose: true
-  });
+$(document).ready(function(){
+    const dueDate = $('#id_dueDate')
+    
+    M.AutoInit()
+    const dueDateField = MaterialDateTimePicker.create(dueDate)
+    
+})
+$(document).ready(function(){
+    const appDate = $('#id_applicationDate')
+    M.AutoInit()
+    M.Datepicker.init(appDate, {
+        format: 'yyyy-mm-dd',
+        setDefaultDate: false,
+        autoClose: true
+    });
+    M.Timepicker.init(appDate)
+    const appDateField = MaterialDateTimePicker.create(appDate)
+})
+
+
 </script>
 {% endblock %}
