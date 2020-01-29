@@ -15,7 +15,7 @@ class ProfileForm(ModelForm):
 class ContactForm(ModelForm):
     class Meta:
         model = Contact
-        fields = ('name', 'email', 'linkedin', 'notes')
+        fields = ('name', 'email', 'phone_number', 'linkedin', 'notes')
 
 class ApplicationForm(ModelForm):
     class Meta:

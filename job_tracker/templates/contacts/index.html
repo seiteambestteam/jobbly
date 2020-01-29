@@ -27,21 +27,29 @@
         <ol class="txt-justify">
             {% for contact in contacts %}
             <li>
-                <a href="{% url 'contacts_detail' contact.id %}"
-                    ><span class="txt-bold txt-medium"
-                        >{{ contact.name }}</span
-                    ></a
-                >
-                <p class="txt-medium">Email:</p>
-                <p class="txt-sml">{{ contact.email }}</p>
-                <p class="txt-medium">LinkedIn:</p>
-                <p class="txt-sml">{{ contact.linkedin }}</p>
-                <p class="txt-medium">Notes:</p>
-                <p class="txt-sml">{{ contact.notes }}</p>
+                <span class="txt-bold txt-medium">
+                    {{ contact.name }}
+                </span>
+                {% if contact.email %}
+                    <p class="txt-medium">Email:</p>
+                    <p class="txt-sml">{{ contact.email }}</p>
+                {% endif %}
+                {% if contact.phone_number %}
+                    <p class="txt-medium">Phone Number:</p>
+                    <p class="txt-sml">{{ contact.phone_number }}</p>
+                {% endif %}
+                {% if contact.linkedin %}
+                    <p class="txt-medium">LinkedIn:</p>
+                    <p class="txt-sml">{{ contact.linkedin }}</p>
+                {% endif %}
+                {% if contact.notes %}
+                    <p class="txt-medium">Notes:</p>
+                    <p class="txt-sml">{{ contact.notes }}</p>
+                {% endif %}
                 {% if contact.application %}
-                <p class="txt-medium">Application:</p>
-                <p class="txt-sml">{{ contact.application.company }}</p>
-            {% endif %}
+                    <p class="txt-medium">Application:</p>
+                    <p class="txt-sml">{{ contact.application.company }}</p>
+                {% endif %}
         </li>
         <br>
         {% endfor %}
