@@ -28,31 +28,38 @@
     </form>
 
     <br />
-    <div class="center container-sml">
-        <div id="display-contacts">
+    <div class="center container-sm">
+        <div id="display-contacts" class="row">
             {% for contact in contacts %}
-                <div class="flex-item">
-                    <div class="card">
-                        <div class="card-title-div">
-                            <div class="card-title">
-                                <span class="txt-bold txt-medium">{{ contact.name }}</span>
-                            </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="card contacts-card m-3">
+                        <div class="card-title">
+                            <a href="{% url 'contacts_delete' contact.id%}" class="ml-2"><i class="far fa-times-circle"></i></a>
+                            <h5 class="txt-bold txt-center pt-3">{{ contact.name }}</h5>
                         </div>
-                        <div class="card-content">
+                        <div class="card-content pl-3 pr-3">
                         {% if contact.application %}
-                            <p class="txt-medium">Application: {{ contact.application.company }}</p>
+                            <h6 class="txt-medium d-inline">Application:</h6>
+                            <span>{{ contact.application.company }}</span>
+                            <br>
                         {% endif %}
                         {% if contact.email %}
-                            <p class="txt-medium">Email: {{ contact.email }}</p>
+                            <h6 class="txt-medium d-inline">Email:</h6>
+                            <span>{{ contact.email }}</span>
+                            <br>
                         {% endif %}
                         {% if contact.phone_number %}
-                            <p class="txt-medium">LinkedIn: {{ contact.phone_number }}</p>
+                            <h6 class="txt-medium d-inline">Phone:</h6>
+                            <span>{{ contact.phone_number }}</span>
+                            <br>
                         {% endif %}
                         {% if contact.linkedin %}
-                          <p class="txt-medium"><a href='{{ contact.linkedin }}'>LinkedIn</a></p>
+                            <h6 class="txt-medium"><a href='{{ contact.linkedin }}'>LinkedIn</a></h6>
+                            <br>
                         {% endif %}
                         {% if contact.notes %}
-                            <p class="txt-medium">Notes: {{ contact.notes }}</p>
+                            <h6 class="txt-medium d-inline">Notes:</h6>
+                            <span>{{ contact.notes }}</span>
                         {% endif %}
                         </div>
                     </div>
