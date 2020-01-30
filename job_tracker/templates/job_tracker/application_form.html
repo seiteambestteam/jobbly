@@ -25,6 +25,7 @@
         </div>
             <br>
             <br>
+
         <div class="flex">
             <input
                 class="btn center txt-medium btn-lg forced-margin app-btn"
@@ -38,21 +39,22 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
 <script>
-$(document).ready(function(){
-    const dueDate = $('#id_dueDate')
+$(document).ready(function() {
+    const dueDate = $("#id_dueDate");
     M.Datepicker.init(dueDate, {
-        format: 'yyyy-mm-dd',
-        setDefaultDate: false,
-        autoClose: true
-    }); 
-})
-$(document).ready(function(){
-    const appDate = $('#id_applicationDate')
+       format: "yyyy-mm-dd",
+       setDefaultDate: false,
+       autoClose: true
+    });
+});
+$(document).ready(function() {
+    const appDate = $("#id_applicationDate");
     M.Datepicker.init(appDate, {
-        format: 'yyyy-mm-dd',
+        format: "yyyy-mm-dd",
         setDefaultDate: false,
         autoClose: true
     });
+
 })
 
 Array.prototype.forEach.call(
@@ -79,6 +81,7 @@ Array.prototype.forEach.call(
         });
     }
 );
+
 
 </script>
 {% endblock %}

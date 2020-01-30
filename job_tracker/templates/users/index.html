@@ -16,7 +16,8 @@
 
 {% endblock %}
 {% block content %}
-
+    <input id="csrf_token" value="{{ csrf_token }}" type='hidden'/>
+    <input id="application_link" value="{% url 'application_create_from_search' %}" type='hidden'/>
     <section class="api-section">
     <div class="api-block">
         <h2 class="txt-center"><a href='{% url "calendar" %}'>{{ user.username }}'s Calendar</a></h2>
@@ -55,6 +56,7 @@
         </div>
         <br>
         <br>
+        <div class="d-flex justify-content-center align-items-start" id="scrapper-loader"></div>
         <div class="txt-center txt-justify gray" id="scrapper-results">
         </div>
     </div>

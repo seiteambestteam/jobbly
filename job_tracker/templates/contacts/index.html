@@ -1,9 +1,6 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block scripts %}
+{% extends 'base.html' %} {% load static %} {% block scripts %}
 <script src="{% static 'scripts/contactSearch.js' %}" defer></script>
-{% endblock %}
-{% block content %}
+{% endblock %} {% block content %}
 
 <h2 class="text-center title">Contacts</h2>
 
@@ -30,40 +27,44 @@
     <div class="center container-sm">
         <div id="display-contacts" class="row">
             {% for contact in contacts %}
-                <div class="col-sm-6 col-md-4">
-                    <div class="card contacts-card m-3">
-                        <div class="card-title">
-                            <a href="{% url 'contacts_delete' contact.id%}" class="ml-2"><i class="far fa-times-circle"></i></a>
-                            <h5 class="txt-bold txt-center pt-3">{{ contact.name }}</h5>
-                        </div>
-                        <div class="card-content pl-3 pr-3">
+            <div class="col-sm-6 col-md-4">
+                <div class="card contacts-card m-3">
+                    <div class="card-title">
+                        <a
+                            href="{% url 'contacts_delete' contact.id%}"
+                            class="ml-2"
+                            ><i class="far fa-times-circle"></i
+                        ></a>
+                        <h5 class="txt-bold txt-center pt-3">
+                            {{ contact.name }}
+                        </h5>
+                    </div>
+                    <div class="card-content pl-3 pr-3">
                         {% if contact.application %}
-                            <h6 class="txt-medium d-inline">Application:</h6>
-                            <span>{{ contact.application.company }}</span>
-                            <br>
+                        <h6 class="txt-medium d-inline">Application:</h6>
+                        <span>{{ contact.application.company }}</span>
+                        <br />
+                        {% endif %} {% if contact.email %}
+                        <h6 class="txt-medium d-inline">Email:</h6>
+                        <span>{{ contact.email }}</span>
+                        <br />
+                        {% endif %} {% if contact.phone_number %}
+                        <h6 class="txt-medium d-inline">Phone:</h6>
+                        <span>{{ contact.phone_number }}</span>
+                        <br />
+                        {% endif %} {% if contact.linkedin %}
+                        <h6 class="txt-medium">
+                            <a href="{{ contact.linkedin }}">LinkedIn</a>
+                        </h6>
+                        <br />
+                        {% endif %} {% if contact.notes %}
+                        <h6 class="txt-medium d-inline">Notes:</h6>
+                        <span>{{ contact.notes }}</span>
                         {% endif %}
-                        {% if contact.email %}
-                            <h6 class="txt-medium d-inline">Email:</h6>
-                            <span>{{ contact.email }}</span>
-                            <br>
-                        {% endif %}
-                        {% if contact.phone_number %}
-                            <h6 class="txt-medium d-inline">Phone:</h6>
-                            <span>{{ contact.phone_number }}</span>
-                            <br>
-                        {% endif %}
-                        {% if contact.linkedin %}
-                            <h6 class="txt-medium"><a href='{{ contact.linkedin }}'>LinkedIn</a></h6>
-                            <br>
-                        {% endif %}
-                        {% if contact.notes %}
-                            <h6 class="txt-medium d-inline">Notes:</h6>
-                            <span>{{ contact.notes }}</span>
-                        {% endif %}
-                        </div>
                     </div>
                 </div>
-                <br>
+            </div>
+            <br />
             {% endfor %}
         </div>
     </div>

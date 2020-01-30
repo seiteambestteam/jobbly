@@ -115,5 +115,13 @@ $(document).ready(function(){
     M.AutoInit()
     const startDateField = MaterialDateTimePicker.create(startDate)
 })
+$(document).ready(function(){
+    const followupDate = $('#id_followup')
+    M.Datepicker.init(followupDate, {
+        format: 'yyyy-mm-dd',
+        setDefaultDate: false,
+        autoClose: true
+    });
+})
 </script>
 {% endblock %}
