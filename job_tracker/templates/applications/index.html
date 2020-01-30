@@ -14,8 +14,7 @@
             <p class="txt-medium">Job Title:</p>
             <p class="txt-sml">{{ application.jobtitle }}</p>
             {% if application.joblisting %}
-                <p class="txt-medium">Job Listing:</p>
-                <p class="txt-sml">{{ application.joblisting }}</p>
+                <a class="txt-medium" href='{{ application.joblisting }}'>Job Listing</p>
             {% endif %}
             {% if application.resume %}
                 <p class="txt-medium">Resume:</p>

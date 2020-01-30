@@ -453,7 +453,9 @@ footer div {
 .hidden {
     display: none;
 }
-
+.link-btn:hover {
+    color: #a6b7d7;
+}
 /* media queries */
 @media (min-width: 768px) {
     .content-wrapper {
