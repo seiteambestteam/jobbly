@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, get_user_model
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from django.views.decorators.csrf import csrf_exempt
@@ -24,7 +26,7 @@ BUCKET = 'jobbly'
 
 def home(request):
     return render(request, 'home.html')
-
+@login_required
 def index(request):
     news_key = os.environ['NEWS_API_KEY']
     news_url = ('https://newsapi.org/v2/top-headlines?''country=ca&''category=technology&' 'page=1&' 'pageSize=15&' f'apiKey={news_key}')
@@ -49,9 +51,11 @@ def signup(request):
     context={'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)
 
+@login_required
 def profile(request):
     return render(request, 'profile.html', { 'user': request.user})
 
+@login_required
 def edit_profile(request):
     error_message = ''
     if request.method == 'POST':
@@ -71,7 +75,6 @@ def edit_profile(request):
         'profile_form': profile_form,
         'error_message': error_message,
     })
-
 
 def job_search_api(request):
     search_term = request.GET.get('searchTerm')
@@ -131,9 +134,11 @@ def get_calendar(request):
             })
     return JsonResponse(data, safe=False)
 
+@login_required
 def calendar(request):
     return render(request, 'calendar.html')
 
+@login_required
 def contacts_index(request):
     contacts = Contact.objects.filter(user=request.user).order_by('name')
     return render(request, 'contacts/index.html', {'contacts': contacts })
@@ -162,6 +167,7 @@ def get_contacts(request):
 
     return JsonResponse(contacts_data, safe=False)
 
+@login_required
 def add_contact(request, application_id):
     form = ContactForm(request.POST)
     if form.is_valid():
@@ -171,7 +177,7 @@ def add_contact(request, application_id):
         new_contact.save()
     return redirect('applications_detail', application_id = application_id)
 
-class ContactCreate(CreateView):
+class ContactCreate(LoginRequiredMixin, CreateView):
     model = Contact
     fields = ['name', 'email', 'phone_number', 'linkedin', 'notes']
     success_url = '/contacts/index/'
@@ -180,26 +186,27 @@ class ContactCreate(CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
-class ContactUpdate(UpdateView):
+class ContactUpdate(LoginRequiredMixin, UpdateView):
     model = Contact
     fields = ['name', 'email', 'phone_number', 'linkedin', 'notes']
     success_url = '/contacts/index/'
 
-class ContactDelete(DeleteView):
+class ContactDelete(LoginRequiredMixin, DeleteView):
     model = Contact
     success_url ='/contacts/index/'
 
+@login_required
 def application(request):
     application = Application.objects.filter(user = request.user)
     profile_form = ProfileForm()
     return render(request, 'applications/index.html', { 'applications': application })
 
+@login_required
 def applications_detail(request, application_id):
     application = Application.objects.get(id=application_id)
     landmark_form = LandmarkForm()
     contact_form = ContactForm()
     return render(request, 'applications/detail.html', { 'application': application, 'landmark_form': landmark_form, 'contact_form': contact_form })
-
 
 def remove_resume(request, application_id):
     application = Application.objects.get(id=application_id)
@@ -211,13 +218,14 @@ def remove_resume(request, application_id):
         print(e)
     return redirect('applications_update', pk=application_id)
 
+@login_required
 def application_create_from_search(request):
     application_form = ApplicationForm()
     
     return render(request, 'job_tracker/application_form_populated.html', {'application_form': application_form, 'jobtitle': request.POST['jobtitle'], 'company': request.POST['company'], 'joblisting': request.POST['joblisting']})
 
 
-class ApplicationCreate(CreateView):
+class ApplicationCreate(LoginRequiredMixin, CreateView):
     model = Application
     form_class = ApplicationForm
     success_url = '/applications/'
@@ -241,7 +249,7 @@ class ApplicationCreate(CreateView):
                 print('Sorry, an error occurred uploading the file to AWS S3')
         return super().form_valid(form)
 
-class ApplicationUpdate(UpdateView):
+class ApplicationUpdate(LoginRequiredMixin, UpdateView):
     model = Application
     form_class = ApplicationForm
 
@@ -267,7 +275,7 @@ class ApplicationUpdate(UpdateView):
                 print('Sorry, an error occurred uploading the file to AWS S3')
         return super().form_valid(form)
 
-class ApplicationDelete(DeleteView):
+class ApplicationDelete(LoginRequiredMixin, DeleteView):
     model = Application
     fields = ['jobtitle', 'company', 'joblisting', 'resume', 'applied', 'applicationDate', 'dueDate', 'notes']
     success_url = '/applications/'
@@ -281,6 +289,7 @@ class ApplicationDelete(DeleteView):
     #     form.instance.resumekey = ''
     #     return super().form_valid(form)
 
+@login_required
 def add_landmark(request, application_id):
     print('add landmark route')
     form = LandmarkForm(request.POST)
@@ -291,14 +300,14 @@ def add_landmark(request, application_id):
         new_landmark.save()
     return redirect('applications_detail', application_id = application_id)
 
-class LandmarkUpdate(UpdateView): 
+class LandmarkUpdate(LoginRequiredMixin, UpdateView): 
     model = Landmark
     form_class = LandmarkForm
 
     def get_success_url(self):
         return reverse('applications_detail', kwargs={'application_id': self.object.application_id})
 
-class LandmarkDelete(DeleteView):
+class LandmarkDelete(LoginRequiredMixin, DeleteView):
     model = Landmark
     form_class = LandmarkForm
     def get_success_url(self):
