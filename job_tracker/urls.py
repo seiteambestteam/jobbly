@@ -16,6 +16,7 @@ urlpatterns = [
     path('applications/<int:pk>/delete/', views.ApplicationDelete.as_view(), name='applications_delete'),
     path('applications/<int:application_id>/add_landmarks/', views.add_landmark, name='add_landmark'),
     path('applications/<int:application_id>/add_contacts/', views.add_contact, name='add_contact'),
+    path('applications/<int:application_id>/remove_resume/', views.remove_resume, name='remove_resume'),
     path('contacts/index/', views.contacts_index, name='contacts_index'),
     path('contacts/create/', views.ContactCreate.as_view(), name='contacts_create'),
     path('contacts/<int:pk>/update/', views.ContactUpdate.as_view(), name='contacts_update'),
