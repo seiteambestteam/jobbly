@@ -26,13 +26,16 @@ class ContactForm(ModelForm):
 class ApplicationForm(ModelForm):
     class Meta:
         model = Application
-        fields = ('jobtitle', 'company', 'joblisting', 'resume', 'applied', 'applicationDate', 'dueDate', 'notes')
+        fields = ('jobtitle', 'company', 'joblisting', 'applied', 'applicationDate', 'dueDate', 'notes')
         labels = {
             'jobtitle': 'Position',
             'joblisting': 'Job Listing URL',
             'applicationDate': 'Application Date',
             'dueDate': 'Application Due Date',
         }
+        # widgets = {
+        #     'jobtitle':TextField(attrs={'class': 'edit-form-labels'})
+        # }
 
 class LandmarkForm(ModelForm):
     class Meta:

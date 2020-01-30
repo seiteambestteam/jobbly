@@ -3,6 +3,7 @@ from django.contrib.auth import login, get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
+from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
@@ -122,6 +123,11 @@ def get_calendar(request):
             'end': event.end_date_time,
             'url': f'/applications/{event.application.id}',
         })
+        if event.followup:
+            data.append({
+                'title': f'Follow up for {event.application.company} {event.name}',
+                'start': event.followup,
+            })
     return JsonResponse(data, safe=False)
 
 def calendar(request):
@@ -182,6 +188,7 @@ def applications_detail(request, application_id):
     contact_form = ContactForm()
     return render(request, 'applications/detail.html', { 'application': application, 'landmark_form': landmark_form, 'contact_form': contact_form })
 
+
 def remove_resume(request, application_id):
     application = Application.objects.get(id=application_id)
     session = boto3.Session(profile_name='jobbly')
@@ -192,6 +199,12 @@ def remove_resume(request, application_id):
         print(e)
     return redirect('applications_update', pk=application_id)
 
+def application_create_from_search(request):
+    application_form = ApplicationForm()
+    
+    return render(request, 'job_tracker/application_form_populated.html', {'application_form': application_form, 'jobtitle': request.POST['jobtitle'], 'company': request.POST['company'], 'joblisting': request.POST['joblisting']})
+
+
 class ApplicationCreate(CreateView):
     model = Application
     form_class = ApplicationForm
@@ -200,6 +213,7 @@ class ApplicationCreate(CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         resume_file = self.request.FILES.get('resume-file', None)
+
         if resume_file:
             session = boto3.Session(profile_name='jobbly')
             jobbly_s3 = session.client('s3')

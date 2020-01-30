@@ -2,15 +2,17 @@
 
 
 {% block content %}
-<div class="center container-lg">
+<div class="center">
     {% if object %}
         <h2 class="txt-center title">Edit <span class="txt-bold">{{object.name}}</span></h2>
     {% else %}
         <h2 class="txt-center title">Add Contact</h2>
     {% endif %}
-    <form class="form center" action="" method="post">
+    <form class="center forced-margin" action="" method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        <table class="container-lg">
+        {{ form.as_table }}
+        </table>
         <div class="flex">
             <input class="btn txt-medium btn-lg forced-margin" type="submit" value="Submit">
             {% if object %}
