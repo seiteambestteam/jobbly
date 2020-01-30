@@ -2,7 +2,7 @@
 {% block content %}
 <h2 class="txt-center title"> {{ user.username }}'s Profile </h2>
 {% if error_message %}<p class="red-text">{{ error_message }}</p>{% endif %}
-<form class="form center" method="post">
+<form class="form ml-4" method="post">
   {% csrf_token %}
   <table>
   {{ user_form.as_table }}

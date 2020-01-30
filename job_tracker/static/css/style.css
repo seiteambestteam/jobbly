@@ -240,6 +240,7 @@ nav {
     position: sticky;
     top: 0;
     text-align: center;
+    box-shadow: 3px 0 5px #ccc;
 }
 
 .mynav {
