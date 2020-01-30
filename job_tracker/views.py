@@ -127,6 +127,7 @@ def get_calendar(request):
             data.append({
                 'title': f'Follow up for {event.application.company} {event.name}',
                 'start': event.followup,
+                'url': f'/applications/{event.application.id}',
             })
     return JsonResponse(data, safe=False)
 
@@ -141,13 +142,24 @@ def get_contacts(request):
     contacts = Contact.objects.filter(user=request.user)
     contacts_data = []
     for contact in contacts:
-        contacts_data.append({
-            'name': f'{contact.name}',
-            'email': f'{contact.email}',
-            'linkedin': f'{contact.linkedin}',
-            'notes': f'{contact.notes}',
-            'application': f'{contact.application}',
-        })
+        if contact.application:
+            contacts_data.append({
+                'name': f'{contact.name}',
+                'email': f'{contact.email}',
+                'linkedin': f'{contact.linkedin}',
+                'notes': f'{contact.notes}',
+                'company': f'{contact.application.company}',
+                'application': f'{contact.application.jobtitle}'
+            })
+        else:
+            contacts_data.append({
+                'name': f'{contact.name}',
+                'email': f'{contact.email}',
+                'linkedin': f'{contact.linkedin}',
+                'notes': f'{contact.notes}'
+            })
+
+
     return JsonResponse(contacts_data, safe=False)
 
 def add_contact(request, application_id):
