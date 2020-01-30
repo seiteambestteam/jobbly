@@ -7,7 +7,7 @@
         <a href="{% url 'applications_create' %}">Add</a>
     </button>
 
-    <br />
+    <br/>
 
     <div class="center container-sm">
         <div id="display-contacts" class="row">
@@ -17,14 +17,14 @@
                     <div class="card-title">
                         <a
                             href="{% url 'applications_delete' application.id%}"
-                            class="ml-2"
-                            ><i class="far fa-times-circle"></i
-                        ></a>
-                        <a href="{% url 'applications_detail' application.id %}"
-                            ><h5 class="txt-bold txt-center pt-3">
+                            class="ml-2" >
+                            <i class="far fa-times-circle"></i>
+                        </a>
+                        <a href="{% url 'applications_detail' application.id %}">
+                            <h5 class="txt-bold txt-center pt-3">
                                 {{ application.company }}
-                            </h5></a
-                        >
+                            </h5>
+                        </a>
                     </div>
                     <div class="card-content pl-3 pr-3">
                         {% if application.joblisting %}
@@ -50,7 +50,7 @@
                     </div>
                 </div>
             </div>
-            <br />
+            <br/>
             {% endfor %}
         </div>
     </div>
