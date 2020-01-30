@@ -11,41 +11,58 @@
             type="text/css"
             href="{% static 'css/home.css' %}"
         />
-        <script src="https://kit.fontawesome.com/d364971e6c.js" crossorigin="anonymous"></script>
+        <script
+            src="https://kit.fontawesome.com/d364971e6c.js"
+            crossorigin="anonymous"
+        ></script>
         <script
             src="https://code.jquery.com/jquery-3.4.1.min.js"
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-            crossorigin="anonymous">
-        </script>
+            crossorigin="anonymous"
+        ></script>
+        <link
+        rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
+        />
+        <link rel="stylesheet" href="/stylesheets/landing.css" />
+        <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"
+        type="text/javascript"
+        async
+        ></script>
+        <script src="{% static 'scripts/welcome.js' %}"></script>
         <title>Jobbly</title>
     </head>
-{% block content %}
-<body>
+    <body>
+        
+    {% block content %}
+    <body>
+        <div class="container">
     
-    <div class="hero-image">
-        <div class="hero-text">
-        <h1><img src="static/images/name_logo.png"></span></h1>
-        <p>Stay on Track</p>
-        <br>
-        <a href="{% url "signup" %}" class=" btn btn-white btn-animated"
-        >Sign Up</a>
-        <br>
-    <a href="{% url "login" %}" class="btn btn-white btn-animated"
-    >Log In</a>
         </div>
-    </div>
+    
+        <div id="landing-header">
+            <img src="static/images/name_logo.png">
+            <br>
+            <a href="{% url "signup" %}" class=" btn btn-white btn-animated">Sign Up</a>
+            <a href="{% url "login" %}" class="btn btn-white btn-animated">Log In</a> 
+        </div>
+    
+        <ul class="slideshow">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
 
-
-
-
+    
+        
     {% endblock %}
-</body>
+    </body>
 
-
-
-
-
-
-
-
-
+    <!-- <img src="static/images/name_logo.png">
+<p>Stay on Track</p>
+<a href="{% url "signup" %}" class=" btn btn-white btn-animated">Sign Up</a>
+<a href="{% url "login" %}" class="btn btn-white btn-animated">Log In</a> -->
+</html>
