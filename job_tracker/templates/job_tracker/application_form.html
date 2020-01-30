@@ -1,10 +1,10 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block scripts %}
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/materialize.min.css' %}">
-{% endblock %}
-{% block content %}
+{% extends 'base.html' %} {% load static %} {% block scripts %}
+<link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet"
+/>
+<link rel="stylesheet" href="{% static 'css/materialize.min.css' %}" />
+{% endblock %} {% block content %}
 <div class="center container-lg">
     {% if object %}
     <h2 class="text-center title">
@@ -13,12 +13,17 @@
     {% else %}
     <h2 class="text-center title">Add Application</h2>
     {% endif %}
-    <form class="form center" enctype="multipart/form-data" action="" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-            <input type="file" name="resume-file">
-            <br>
-            <br>
+    <form
+        class="form center"
+        enctype="multipart/form-data"
+        action=""
+        method="post"
+    >
+        {% csrf_token %} {{ form.as_p }}
+        <input type="file" name="resume-file" />
+        <br />
+
+        <br />
         <div class="flex">
             <input
                 class="btn txt-medium btn-lg forced-margin"
@@ -33,21 +38,21 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
 <script>
-$(document).ready(function(){
-    const dueDate = $('#id_dueDate')
-    M.Datepicker.init(dueDate, {
-        format: 'yyyy-mm-dd',
-        setDefaultDate: false,
-        autoClose: true
-    }); 
-})
-$(document).ready(function(){
-    const appDate = $('#id_applicationDate')
-    M.Datepicker.init(appDate, {
-        format: 'yyyy-mm-dd',
-        setDefaultDate: false,
-        autoClose: true
+    $(document).ready(function() {
+        const dueDate = $("#id_dueDate");
+        M.Datepicker.init(dueDate, {
+            format: "yyyy-mm-dd",
+            setDefaultDate: false,
+            autoClose: true
+        });
     });
-})
+    $(document).ready(function() {
+        const appDate = $("#id_applicationDate");
+        M.Datepicker.init(appDate, {
+            format: "yyyy-mm-dd",
+            setDefaultDate: false,
+            autoClose: true
+        });
+    });
 </script>
 {% endblock %}

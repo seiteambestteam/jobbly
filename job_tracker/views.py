@@ -182,6 +182,16 @@ def applications_detail(request, application_id):
     contact_form = ContactForm()
     return render(request, 'applications/detail.html', { 'application': application, 'landmark_form': landmark_form, 'contact_form': contact_form })
 
+def remove_resume(request, application_id):
+    application = Application.objects.get(id=application_id)
+    session = boto3.Session(profile_name='jobbly')
+    jobbly_s3 = session.client('s3')
+    try:
+        jobbly_s3.delete_object(Bucket=BUCKET, Key=application.resumekey)
+    except Exception as e:
+        print(e)
+    return redirect('applications_update', pk=application_id)
+
 class ApplicationCreate(CreateView):
     model = Application
     form_class = ApplicationForm
@@ -211,27 +221,24 @@ class ApplicationUpdate(UpdateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
-        session = boto3.Session(profile_name='jobbly')
-        jobbly_s3 = session.client('s3')
-        # s3 = boto3.resource('s3')
-        try:
-            print(BUCKET)
-            print(self.object.resumekey)
-            jobbly_s3.delete_object(Bucket=BUCKET, Key=self.object.resumekey)
-            # url = f"{S3_BASE_URL}{BUCKET}/{key}"
-            # form.instance.resume = url
-            # form.instance.resumekey = key                
-        except Exception as e:
-            # return error handling here if it doesn't upload
-            print(e)
+        resume_file = self.request.FILES.get('resume-file', None)
 
-        # object = s3.Object(BUCKET, self.resumekey)
-        # print(self)
-        # check that a new resume has been uploaded,  if so, continue with the s3 code  else continue with the form
-        # get the object from S3
-        # call delete on that instance of the object
-        # form.instance.resume = ''
-        # form.instance.resumekey = ''
+        if resume_file:
+            session = boto3.Session(profile_name='jobbly')
+            jobbly_s3 = session.client('s3')
+            key = uuid.uuid4().hex[:6] + resume_file.name[resume_file.name.rfind('.'):]
+            try:
+                jobbly_s3.upload_fileobj(resume_file, BUCKET, key)
+                url = f"{S3_BASE_URL}{BUCKET}/{key}"
+
+                if self.object.resumekey:
+                    jobbly_s3.delete_object(Bucket=BUCKET, Key=self.object.resumekey)
+                form.instance.resume = url
+                form.instance.resumekey = key
+            except Exception as e:
+                # return error handling here if it doesn't upload
+                print(e)
+                print('Sorry, an error occurred uploading the file to AWS S3')
         return super().form_valid(form)
 
 class ApplicationDelete(DeleteView):
