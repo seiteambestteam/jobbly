@@ -82,6 +82,7 @@ body {
 
 .card {
     box-shadow: 2px 3px 4px #ccc;
+    padding-bottom: 15px;
 }
 
 .cards {
@@ -540,9 +541,11 @@ footer div {
 }
 
 #calendar > div.fc-view-container > div > div {
-    height: 150px !important;
+    height: 165px !important;
 }
-
+#calendar > div.fc-view-container > * td.fc-event-container{
+    color: white;
+}
 .hidden {
     display: none;
 }
@@ -553,7 +556,12 @@ footer div {
     color: #3f72b0;
     margin: 20px;
 }
-
+.btn.link-btn {
+    width: auto;
+}
+.search-result {
+    margin: 50px 0;
+}
 /* media queries */
 @media (min-width: 768px) {
     .content-wrapper {
@@ -611,8 +619,6 @@ footer div {
         color: var(--dark-color);
         font-size: 1.3rem;
     }
-
-    /* Specific */
 
     .line {
         border-left: 6px solid var(--light-gray-color);
@@ -718,7 +724,7 @@ footer div {
     }
 
     .container-sml {
-        width: 45vw;
+        width: 60vw;
     }
 
     .form {
