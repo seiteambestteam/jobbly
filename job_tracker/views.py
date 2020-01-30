@@ -12,7 +12,7 @@ from .models import User, Contact, Landmark, Application
 from .forms import *
 from .packages import CareerjetAPIClient
 import requests
-from bs4 import BeautifulSoup
+from django.forms import Textarea
 import os
 import uuid
 import boto3
@@ -155,12 +155,14 @@ def add_contact(request, application_id):
 
 class ContactCreate(CreateView):
     model = Contact
-    fields = ['name', 'email', 'phone_number', 'linkedin', 'notes']
+    # fields = ['name', 'email', 'phone_number', 'linkedin', 'notes']
     success_url = '/contacts/index/'
+    form_class = ContactForm
 
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+    
 
 class ContactUpdate(UpdateView):
     model = Contact

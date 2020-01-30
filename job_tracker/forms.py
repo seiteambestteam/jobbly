@@ -1,4 +1,4 @@
-from django.forms import ModelForm
+from django.forms import ModelForm, Textarea
 from django import forms
 from django.utils.translation import gettext_lazy as _
 from .models import *
@@ -22,6 +22,10 @@ class ContactForm(ModelForm):
     class Meta:
         model = Contact
         fields = ('name', 'email', 'phone_number', 'linkedin', 'notes')
+        widgets = {
+            'notes':Textarea(attrs={'cols': 30}),
+        }
+
 
 class ApplicationForm(ModelForm):
     class Meta:
@@ -33,9 +37,6 @@ class ApplicationForm(ModelForm):
             'applicationDate': 'Application Date',
             'dueDate': 'Application Due Date',
         }
-        # widgets = {
-        #     'jobtitle':TextField(attrs={'class': 'edit-form-labels'})
-        # }
 
 class LandmarkForm(ModelForm):
     class Meta:
