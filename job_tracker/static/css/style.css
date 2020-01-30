@@ -95,6 +95,7 @@ a {
 
 a:hover {
     text-decoration: none !important;
+    color: var(--dark-color) !important;
 }
 
 h2 {
@@ -117,12 +118,21 @@ hr {
 }
 
 .btn {
-    /* padding: 10px; */
+    padding: 10px;
     background-color: var(--main-color);
     border: 1.1px solid var(--dark-color);
     border-radius: 1000px;
-    box-shadow: 2px 2px 5px var(--light-gray-color);
+    box-shadow: 2px 2px 5px var(--light-gray-color),
+        0 2px 4px var(--light-white-color) inset;
     color: var(--dark-color);
+}
+
+.btn:hover {
+    color: var(--dark-color);
+    box-shadow: 3px 4px 5px var(--dark-gray-color);
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
 }
 
 .btn-sml {
@@ -139,6 +149,10 @@ hr {
 .btn-lg {
     width: 5.5rem;
     height: 3rem;
+}
+
+.app-btn {
+    width: auto !important;
 }
 
 .btn-inline {
@@ -164,13 +178,35 @@ hr {
     font-size: 0.9rem;
 }
 
+form table label {
+    color: inherit;
+    font-size: 1.2rem;
+}
+
+form table input {
+    /* height: 0; */
+    font-size: 0.8rem;
+}
+
+form table input:focus {
+    outline: none;
+}
+
+form table tr {
+    border-bottom: none;
+}
+
+form table th {
+    padding: 0;
+}
+
 input {
     display: block;
     font-family: inherit;
     font-size: 1rem;
     text-align: center;
     margin: 0.9rem auto;
-    width: 70vw;
+    /* width: 70vw; */
     border: none;
     border-bottom: 1px solid var(--dark-gray-color);
     background-color: inherit;
@@ -181,21 +217,10 @@ input {
         inset 0 0 0 100px var(--light-white-color) !important;
 }
 
-#id_applied {
-    box-shadow: 0 0 0 #000 !important;
-    display: block;
-    margin: 0 auto;
-    margin-top: 1rem;
-    width: 20px;
-    height: 20px;
-    border: 1px solid var(--dark-gray-color);
-    background-color: var(--main-color);
-}
-
 textarea {
     border: 1px solid var(--dark-gray-color);
     background-color: var(--light-white-color);
-    width: 70vw;
+    /* width: 70vw; */
     margin: 0.7rem auto;
 }
 
@@ -253,14 +278,14 @@ nav label {
 .nav-li {
     background-color: var(--main-color);
     margin-right: 1rem;
-    width: 6rem;
+    width: 8rem;
 }
 
 nav ul li {
     display: block;
 }
 
-nav ul li a {
+nav ul a {
     text-decoration: none;
     color: var(--dark-color);
     font-size: 0.9rem;
@@ -277,9 +302,10 @@ nav ul {
 nav input:checked ~ ul {
     display: flex;
     position: absolute;
-    right: 2px;
+    right: 25px;
     top: 25px;
     height: 150px;
+    width: 50px;
     padding: 0;
     flex-direction: column;
     justify-content: space-between;
@@ -401,12 +427,47 @@ nav input:checked ~ ul li {
     margin: 0 2rem;
 }
 
-.profile-edit-table label {
-    font-size: 1.2rem;
+#id_applied {
+    box-shadow: 0 0 0 #000 !important;
+    display: block;
+    margin: 0 10px;
+    margin-top: -15px;
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--dark-gray-color);
 }
 
-.profile-edit-table input {
-    font-size: 0.8rem;
+[type="checkbox"]:not(:checked),
+[type="checkbox"]:checked {
+    opacity: 1;
+    pointer-events: fill;
+}
+
+.file-upload {
+    align-items: center;
+    font-size: 15px;
+}
+
+#resume-file {
+    display: none;
+}
+
+.file-upload-button {
+    -webkit-appearance: none;
+    border-radius: 1000px;
+    outline: none;
+    padding: 0.5em 0.8em;
+    height: auto;
+    width: auto;
+}
+
+.file-upload-label {
+    max-width: 250px;
+    font-size: 0.9rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-left: 0.5rem;
 }
 
 /* footer */
@@ -484,26 +545,26 @@ footer div {
         padding-top: 5px;
     }
 
-    nav ul li {
+    nav ul a {
         padding: 0.9rem 0.7rem;
     }
 
-    nav ul li:hover {
+    nav ul a:hover {
         background-color: #c4d3f1;
-        border-radius: 5px;
+        border-radius: 1000px;
         cursor: pointer;
     }
 
-    nav ul li a:focus {
+    nav ul a:focus {
         outline: none;
     }
 
-    nav ul li a {
+    nav ul a {
         color: var(--dark-color);
         font-size: 1.3rem;
     }
 
-    /* ??? */
+    /* Specific */
 
     .line {
         border-left: 6px solid var(--light-gray-color);
@@ -571,7 +632,6 @@ footer div {
     }
 
     .btn-lg {
-        /* width: auto; */
         height: 3rem;
     }
 
@@ -683,16 +743,27 @@ footer div {
         padding: 0 10vw;
     }
 
-    .profile-edit-table label {
+    form table label {
         font-size: 1.5rem;
     }
 
-    .profile-edit-table input {
+    form table input {
         font-size: 1.2rem;
     }
 
     .del-btn {
         margin-left: 42%;
+    }
+
+    .file-upload-button {
+        padding: 0.5em 0.8em;
+        height: auto;
+        width: auto;
+    }
+
+    .file-upload-label {
+        font-size: 1.2rem;
+        margin-left: 1rem;
     }
 
     /* footer */
