@@ -123,6 +123,11 @@ def get_calendar(request):
             'end': event.end_date_time,
             'url': f'/applications/{event.application.id}',
         })
+        if event.followup:
+            data.append({
+                'title': f'Follow up for {event.application.company} {event.name}',
+                'start': event.followup,
+            })
     return JsonResponse(data, safe=False)
 
 def calendar(request):
