@@ -32,18 +32,22 @@
     </form>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
-<script src={% static 'scripts/materializedatetimepicker.js' %} defer></script>
 <script>
 $(document).ready(function(){
     const dueDate = $('#id_dueDate')
-    M.AutoInit()
-    const dueDateField = MaterialDateTimePicker.create(dueDate)
-    
+    M.Datepicker.init(dueDate, {
+        format: 'yyyy-mm-dd',
+        setDefaultDate: false,
+        autoClose: true
+    }); 
 })
 $(document).ready(function(){
     const appDate = $('#id_applicationDate')
-    M.AutoInit()
-    const appDateField = MaterialDateTimePicker.create(appDate)
+    M.Datepicker.init(appDate, {
+        format: 'yyyy-mm-dd',
+        setDefaultDate: false,
+        autoClose: true
+    });
 })
 </script>
 {% endblock %}
