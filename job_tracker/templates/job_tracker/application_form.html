@@ -22,7 +22,6 @@
         {% csrf_token %} {{ form.as_p }}
         <input type="file" name="resume-file" />
         <br />
-
         <br />
         <div class="flex">
             <input
@@ -38,21 +37,21 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
 <script>
-    $(document).ready(function() {
-        const dueDate = $("#id_dueDate");
-        M.Datepicker.init(dueDate, {
-            format: "yyyy-mm-dd",
-            setDefaultDate: false,
-            autoClose: true
-        });
+$(document).ready(function() {
+    const dueDate = $("#id_dueDate");
+    M.Datepicker.init(dueDate, {
+       format: "yyyy-mm-dd",
+       setDefaultDate: false,
+       autoClose: true
     });
-    $(document).ready(function() {
-        const appDate = $("#id_applicationDate");
-        M.Datepicker.init(appDate, {
-            format: "yyyy-mm-dd",
-            setDefaultDate: false,
-            autoClose: true
-        });
+});
+$(document).ready(function() {
+    const appDate = $("#id_applicationDate");
+    M.Datepicker.init(appDate, {
+        format: "yyyy-mm-dd",
+        setDefaultDate: false,
+        autoClose: true
     });
+});
 </script>
 {% endblock %}
