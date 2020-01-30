@@ -45,13 +45,13 @@
         <img class="main-logo" src="{% static 'images/logo_transparent.png' %}" alt="logo" />
         <h2 class="txt-center">Find a Job:</h2>
         <br>
-        <div class="center container-md myflex">
+        <div class="center container-xl myflex">
             <label class="txt-center center" for="search-term">I'm looking for:</label>
             <input class="mr-5" type="text" name="search-term" id="search-term" value='{{ user.profile.jobsearch }}'/>
             <br />
-            <label class="txt-center center" for="search-location">Location:</label>
+            <label class="txt-center center search-location" for="search-location">Location:</label>
             <input class="mr-5" type="text" name="search-location" id="search-location" value='{{ user.profile.joblocation }}' />
-            <button class="btn btn-sml search-btn"><span class="icon"><i class="fas fa-search search-icon"></i></span><span class="text">Search</span></button>
+            <button class="btn btn-md search-btn"><span class="icon"><i class="fas fa-search search-icon"></i></span><span class="text">Search</span></button>
         </div>
         <br>
         <br>
@@ -67,7 +67,7 @@
         {% for application in user.application_set.all %}
             <div class="col-sm-6 col-md-4 txt-center">
                 <a href="{% url 'applications_detail' application.id %}" target="_blank">
-                <div class="card m-3">
+                <div class="card index-card m-3">
                     <div class="card-body ">
                         <h5 class="card-title txt-bold">{{ application.jobtitle }}</h5>
                             <h6 class="card-subtitle mb-1 text-muted">{{ application.company }}</h6>
