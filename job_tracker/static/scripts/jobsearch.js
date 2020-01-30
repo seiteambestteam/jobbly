@@ -1,10 +1,10 @@
 //api
-
 $(".search-btn").click(() => {
     const searchTerm = $("#search-term").val();
     const locationTerm = $("#search-location").val();
     const JOBBLY_CSRF_TOKEN = document.getElementById('csrf_token').value;
     const JOBBLY_APPLICATION_LINK = document.getElementById('application_link').value;
+    $("#scrapper-loader").append('<i class="fas fa-spinner fa-pulse fa-5x"></i>')
     $.ajax({
         url: "/ajax/job_search_api/",
         data: {
@@ -18,7 +18,7 @@ $(".search-btn").click(() => {
                     `<p>No ${searchTerm} positions in ${locationTerm}.</p>`
                 );
             } else {
-                
+                $("#scrapper-loader").empty();
                 $("#scrapper-results").empty();
                 for (i = 0; i < data.jobs.length; i++) {
                     const card = `<div>

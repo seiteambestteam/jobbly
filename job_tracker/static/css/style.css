@@ -445,6 +445,11 @@ footer div {
 .link-btn:hover {
     color: #a6b7d7;
 }
+.fa-spinner {
+    color: #3f72b0;
+    margin: 20px;
+}
+
 /* media queries */
 @media (min-width: 768px) {
     .content-wrapper {
