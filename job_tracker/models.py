@@ -49,10 +49,6 @@ class Contact(models.Model):
     def get_absolute_url(self):
         return reverse("contacts_detail", kwargs={"contact_id": self.id})
     
-    # class Meta:
-    #     widgets = {
-    #         'name':CharField(attrs={'class': 'edit-form-labels'})
-    #     }
 
 class Landmark(models.Model):
     #drop down

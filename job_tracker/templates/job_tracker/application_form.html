@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{% static 'css/materialize.min.css' %}">
 {% endblock %}
 {% block content %}
-<div class="center container-lg">
+<div>
     {% if object %}
     <h2 class="text-center title">
         Edit <span class="txt-bold">{{object.company}}</span>
@@ -13,21 +13,26 @@
     {% else %}
     <h2 class="text-center title">Add Application</h2>
     {% endif %}
-    <form class="form center" enctype="multipart/form-data" action="" method="post">
+    <form class="forced-margin" enctype="multipart/form-data" action="" method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-            <input type="file" name="resume-file">
+        <table class="container-lg">
+        {{ form.as_table }}
+        </table>
+        <div class="file-upload container-lg">
+            <input type="file" name="resume-file" id="resume-file">
+            <button class="btn file-upload-button" type="button">Add Resume</button>
+            <span class="file-upload-label">Test</span>
+        </div>
             <br>
             <br>
         <div class="flex">
             <input
-                class="btn txt-medium btn-lg forced-margin"
+                class="btn center txt-medium btn-lg forced-margin app-btn"
                 type="submit"
                 value="Submit"
             />
-            <button class="btn txt-medium btn-lg forced-margin">
-                <a href='{% url "application" %}'>Cancel</a>
-            </button>
+            <a class="btn center txt-medium btn-lg forced-margin app-btn" href='{% url "application" %}'>Cancel</a>
+            
         </div>
     </form>
 </div>
@@ -49,5 +54,31 @@ $(document).ready(function(){
         autoClose: true
     });
 })
+
+Array.prototype.forEach.call(
+    document.querySelectorAll(".file-upload-button"),
+    function(button) {
+        const hiddenInput = button.parentElement.querySelector("#resume-file");
+        const label = button.parentElement.querySelector(".file-upload-label");
+        const defaultLabelText = "No file selected";
+
+        label.textContent = defaultLabelText;
+        label.title = defaultLabelText;
+
+        button.addEventListener("click", function() {
+        hiddenInput.click();
+        });
+
+        hiddenInput.addEventListener("change", function() {
+            const filenameList = Array.prototype.map.call(hiddenInput.files, function(file) {
+                return file.name;
+            });
+
+            label.textContent = filenameList.join(", ") || defaultLabelText;
+            label.title = label.textContent;
+        });
+    }
+);
+
 </script>
 {% endblock %}
