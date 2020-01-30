@@ -161,7 +161,6 @@ def add_contact(request, application_id):
 
 class ContactCreate(CreateView):
     model = Contact
-    # fields = ['name', 'email', 'phone_number', 'linkedin', 'notes']
     success_url = '/contacts/index/'
     form_class = ContactForm
 
@@ -172,8 +171,9 @@ class ContactCreate(CreateView):
 
 class ContactUpdate(UpdateView):
     model = Contact
-    fields = ['name', 'email', 'phone_number', 'linkedin', 'notes']
+    # fields = ['name', 'email', 'phone_number', 'linkedin', 'notes']
     success_url = '/contacts/index/'
+    form_class = ContactForm
 
 class ContactDelete(DeleteView):
     model = Contact
