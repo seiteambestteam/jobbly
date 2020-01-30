@@ -11,6 +11,7 @@ urlpatterns = [
     path('applications/', views.application, name='application'),
     path('applications/<int:application_id>/', views.applications_detail, name='applications_detail'),
     path('applications/create/', views.ApplicationCreate.as_view(), name='applications_create'),
+    path('applications/create_from_search/', views.application_create_from_search, name='application_create_from_search'),
     path('applications/<int:pk>/update/', views.ApplicationUpdate.as_view(), name='applications_update'),
     path('applications/<int:pk>/delete/', views.ApplicationDelete.as_view(), name='applications_delete'),
     path('applications/<int:application_id>/add_landmarks/', views.add_landmark, name='add_landmark'),

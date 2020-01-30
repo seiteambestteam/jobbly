@@ -27,25 +27,34 @@
                         </a>
                     </div>
                     <div class="card-content pl-3 pr-3">
-                        {% if application.joblisting %}
-                        <h6 class="txt-medium d-inline">Job Title:</h6>
-                        <span>{{ application.jobtitle }}</span>
-                        <br />
+                        {% if application.jobtitle %}
+                            <h6 class="txt-medium d-inline">Job Title:</h6>
+                            <span>{{ application.jobtitle }}</span>
+                            <br />
                         {% endif %} {% if application.joblisting %}
-                        <h6 class="txt-medium d-inline">Job Listing:</h6>
-                        <span>{{ application.joblisting }}</span>
-                        <br />
-                        {% endif %} {% if .phone_number %}
-                        <h6 class="txt-medium d-inline">Phone:</h6>
-                        <span>{{ contact.phone_number }}</span>
-                        <br />
+                            <h6 class="txt-medium d-inline">Job Listing:</h6>
+                            <span>{{ application.joblisting }}</span>
+                            <br />
+                        {% endif %} {% if application.phone_number %}
+                            <h6 class="txt-medium d-inline">Phone:</h6>
+                            <span>{{ contact.phone_number }}</span>
+                            <br />
                         {% endif %} {% if application.applied == True %}
-                        <h6 class="txt-medium d-inline">Applied On:</h6>
-                        <span>{{ application.applicationDate }}</span>
+                            {% if application.applicationDate %}
+                                <h6 class="txt-medium d-inline">Applied On:</h6>
+                                <span>{{ application.applicationDate }}</span>
+                            {% else %}
+                                 <h6 class="txt-medium d-inline">Applied</h6>
+                            {% endif %}
                         <br />
+                        {% elif application.applicationDate %}
+                            <h6 class="txt-medium d-inline">Applied On:</h6>
+                            <span>{{ application.applicationDate }}</span>
+                        {% elif application.dueDate %}
+                            <h6 class="txt-medium d-inline">Apply By:</h6>
+                            <span>{{ application.dueDate }}</span>
                         {% else %}
-                        <h6 class="txt-medium d-inline">Apply By:</h6>
-                        <span>{{ application.dueDate }}</span>
+                            <h6 class="txt-medium d-inline">You still need to apply</h6>
                         {% endif %}
                     </div>
                 </div>

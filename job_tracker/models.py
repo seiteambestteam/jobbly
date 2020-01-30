@@ -60,7 +60,7 @@ class Landmark(models.Model):
     start_date_time = models.DateTimeField(blank=True, null=True)
     end_date_time = models.DateTimeField(blank=True, null=True)
     location = models.CharField(max_length=200, blank=True, null=True)
-    followup = models.DateTimeField(blank=True, null=True)
+    followup = models.DateField(blank=True, null=True)
     application = models.ForeignKey(Application, on_delete=models.CASCADE)
 
     def get_absolute_url(self):
