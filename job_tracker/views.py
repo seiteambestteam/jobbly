@@ -139,7 +139,6 @@ def contacts_index(request):
 
 def get_contacts(request):
     contacts = Contact.objects.filter(user=request.user)
-    print('in views')
     contacts_data = []
     for contact in contacts:
         contacts_data.append({
@@ -149,7 +148,6 @@ def get_contacts(request):
             'notes': f'{contact.notes}',
             'application': f'{contact.application}',
         })
-    print(contacts_data)
     return JsonResponse(contacts_data, safe=False)
 
 def add_contact(request, application_id):
