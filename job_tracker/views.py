@@ -187,7 +187,7 @@ def applications_detail(request, application_id):
 class ApplicationCreate(CreateView):
     model = Application
     form_class = ApplicationForm
-    #success_url = '/applications/'
+    success_url = '/applications/'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
