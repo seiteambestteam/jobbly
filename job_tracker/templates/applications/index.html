@@ -3,43 +3,66 @@
 <h2 class="text-center title">Applications</h2>
 
 <div class="center container-lg">
-    <button class="btn center txt-sml btn-md side"><a href="{% url 'applications_create' %}">Add</a></button>
+    <button class="btn center txt-sml btn-md side">
+        <a href="{% url 'applications_create' %}">Add</a>
+    </button>
 
-    <br />
+    <br/>
 
-<div class="center container-sml">
-    <ol class="txt-justify">
-        {% for application in applications %}
-            <li><a href="{% url 'applications_detail' application.id %}"><span>{{ application.company }}</span></a>
-            <p class="txt-medium">Job Title:</p>
-            <p class="txt-sml">{{ application.jobtitle }}</p>
-            {% if application.joblisting %}
-                <a class="txt-medium" href='{{ application.joblisting }}'>Job Listing</p>
-            {% endif %}
-            {% if application.resume %}
-                <p class="txt-medium">Resume:</p>
-                <p class="txt-sml">{{ application.resume }}</p>
-            {% endif %}
-            {% if application.applied == True %}
-            <p>Applied</p>
-            {% else %}
-            <p>Not applied yet<p>
-            {% endif %} 
-            {% if application.applicationDate %}
-                <p class="txt-medium">Apply Date:</p>
-                <p class="txt-sml">{{ application.applicationDate }}</p>
-            {% endif %}
-            {% if application.dueDate %}
-                <p class="txt-medium">Apply By:</p>
-                <p class="txt-sml">{{ application.dueDate }}</p>
-            {% endif %}
-            {% if application.notes %}
-                <p class="txt-medium">Notes:</p>
-                <p class="txt-sml">{{ application.notes }}</p>
-            {% endif %}
-            </li>
-        {% endfor %}
-    </ol>
+    <div class="center container-sm">
+        <div id="display-contacts" class="row">
+            {% for application in applications %}
+            <div class="col-sm-6 col-md-4">
+                <div class="card contacts-card m-3">
+                    <div class="card-title">
+                        <a
+                            href="{% url 'applications_delete' application.id%}"
+                            class="ml-2" >
+                            <i class="far fa-times-circle"></i>
+                        </a>
+                        <a href="{% url 'applications_detail' application.id %}">
+                            <h5 class="txt-bold txt-center pt-3">
+                                {{ application.company }}
+                            </h5>
+                        </a>
+                    </div>
+                    <div class="card-content pl-3 pr-3">
+                        {% if application.jobtitle %}
+                            <h6 class="txt-medium d-inline">Job Title:</h6>
+                            <span>{{ application.jobtitle }}</span>
+                            <br />
+                        {% endif %} {% if application.joblisting %}
+                            <h6 class="txt-medium d-inline">Job Listing:</h6>
+                            <span>{{ application.joblisting }}</span>
+                            <br />
+                        {% endif %} {% if application.phone_number %}
+                            <h6 class="txt-medium d-inline">Phone:</h6>
+                            <span>{{ contact.phone_number }}</span>
+                            <br />
+                        {% endif %} {% if application.applied == True %}
+                            {% if application.applicationDate %}
+                                <h6 class="txt-medium d-inline">Applied On:</h6>
+                                <span>{{ application.applicationDate }}</span>
+                            {% else %}
+                                 <h6 class="txt-medium d-inline">Applied</h6>
+                            {% endif %}
+                        <br />
+                        {% elif application.applicationDate %}
+                            <h6 class="txt-medium d-inline">Applied On:</h6>
+                            <span>{{ application.applicationDate }}</span>
+                        {% elif application.dueDate %}
+                            <h6 class="txt-medium d-inline">Apply By:</h6>
+                            <span>{{ application.dueDate }}</span>
+                        {% else %}
+                            <h6 class="txt-medium d-inline">You still need to apply</h6>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <br/>
+            {% endfor %}
+        </div>
+    </div>
 </div>
 
 {% endblock %}
