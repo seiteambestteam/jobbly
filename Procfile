@@ -1,1 +1,1 @@
-web: gunicorn Jobbly.wsgi
+web: gunicorn jobbly.wsgi

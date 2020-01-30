@@ -15,15 +15,15 @@
 {% endblock %}
 {% block content %}
 
-<h2 class="txt-center title">{{ application.company }}'s Application</h2>
+<h2 class="txt-center title">Application For {{ application.jobtitle }} at {{ application.company }}</h2>
 
 <div class="center container-lg container-sml">
-        <p class="txt-medium"> Company:</p>
-        <p class="txt-sml">{{ application.company }}</p>
-        <p class="txt-medium">Job Title:</p>
-        <p class="txt-sml">{{ application.jobtitle }}</p>
-        <p class="txt-medium">Job Listing:</p>
-        <p class="txt-sml">{{ application.joblisting }}</p>
+        {% if application.joblisting %}
+            <h6 class="txt-medium"><a href='{{ application.joblisting }}'>Job Listing</a></h6>
+        {% endif %}
+        {% if application.resume %}
+
+        {% endif %}
         <p class="txt-medium">Resume:</p>
         <a href="{{ application.resume }}" class="txt-sml">{{ application.resume }}</a>
         <p class="txt-medium">Applied:</p>
@@ -32,8 +32,9 @@
         <p class="txt-sml">{{ application.applicationDate }}</p>
         <p class="txt-medium">Apply By:</p>
         <p class="txt-sml">{{ application.dueDate }}</p>
-        <p class="txt-medium">Notes:</p>
-        <p class="txt-sml">{{ application.notes }}</p>
+        {% if application.notes %}
+            <h6 class="txt-medium">{{ application.notes }}</h6>
+        {% endif %}
 
     <div class="flex">
         <button class="btn center txt-sml btn-md forced-margin"><a href="{% url 'applications_update' application.id %}">Edit</a></button>
