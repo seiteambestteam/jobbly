@@ -17,6 +17,7 @@
         var calendarEl = document.getElementById('calendar');
         let events = [];
         let calendar = new FullCalendar.Calendar(calendarEl, {
+                timeZone: 'UTC',
                 events: {{ events }},
                 plugins: [ 'dayGrid' ],
                 defaultView: 'dayGridMonth',
