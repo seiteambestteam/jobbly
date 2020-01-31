@@ -213,7 +213,8 @@ input {
     background-color: inherit;
 }
 
-.form p > input {
+.form p > input,
+.form input {
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0),
         inset 0 0 0 100px var(--light-white-color) !important;
 }
@@ -543,7 +544,7 @@ footer div {
 #calendar > div.fc-view-container > div > div {
     height: 165px !important;
 }
-#calendar > div.fc-view-container > * td.fc-event-container{
+#calendar > div.fc-view-container > * td.fc-event-container {
     color: white;
 }
 .hidden {
