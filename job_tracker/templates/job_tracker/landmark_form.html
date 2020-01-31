@@ -6,18 +6,20 @@
 {% endblock %}
 {% block content %} 
 
-<div class="center container-lg">
+<div>
 {% if object %}
 <h2 class="txt-center title">Edit <span class="txt-bold">{{object.name}}</span></h2>
 {% else %}
 <h2 class="txt-center title">Add Landmark</h2>
 {% endif %}
 
-<form class="form center" action="" method="post">
+<form class="forced-margin" action="" method="post">
     {% csrf_token %}
-        {{ form.as_p }}
+    <table class="container-lg">
+        {{ form.as_table }}
+    </table>
     <div class="flex">
-            <input class="btn txt-medium btn-lg forced-margin btn-wide" type="submit" value="Submit">
+            <input class="btn txt-medium btn-lg forced-margin btn-wide" type="submit" value="Save">
             <button class="btn txt-medium btn-lg forced-margin btn-wide"><a href='{% url "applications_detail" object.application_id %}'>Cancel</a></button>
         </div>
 </form>
