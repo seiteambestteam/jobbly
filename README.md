@@ -67,7 +67,7 @@ The News API is used to provide a tech news feed in the user homepage. It's alwa
 
 ## Meet the Team
 
-All three members of the team acted together as full-stack engineers to make Jobbly happen, but the three of us had indivdual responsibilities as well:
+All three members of the team acted together as full-stack engineers to make Jobbly happen, but the three of us had individual responsibilities as well:
 
 #### Bridget Asser
 
@@ -80,6 +80,8 @@ Coming from a background in engineering, Michelle applied her analytical mindset
 #### Suzy Nakayama
 
 Suzy's meticulous attention to detail made her the perfect front end engineer, controlling most of the design and css for Jobbly. She also implemented the News API and the contact search. You can see more of her fantastic looking (and high-performing!) applications on her github page [here](https://github.com/suzynakayama).
+
+### UX Consultant
 
 #### Annie Squarecircle
 
