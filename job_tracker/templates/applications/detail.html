@@ -3,13 +3,11 @@
 {% block scripts %}
 <script src="{% static 'scripts/landmarkListener.js' %}" defer></script>
 
-<script
-    src="https://code.jquery.com/jquery-3.4.1.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-    crossorigin="anonymous">
-</script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous">
+    </script>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/materialize.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/materialize.min.css' %}">
 
 {% endblock %}
 {% block content %}
@@ -187,24 +185,24 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
 <script src={% static 'scripts/materializedatetimepicker.js' %} defer></script>
 <script>
-$(document).ready(function(){
-    const endDate = $('#id_end_date_time')
-    M.AutoInit()
-    const endDateField = MaterialDateTimePicker.create(endDate)
-    
-})
-$(document).ready(function(){
-    const startDate = $('#id_start_date_time')
-    M.AutoInit()
-    const startDateField = MaterialDateTimePicker.create(startDate)
-})
-$(document).ready(function(){
-    const followupDate = $('#id_followup')
-    M.Datepicker.init(followupDate, {
-        format: 'yyyy-mm-dd',
-        setDefaultDate: false,
-        autoClose: true
-    });
-})
+    $(document).ready(function () {
+        const endDate = $('#id_end_date_time')
+        M.AutoInit()
+        const endDateField = MaterialDateTimePicker.create(endDate)
+
+    })
+    $(document).ready(function () {
+        const startDate = $('#id_start_date_time')
+        M.AutoInit()
+        const startDateField = MaterialDateTimePicker.create(startDate)
+    })
+    $(document).ready(function () {
+        const followupDate = $('#id_followup')
+        M.Datepicker.init(followupDate, {
+            format: 'yyyy-mm-dd',
+            setDefaultDate: false,
+            autoClose: true
+        });
+    })
 </script>
 {% endblock %}
