@@ -8,29 +8,32 @@
 <input id="jobtitle_input" value="{{ jobtitle }}" type='hidden'/>
 <input id="company_input" value="{{ company }}" type='hidden'/>
 <input id="joblisting_input" value="{{ joblisting }}" type='hidden'/>
-<div class="center container-lg">
-    {% if object %}
-    <h2 class="text-center title">
-        Edit <span class="txt-bold">{{object.company}}</span>
+{% if object %}
+    <h2 class="txt-center title">
+        Edit <span class="txt-bold">{{object.jobtitle}} Application with {{object.company}}</span>
     </h2>
     {% else %}
-    <h2 class="text-center title">Add Application</h2>
+    <h2 class="txt-center title">Add Application</h2>
     {% endif %}
-    <form class="form center" enctype="multipart/form-data" action="/applications/create/" method="post">
+    <form class="forced-margin" enctype="multipart/form-data" action="" method="post">
         {% csrf_token %}
+        <table class="container-lg">
         {{ application_form.as_p }}
-            <input type="file" name="resume-file">
-            <br>
-            <br>
-        <div class="flex">
-            <input
-                class="btn txt-medium btn-lg forced-margin"
-                type="submit"
-                value="Submit"
-            />
-            <button class="btn txt-medium btn-lg forced-margin">
-                <a href='{% url "application" %}'>Cancel</a>
-            </button>
+        <div class="file-upload container-lg">
+            <input type="file" name="resume-file" id="resume-file">
+            <button class="btn file-upload-button" type="button">Add Resume</button>
+            <span class="file-upload-label"></span>
+        </div>
+        <br />
+        <br />
+       <div class="flex">
+            <input class="btn center txt-medium btn-lg forced-margin app-btn" type="submit" value="Submit" />
+            <a class="btn center txt-medium btn-lg forced-margin app-btn" href='{% url "application" %}'>Cancel</a>
+            {% if object.resume %}
+            <a class="btn center txt-medium btn-lg forced-margin app-btn"
+                href='{% url "remove_resume" object.id %}'>Delete
+                Resume</a>
+            {% endif %}
         </div>
     </form>
 </div>

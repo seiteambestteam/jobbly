@@ -32,7 +32,7 @@ $(document).ready(function() {
                 newHtml += `<h6 class="txt-medium d-inline">Application: ${contact.application} at ${contact.company}</h6>
                             <br>`;
             }
-            if (contact.email != "None") {
+            if (contact.email != 'None') {
                 newHtml += `<h6 class=" txt-medium d-inline"><a href='mailto:${contact.email}'>${contact.email}</a></h6>`;
             }
             if (contact.phone_number) {
