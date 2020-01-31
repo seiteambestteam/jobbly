@@ -11,14 +11,21 @@
 
 	<div class="container-lg mx-auto flex">
 		<form class="form d-inline col-sm-2" action="" method="POST">
-		{% csrf_token %}
-				<input class="btn txt-medium btn-lg forced-margin" type="submit" value="Yes">
+			{% csrf_token %}
 		</form>
 		{% if object.application %}
-			<button class="btn txt-medium btn-lg forced-margin d-inline"><a href='{% url "applications_detail" object.application_id %}'>Cancel</a></button>
-			{% else %}
-			<button class="btn txt-medium btn-lg forced-margin d-inline"><a href='{% url "contacts_index" %}'>Cancel</a></button>
-			{% endif %}
+		<button class="btn txt-medium btn-lg forced-margin d-inline"><a
+				href='{% url "applications_detail" object.application_id %}'>Cancel</a></button>
+		{% else %}
+		<button class="btn txt-medium btn-lg forced-margin d-inline"><a
+				href='{% url "contacts_index" %}'>Cancel</a></button>
+		{% endif %}
 	</div>
 </div>
 {% endblock %}
+
+
+
+<!-- {% for object.resume %}
+<a class="btn center txt-medium btn-lg forced-margin app-btn" href='{% url "remove_resume" object.id %}'>Yes</a>
+{% endif %} -->
