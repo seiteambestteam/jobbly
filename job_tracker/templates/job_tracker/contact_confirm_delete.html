@@ -12,6 +12,7 @@
 	<div class="container-lg mx-auto flex">
 		<form class="form d-inline col-sm-2" action="" method="POST">
 			{% csrf_token %}
+
 			<input class="btn txt-medium btn-lg forced-margin" type="submit" value="Yes">
 		</form>
 		{% if object.application %}
