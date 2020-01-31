@@ -560,6 +560,10 @@ footer div {
 .btn.link-btn {
     width: auto;
 }
+.btn.btn-wide {
+    width: auto;
+    background-color: var(--light-gray-color);
+}
 .search-result {
     margin: 50px 0;
 }
