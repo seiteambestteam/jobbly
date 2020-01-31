@@ -212,7 +212,8 @@ def applications_detail(request, application_id):
 
 def remove_resume(request, application_id):
     application = Application.objects.get(pk=application_id)
-    session = boto3.Session(profile_name='jobbly')
+    #session = boto3.Session(profile_name='jobbly')
+            session = boto3.Session()
     jobbly_s3 = session.client('s3')
     try:
         jobbly_s3.delete_object(Bucket=BUCKET, Key=application.resumekey)
@@ -237,6 +238,7 @@ class ApplicationCreate(LoginRequiredMixin, CreateView):
         resume_file = self.request.FILES.get('resume-file', None)
 
         if resume_file:
+            #session = boto3.Session(profile_name='jobbly')
             session = boto3.Session()
             jobbly_s3 = session.client('s3')
             key = uuid.uuid4().hex[:6] + resume_file.name[resume_file.name.rfind('.'):]
@@ -260,6 +262,7 @@ class ApplicationUpdate(LoginRequiredMixin, UpdateView):
         resume_file = self.request.FILES.get('resume-file', None)
 
         if resume_file:
+            #session = boto3.Session(profile_name='jobbly')
             session = boto3.Session()
             jobbly_s3 = session.client('s3')
             key = uuid.uuid4().hex[:6] + resume_file.name[resume_file.name.rfind('.'):]
@@ -279,7 +282,8 @@ class ApplicationUpdate(LoginRequiredMixin, UpdateView):
 
     def remove_resume(request, application_id):
         application = Application.objects.get(id=application_id)
-        session = boto3.Session()
+        #session = boto3.Session(profile_name='jobbly')
+            session = boto3.Session()
         jobbly_s3 = session.client('s3')
         try:
             jobbly_s3.delete_object(Bucket=BUCKET, Key=application.resumekey)
@@ -296,6 +300,7 @@ class ApplicationDelete(LoginRequiredMixin, DeleteView):
         self.object = self.get_object()
         if (self.object.resume):
             application = Application.objects.get(id=self.object.id)
+            #session = boto3.Session(profile_name='jobbly')
             session = boto3.Session()
             jobbly_s3 = session.client('s3')
             try:
