@@ -34,7 +34,6 @@ $(document).ready(function() {
                             <br>`;
             }
             if (contact.email != 'None') {
-                console.log(contact.email)
                 newHtml += `<h6 class=" txt-medium d-inline"><a href='mailto:${contact.email}'>${contact.email}</a></h6>`;
             }
             if (contact.phone_number) {
