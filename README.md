@@ -5,10 +5,15 @@
 As part of the Bootcamp process, graduates are expected to stay on top of their job applications by using a complex Google Sheets document with several different tabs. Jobbly was born out of a desire to streamline this process, allowing users to focus on the job search instead of the tracking process.
 
 ![Application Detail View](https://i.imgur.com/Md67kMu.png)
+
 Track details of each application, including related events and contacts.
+
 ![Calendar](https://i.imgur.com/NyHo226.png)
+
 Get a summary of your events and follow-up reminders in the Jobbly Calendar view.
+
 ![Jobbly Dashboard](https://i.imgur.com/VMAOIf5.png)
+
 Search for jobs, review tech news, track your applications, and get an overview of upcoming events in the dashboard.
 
 ## Getting Started
@@ -70,11 +75,11 @@ Bridget channeled her passion for web development on both the front and back-end
 
 #### Michelle Pitts
 
-Coming from a background in engineering, Michelle applied her analytical mindset to corral the Jobbly Data Models, Job Search API, and calendar functionality. You can check out Michelle's other work on her github page [here](https://github.com/meeschka) to see more of here work.
+Coming from a background in engineering, Michelle applied her analytical mindset to corral the Jobbly Data Models, Job Search API, calendar functionality and devOps. You can check out Michelle's other work on her github page [here](https://github.com/meeschka).
 
 #### Suzy Nakayama
 
-Suzy's meticulous attention to detail made her the perfect front end engineer, controlling most of the design and css for Jobbly. She also implemented the News API. You can see more of her fantastic looking (and high-performing!) applications on her github page [here](https://github.com/suzynakayama).
+Suzy's meticulous attention to detail made her the perfect front end engineer, controlling most of the design and css for Jobbly. She also implemented the News API and the contact search. You can see more of her fantastic looking (and high-performing!) applications on her github page [here](https://github.com/suzynakayama).
 
 #### Annie Squarecircle
 
