@@ -189,7 +189,6 @@ class ContactCreate(LoginRequiredMixin, CreateView):
 
 class ContactUpdate(LoginRequiredMixin, UpdateView):
     model = Contact
-    # fields = ['name', 'email', 'phone_number', 'linkedin', 'notes']
     success_url = '/contacts/index/'
     form_class = ContactForm
 
@@ -212,8 +211,9 @@ def applications_detail(request, application_id):
 
 def remove_resume(request, application_id):
     application = Application.objects.get(pk=application_id)
+    #switch sessions to profile if running on local host
     #session = boto3.Session(profile_name='jobbly')
-            session = boto3.Session()
+    session = boto3.Session()
     jobbly_s3 = session.client('s3')
     try:
         jobbly_s3.delete_object(Bucket=BUCKET, Key=application.resumekey)
@@ -238,6 +238,7 @@ class ApplicationCreate(LoginRequiredMixin, CreateView):
         resume_file = self.request.FILES.get('resume-file', None)
 
         if resume_file:
+            #switch sessions to profile if running on local host
             #session = boto3.Session(profile_name='jobbly')
             session = boto3.Session()
             jobbly_s3 = session.client('s3')
@@ -248,7 +249,6 @@ class ApplicationCreate(LoginRequiredMixin, CreateView):
                 form.instance.resume = url
                 form.instance.resumekey = key                
             except Exception as e:
-                # return error handling here if it doesn't upload
                 print(e)
                 print('Sorry, an error occurred uploading the file to AWS S3')
         return super().form_valid(form)
@@ -262,6 +262,7 @@ class ApplicationUpdate(LoginRequiredMixin, UpdateView):
         resume_file = self.request.FILES.get('resume-file', None)
 
         if resume_file:
+            #switch sessions to profile if running on local host
             #session = boto3.Session(profile_name='jobbly')
             session = boto3.Session()
             jobbly_s3 = session.client('s3')
@@ -275,13 +276,13 @@ class ApplicationUpdate(LoginRequiredMixin, UpdateView):
                 form.instance.resume = url
                 form.instance.resumekey = key
             except Exception as e:
-                # return error handling here if it doesn't upload
                 print(e)
                 print('Sorry, an error occurred uploading the file to AWS S3')
         return super().form_valid(form)
 
     def remove_resume(request, application_id):
         application = Application.objects.get(id=application_id)
+        #switch sessions to profile if running on local host
         #session = boto3.Session(profile_name='jobbly')
             session = boto3.Session()
         jobbly_s3 = session.client('s3')
@@ -300,6 +301,7 @@ class ApplicationDelete(LoginRequiredMixin, DeleteView):
         self.object = self.get_object()
         if (self.object.resume):
             application = Application.objects.get(id=self.object.id)
+            #switch sessions to profile if running on local host
             #session = boto3.Session(profile_name='jobbly')
             session = boto3.Session()
             jobbly_s3 = session.client('s3')
