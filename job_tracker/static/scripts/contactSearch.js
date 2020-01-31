@@ -30,27 +30,22 @@ $(document).ready(function() {
                         </div>
                         <div class="card-content pl-3 pr-3">`;
             if (contact.application) {
-                newHtml += `<h6 class="txt-medium d-inline">Application:</h6>
-                            <span>${contact.application}</span>
+                newHtml += `<h6 class="txt-medium d-inline">Application: ${contact.application} at ${contact.company}</h6>
                             <br>`;
             }
-            if (contact.email) {
-                newHtml += `<h6 class="txt-medium d-inline">Email:</h6>
-                            <span>${contact.email}</span>
-                            <br>`;
+            if (contact.email != 'None') {
+                newHtml += `<h6 class=" txt-medium d-inline"><a href='mailto:${contact.email}'>${contact.email}</a></h6>`;
             }
             if (contact.phone_number) {
-                newHtml += `<h6 class="txt-medium d-inline">Phone:</h6>
-                            <span>${contact.phone_number}</span>
+                newHtml += `<h6 class="txt-medium d-inline">Phone: ${contact.phone_number}</h6>
                             <br>`;
             }
-            if (contact.linkedin) {
+            if (contact.linkedin!= 'None') {
                 newHtml += `<h6 class="txt-medium"><a href='${contact.linkedin}'>LinkedIn</a></h6>
                             <br>`;
             }
             if (contact.notes) {
-                newHtml += `<h6 class="txt-medium d-inline">Notes:</h6>
-                            <span>${contact.notes}</span>`;
+                newHtml += `<h6 class="txt-medium d-inline">Notes: ${contact.notes}</h6>`;
             }
             newHtml += `</div>
                     </div>

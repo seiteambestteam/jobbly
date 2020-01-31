@@ -4,11 +4,11 @@
 {% endblock %} {% block content %}
 <div>
     {% if object %}
-    <h2 class="text-center title">
+    <h2 class="txt-center title">
         Edit <span class="txt-bold">{{object.company}}</span>
     </h2>
     {% else %}
-    <h2 class="text-center title">Add Application</h2>
+    <h2 class="txt-center title">Add Application</h2>
     {% endif %}
     <form class="forced-margin" enctype="multipart/form-data" action="" method="post">
         {% csrf_token %}
@@ -16,11 +16,9 @@
             {{ form.as_table }}
         </table>
         <div class="file-upload container-lg">
-            <input type="file" name="resume-file" id="resume-file" />
-            <button class="btn file-upload-button" type="button">
-                Add Resume
-            </button>
-            <span class="file-upload-label">Test</span>
+            <input type="file" name="resume-file" id="resume-file">
+            <button class="btn file-upload-button" type="button">Add Resume</button>
+          <span class="file-upload-label"></span>
         </div>
         <br />
         <br />
@@ -38,13 +36,12 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
 <script>
-    $(document).ready(function () {
-        const dueDate = $("#id_dueDate");
-        M.Datepicker.init(dueDate, {
-            format: "yyyy-mm-dd",
-            setDefaultDate: false,
-            autoClose: true
-        });
+$(document).ready(function() {
+    const dueDate = $("#id_dueDate");
+    M.Datepicker.init(dueDate, {
+        format: "yyyy-mm-dd",
+        setDefaultDate: false,
+        autoClose: true
     });
     $(document).ready(function () {
         const appDate = $("#id_applicationDate");

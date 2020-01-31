@@ -30,23 +30,33 @@
                         {% if application.jobtitle %}
                             <h6 class="txt-medium d-inline">{{ application.jobtitle }}</h6>
                             <br />
-                        {% endif %} {% if application.company %}
+                        {% endif %} 
+                        {% if application.company %}
                             <h6 class="txt-medium d-inline">{{ aplication.company }}</h6>
-                        {% endif %} {% if application.joblisting %}
+                            <br />
+                        {% endif %} 
+                        {% if application.joblisting %}
                             <h6 class="txt-medium d-inline"><a href="{{ application.joblisting }}">Job Listing Here</a></h6>
-                        {% endif %} {% if application.applied == True %}
+                            <br />
+                        {% endif %} 
+                        {% if application.applied == True %}
                             {% if application.applicationDate %}
                                 <h6 class="txt-medium d-inline">Applied On: {{ application.applicationDate }}</h6>
+                                <br />
                             {% else %}
-                                 <h6 class="txt-medium d-inline">Applied</h6>
+                                <h6 class="txt-medium d-inline">Applied</h6>
+                                <br />
                             {% endif %}
                         <br />
                         {% elif application.applicationDate %}
                             <h6 class="txt-medium d-inline">Applied On: {{ application.applicationDate }}</h6>
+                            <br />
                         {% elif application.dueDate %}
                             <h6 class="txt-medium d-inline">Apply By: {{ application.dueDate }}</h6>
+                            <br />
                         {% else %}
                             <h6 class="txt-medium d-inline">You still need to apply</h6>
+                            <br />
                         {% endif %}
                     </div>
                 </div>

@@ -8,7 +8,7 @@
 <form class="form center" method="post" action="{% url 'signup' %}">
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" class="btn center txt-medium btn-lg" value="Sign Up">
+    <input type="submit" class="btn center txt-medium file-upload-button" value="Sign Up">
 </form>
 
 {% endblock %}

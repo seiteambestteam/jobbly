@@ -41,25 +41,17 @@
                     </div>
                     <div class="card-content pl-3 pr-3">
                         {% if contact.application %}
-                        <h6 class="txt-medium d-inline">Application:</h6>
-                        <span>{{ contact.application.company }}</span>
-                        <br />
+                            <h6 class="txt-medium">Application: {{ contact.application.jobtitle }} at {{ contact.application.company }}</h6>
                         {% endif %} {% if contact.email %}
-                        <h6 class="txt-medium d-inline">Email:</h6>
-                        <span>{{ contact.email }}</span>
-                        <br />
+                            <h6 class="txt-medium"><a href='mailto:{{contact.email}}'>{{ contact.email }}</a></h6>
                         {% endif %} {% if contact.phone_number %}
-                        <h6 class="txt-medium d-inline">Phone:</h6>
-                        <span>{{ contact.phone_number }}</span>
-                        <br />
+                            <h6 class="txt-medium">Phone: {{ contact.phone_number }}</h6>
                         {% endif %} {% if contact.linkedin %}
-                        <h6 class="txt-medium">
-                            <a href="{{ contact.linkedin }}">LinkedIn</a>
-                        </h6>
-                        <br />
+                            <h6 class="txt-medium">
+                                <a href="{{ contact.linkedin }}">LinkedIn</a>
+                            </h6>
                         {% endif %} {% if contact.notes %}
-                        <h6 class="txt-medium d-inline">Notes:</h6>
-                        <span>{{ contact.notes }}</span>
+                            <h6 class="txt-medium">Notes: {{ contact.notes }}</h6>
                         {% endif %}
                     </div>
                 </div>
