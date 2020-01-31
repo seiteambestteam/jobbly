@@ -30,11 +30,12 @@
             <div class="col-sm-6 col-md-4">
                 <div class="card contacts-card m-3">
                     <div class="card-title">
-                        <a
-                            href="{% url 'contacts_delete' contact.id%}"
-                            class="ml-2"
-                            ><i class="far fa-times-circle"></i
-                        ></a>
+                        <a href="{% url 'contacts_delete' contact.id%}" class="ml-2"
+                            ><i class="far fa-times-circle"></i>
+                        </a>
+                        <a href="{% url 'contacts_update' contact.id %}" class="ml-2">
+                            <i class="far fa-edit"></i>
+                        </a>
                         <h5 class="txt-bold txt-center pt-3">
                             {{ contact.name }}
                         </h5>

@@ -19,9 +19,9 @@
         {{ form.as_table }}
     </table>
     <div class="flex">
-        <input class="btn center txt-medium btn-lg forced-margin app-btn" type="submit" value="Submit">
-        <button class="btn center txt-medium btn-lg forced-margin app-btn"><a href='{% url "applications_detail" object.application_id %}'>Cancel</a></button>
-    </div>
+            <input class="btn txt-medium btn-lg forced-margin btn-wide" type="submit" value="Save">
+            <button class="btn txt-medium btn-lg forced-margin btn-wide"><a href='{% url "applications_detail" object.application_id %}'>Cancel</a></button>
+        </div>
 </form>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
 <script src={% static 'scripts/materializedatetimepicker.js' %} defer></script>

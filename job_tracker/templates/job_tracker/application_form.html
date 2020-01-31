@@ -5,7 +5,8 @@
 <div>
     {% if object %}
     <h2 class="txt-center title">
-        Edit <span class="txt-bold">{{object.company}}</span>
+
+        Edit <span class="txt-bold">{{object.jobtitle}} Application with {{object.company}}</span>
     </h2>
     {% else %}
     <h2 class="txt-center title">Add Application</h2>
@@ -36,13 +37,12 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
 <script>
-    $(document).ready(function () {
-        const dueDate = $("#id_dueDate");
-        M.Datepicker.init(dueDate, {
-            format: "yyyy-mm-dd",
-            setDefaultDate: false,
-            autoClose: true
-        });
+$(document).ready(function() {
+    const dueDate = $("#id_dueDate");
+    M.Datepicker.init(dueDate, {
+        format: "yyyy-mm-dd",
+        setDefaultDate: false,
+        autoClose: true
     });
     $(document).ready(function () {
         const appDate = $("#id_applicationDate");
@@ -84,5 +84,6 @@
             });
         }
     );
+});
 </script>
 {% endblock %}
