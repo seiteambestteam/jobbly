@@ -20,13 +20,6 @@
     <input id="application_link" value="{% url 'application_create_from_search' %}" type='hidden'/>
     <section class="api-section">
     <div class="api-block">
-        <h2 class="txt-center"><a href='{% url "calendar" %}'>{{ user.username }}'s Calendar</a></h2>
-        <div id="calendar"></div>
-    </div>
-
-    <div class="line"></div>
-
-    <div class="api-block">
         <h2 class="txt-center">Today's Tech News</h2>
         <div id="news">
             <ul>
@@ -38,6 +31,14 @@
             </ul>
         </div>
     </div>
+
+    <div class="line"></div>
+    
+    <div class="api-block">
+        <h2 class="txt-center"><a href='{% url "calendar" %}'>{{ user.username }}'s Calendar</a></h2>
+        <div id="calendar"></div>
+    </div>
+    
     </section>
 
     <hr>
@@ -73,7 +74,9 @@
                     <div class="card-body ">
                         <h5 class="card-title txt-bold">{{ application.jobtitle }}</h5>
                             <h6 class="card-subtitle mb-1 text-muted">{{ application.company }}</h6>
-                            <span class="text-muted txt-sml">Applied on: {{ application.applicationDate}}</span>
+                            {% if application.applicationDate %}
+                                <span class="text-muted txt-sml">Applied on: {{ application.applicationDate}}</span>
+                            {% endif %}
                     </div>
                 </div></a>
             </div>

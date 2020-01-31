@@ -11,6 +11,8 @@ body {
     border-radius: 100px;
     transition: all 0.2s;
     font-family: "Open Sans", sans-serif;
+    margin-left: 30px;
+    margin-right: 30px;
 }
 
 .btn:hover {
@@ -33,7 +35,6 @@ body {
     z-index: 1;
     position: relative;
     text-align: center;
-    padding-top: 40vh;
 }
 
 #landing-header h1 {
@@ -67,8 +68,9 @@ body {
 }
 
 img {
-    height: 50rem;
-    width: auto;
+    height: auto;
+    width: 100%;
+    max-width: 650px;
 
     /* margin-left: 5px;
     padding: 2px; */

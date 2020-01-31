@@ -4,11 +4,11 @@
 {% endblock %} {% block content %}
 <div>
     {% if object %}
-    <h2 class="text-center title">
+    <h2 class="txt-center title">
         Edit <span class="txt-bold">{{object.company}}</span>
     </h2>
     {% else %}
-    <h2 class="text-center title">Add Application</h2>
+    <h2 class="txt-center title">Add Application</h2>
     {% endif %}
     <form class="forced-margin" enctype="multipart/form-data" action="" method="post">
         {% csrf_token %}
@@ -17,10 +17,8 @@
         </table>
         <div class="file-upload container-lg">
             <input type="file" name="resume-file" id="resume-file" />
-            <button class="btn file-upload-button" type="button">
-                Add Resume
-            </button>
-            <span class="file-upload-label">Test</span>
+            <button class="btn file-upload-button" type="button">Add Resume</button>
+          <span class="file-upload-label"></span>
         </div>
         <br />
         <br />

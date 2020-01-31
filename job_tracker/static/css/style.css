@@ -82,6 +82,7 @@ body {
 
 .card {
     box-shadow: 2px 3px 4px #ccc;
+    padding-bottom: 15px;
 }
 
 .cards {
@@ -119,7 +120,7 @@ hr {
 
 .btn {
     padding: 10px;
-    background-color: var(--main-color);
+    background-color: var(--main-color) !important;
     border: 1.1px solid var(--dark-color);
     border-radius: 1000px;
     box-shadow: 2px 2px 5px var(--light-gray-color),
@@ -470,6 +471,49 @@ nav input:checked ~ ul li {
     margin-left: 0.5rem;
 }
 
+.appl-th-width {
+    width: 5rem;
+}
+
+/* modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 3rem;
+    width: 70%;
+    height: 70%;
+    overflow: auto;
+    background-color: rgba(63, 114, 175, 0.6);
+}
+
+.modal-content {
+    background-color: var(--main-color);
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 95%;
+}
+
+.modal-content label,
+.modal-content input {
+    color: #000;
+}
+
+.close {
+    color: var(--dark-color);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    text-decoration: none;
+    cursor: pointer;
+}
+
 /* footer */
 footer {
     position: absolute;
@@ -497,9 +541,11 @@ footer div {
 }
 
 #calendar > div.fc-view-container > div > div {
-    height: 150px !important;
+    height: 165px !important;
 }
-
+#calendar > div.fc-view-container > * td.fc-event-container {
+    color: white;
+}
 .hidden {
     display: none;
 }
@@ -510,7 +556,12 @@ footer div {
     color: #3f72b0;
     margin: 20px;
 }
-
+.btn.link-btn {
+    width: auto;
+}
+.search-result {
+    margin: 50px 0;
+}
 /* media queries */
 @media (min-width: 768px) {
     .content-wrapper {
@@ -568,8 +619,6 @@ footer div {
         color: var(--dark-color);
         font-size: 1.3rem;
     }
-
-    /* Specific */
 
     .line {
         border-left: 6px solid var(--light-gray-color);
@@ -675,7 +724,7 @@ footer div {
     }
 
     .container-sml {
-        width: 45vw;
+        width: 60vw;
     }
 
     .form {
