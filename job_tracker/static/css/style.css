@@ -240,7 +240,6 @@ textarea:focus {
 
 /* nav bar */
 nav {
-    background-color: var(--main-color);
     height: 2rem;
     width: 100vw;
     line-height: 2rem;
@@ -248,6 +247,11 @@ nav {
     top: 0;
     text-align: center;
     box-shadow: 3px 0 3px #ccc;
+    background-image: linear-gradient(
+        to bottom,
+        var(--dark-color),
+        var(--main-color)
+    );
 }
 
 .mynav {
@@ -514,24 +518,6 @@ nav input:checked ~ ul li {
     cursor: pointer;
 }
 
-/* footer */
-footer {
-    position: absolute;
-    bottom: 0;
-    width: 100vw;
-    height: 2rem;
-    line-height: 2rem;
-    font-size: 0.8rem;
-    margin-top: 1rem;
-    background-color: var(--main-color);
-}
-
-footer div {
-    float: right;
-    font-size: 0.6rem;
-    margin-right: 1rem;
-}
-
 .fc-toolbar h2 {
     font-size: 1rem;
 }
@@ -543,24 +529,53 @@ footer div {
 #calendar > div.fc-view-container > div > div {
     height: 165px !important;
 }
+
 #calendar > div.fc-view-container > * td.fc-event-container {
     color: white;
 }
+
 .hidden {
     display: none;
 }
+
 .link-btn:hover {
     color: #a6b7d7;
 }
+
 .fa-spinner {
     color: #3f72b0;
     margin: 20px;
 }
+
 .btn.link-btn {
     width: auto;
 }
+
 .search-result {
     margin: 50px 0;
+}
+
+/* footer */
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+    height: 2rem;
+    line-height: 2rem;
+    font-size: 0.8rem;
+    margin-top: 1rem;
+    background-image: linear-gradient(
+        to top,
+        var(--dark-color),
+        var(--main-color)
+    );
+}
+
+footer div {
+    float: right;
+    font-size: 0.6rem;
+    margin-right: 1rem;
+    color: var(--light-white-color);
 }
 /* media queries */
 @media (min-width: 768px) {
@@ -589,6 +604,7 @@ footer div {
         justify-content: flex-end;
         width: calc(100vw - 130px);
         height: 4rem;
+        background-color: transparent;
     }
 
     nav ul {
@@ -605,10 +621,19 @@ footer div {
         padding: 0.9rem 0.7rem;
     }
 
+    nav ul a li {
+        color: var(--light-white-color);
+    }
+
     nav ul a:hover {
+        color: var(--dark-color);
         background-color: #c4d3f1;
         border-radius: 1000px;
         cursor: pointer;
+    }
+
+    nav ul a li:hover {
+        color: var(--dark-color);
     }
 
     nav ul a:focus {
