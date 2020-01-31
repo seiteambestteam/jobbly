@@ -629,6 +629,7 @@ footer div {
 
     nav ul a li {
         color: var(--light-white-color);
+        font-weight: bold;
     }
 
     nav ul a:hover {
@@ -720,12 +721,6 @@ footer div {
     .btn-lg {
         height: 3rem;
     }
-
-    /* form input #forced-bg {
-        background-color: var(--main-color) !important;
-        box-shadow: 2px 2px 5px var(--light-gray-color),
-            0 2px 4px var(--light-white-color) inset !important;
-    } */
 
     .search-btn,
     .search-location {
