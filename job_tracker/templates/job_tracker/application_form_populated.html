@@ -8,8 +8,10 @@
 <input id="jobtitle_input" value="{{ jobtitle }}" type='hidden'/>
 <input id="company_input" value="{{ company }}" type='hidden'/>
 <input id="joblisting_input" value="{{ joblisting }}" type='hidden'/>
-{% if object %}
+<div>
+    {% if object %}
     <h2 class="txt-center title">
+
         Edit <span class="txt-bold">{{object.jobtitle}} Application with {{object.company}}</span>
     </h2>
     {% else %}
@@ -18,11 +20,12 @@
     <form class="forced-margin" enctype="multipart/form-data" action="" method="post">
         {% csrf_token %}
         <table class="container-lg">
-        {{ application_form.as_p }}
+        {{ application_form.as_table }}
+        </table>
         <div class="file-upload container-lg">
-            <input type="file" name="resume-file" id="resume-file">
+            <input type="file" name="resume-file" id="resume-file" />
             <button class="btn file-upload-button" type="button">Add Resume</button>
-            <span class="file-upload-label"></span>
+          <span class="file-upload-label"></span>
         </div>
         <br />
         <br />
@@ -57,6 +60,38 @@ $(document).ready(function(){
         setDefaultDate: false,
         autoClose: true
     });
+    Array.prototype.forEach.call(
+        document.querySelectorAll(".file-upload-button"),
+        function (button) {
+            const hiddenInput = button.parentElement.querySelector(
+                "#resume-file"
+            );
+            const label = button.parentElement.querySelector(
+                ".file-upload-label"
+            );
+            const defaultLabelText = "No file selected";
+
+            label.textContent = defaultLabelText;
+            label.title = defaultLabelText;
+
+            button.addEventListener("click", function () {
+                hiddenInput.click();
+            });
+
+            hiddenInput.addEventListener("change", function () {
+                const filenameList = Array.prototype.map.call(
+                    hiddenInput.files,
+                    function (file) {
+                        return file.name;
+                    }
+                );
+
+                label.textContent = filenameList.join(", ") || defaultLabelText;
+                label.title = label.textContent;
+            });
+        }
+    );
 })
+
 </script>
 {% endblock %}
