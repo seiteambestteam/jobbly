@@ -23,7 +23,7 @@
                     <label>Job Listing</label>
                 </th>
                 <td>
-                    <a class="d-inline" href='{{ application.joblisting }}' target="_blank"><input class="d-inline" value="{{ application.joblisting }}"></input></a>
+                    <a class="d-inline" href='{{ application.joblisting }}' target="_blank"><input class="d-inline" value="{{ application.joblisting }}" readonly></input></a>
                 </td>
             </tr>
         {% endif %}
@@ -33,7 +33,7 @@
                     <label>Resume:</label>
                 </th>
                 <td>
-                    <a class="d-inline" href='{{ application.resume }}' target="_blank"><input class="d-inline" value="{{ application.resume }}"></input></a>
+                    <a class="d-inline" href='{{ application.resume }}' target="_blank"><input class="d-inline" value="Resume Here" readonly></input></a>
                 </td>
             </tr>
             {% endif %}
@@ -43,11 +43,11 @@
                 </th>
                 {% if application.applied %}
                 <td>
-                    <input class="d-inline" value="Yes"></input>
+                    <input class="d-inline" value="Yes" readonly></input>
                 </td>
                 {% else %}
                 <td>
-                    <input class="d-inline" value="No"></input>
+                    <input class="d-inline" value="No" readonly></input>
                 </td>
                 {% endif %}
             </tr>
@@ -57,7 +57,7 @@
                     <label>Application Date:</label>
                 </th>
                 <td>
-                    <input class="d-inline" value="{{ application.applicationDate }}"></input>
+                    <input class="d-inline" value="{{ application.applicationDate }}" readonly></input>
                 </td>
             </tr>
             {% endif %}
@@ -67,7 +67,7 @@
                     <label>Application Due Date:</label>
                 </th>
                 <td>
-                    <input class="d-inline" value="{{ application.dueDate }}"></input>
+                    <input class="d-inline" value="{{ application.dueDate }}" readonly></input>
                 </td>
             </tr>
             {% endif %}
@@ -77,7 +77,7 @@
                     <label>Notes:</label>
                 </th>
                 <td>
-                    <input class="d-inline" value="{{ application.notes }}"></input>
+                    <input class="d-inline" value="{{ application.notes }}" readonly></input>
                 </td>
             </tr>
             {% endif %}
