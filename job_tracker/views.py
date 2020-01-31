@@ -284,7 +284,7 @@ class ApplicationUpdate(LoginRequiredMixin, UpdateView):
         application = Application.objects.get(id=application_id)
         #switch sessions to profile if running on local host
         #session = boto3.Session(profile_name='jobbly')
-            session = boto3.Session()
+        session = boto3.Session()
         jobbly_s3 = session.client('s3')
         try:
             jobbly_s3.delete_object(Bucket=BUCKET, Key=application.resumekey)
