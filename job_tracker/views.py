@@ -6,7 +6,7 @@ from django.views.generic import ListView, DetailView
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseRedirect
 from django.core import serializers
 from django import forms
 from .models import User, Contact, Landmark, Application
@@ -190,7 +190,7 @@ def applications_detail(request, application_id):
 
 
 def remove_resume(request, application_id):
-    application = Application.objects.get(id=application_id)
+    application = Application.objects.get(pk=application_id)
     session = boto3.Session(profile_name='jobbly')
     jobbly_s3 = session.client('s3')
     try:
@@ -255,19 +255,34 @@ class ApplicationUpdate(UpdateView):
                 print('Sorry, an error occurred uploading the file to AWS S3')
         return super().form_valid(form)
 
+    def remove_resume(request, application_id):
+        application = Application.objects.get(id=application_id)
+        session = boto3.Session(profile_name='jobbly')
+        jobbly_s3 = session.client('s3')
+        try:
+            jobbly_s3.delete_object(Bucket=BUCKET, Key=application.resumekey)
+        except Exception as e:
+            print(e)
+        return redirect('applications_update', pk=application_id)
+
 class ApplicationDelete(DeleteView):
     model = Application
     fields = ['jobtitle', 'company', 'joblisting', 'resume', 'applied', 'applicationDate', 'dueDate', 'notes']
     success_url = '/applications/'
 
-    # def form_valid(self, form):
-    #     form.instance.user = self.request.user
-    #     session = boto3.Session(profile_name='jobbly')
-    #     jobbly_s3 = session.client('s3')
-    #     jobbly_s3.delete_object(Bucket=f'{BUCKET}', Key='{self.resumekey}')
-    #     form.instance.resume = ''
-    #     form.instance.resumekey = ''
-    #     return super().form_valid(form)
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        if (self.object.resume):
+            application = Application.objects.get(id=self.object.id)
+            session = boto3.Session(profile_name='jobbly')
+            jobbly_s3 = session.client('s3')
+            try:
+                jobbly_s3.delete_object(Bucket=BUCKET, Key=application.resumekey)
+            except Exception as e:
+                print(e)
+        success_url = self.get_success_url()
+        self.object.delete()
+        return HttpResponseRedirect(success_url)
 
 def add_landmark(request, application_id):
     print('add landmark route')
@@ -279,7 +294,7 @@ def add_landmark(request, application_id):
         new_landmark.save()
     return redirect('applications_detail', application_id = application_id)
 
-class LandmarkUpdate(UpdateView): 
+class LandmarkUpdate(UpdateView):
     model = Landmark
     form_class = LandmarkForm
 

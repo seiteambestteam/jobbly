@@ -1,10 +1,7 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block scripts %}
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/materialize.min.css' %}">
-{% endblock %}
-{% block content %}
+{% extends 'base.html' %} {% load static %} {% block scripts %}
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+<link rel="stylesheet" href="{% static 'css/materialize.min.css' %}" />
+{% endblock %} {% block content %}
 <div>
     {% if object %}
     <h2 class="text-center title">
@@ -16,72 +13,78 @@
     <form class="forced-margin" enctype="multipart/form-data" action="" method="post">
         {% csrf_token %}
         <table class="container-lg">
-        {{ form.as_table }}
+            {{ form.as_table }}
         </table>
         <div class="file-upload container-lg">
-            <input type="file" name="resume-file" id="resume-file">
-            <button class="btn file-upload-button" type="button">Add Resume</button>
+            <input type="file" name="resume-file" id="resume-file" />
+            <button class="btn file-upload-button" type="button">
+                Add Resume
+            </button>
             <span class="file-upload-label">Test</span>
         </div>
-            <br>
-            <br>
+        <br />
+        <br />
 
         <div class="flex">
-            <input
-                class="btn center txt-medium btn-lg forced-margin app-btn"
-                type="submit"
-                value="Submit"
-            />
+            <input class="btn center txt-medium btn-lg forced-margin app-btn" type="submit" value="Submit" />
             <a class="btn center txt-medium btn-lg forced-margin app-btn" href='{% url "application" %}'>Cancel</a>
-            
+            {% if object.resume %}
+            <a class="btn center txt-medium btn-lg forced-margin app-btn"
+                href='{% url "remove_resume" object.id %}'>Delete
+                Resume</a>
+            {% endif %}
         </div>
     </form>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
 <script>
-$(document).ready(function() {
-    const dueDate = $("#id_dueDate");
-    M.Datepicker.init(dueDate, {
-       format: "yyyy-mm-dd",
-       setDefaultDate: false,
-       autoClose: true
-    });
-});
-$(document).ready(function() {
-    const appDate = $("#id_applicationDate");
-    M.Datepicker.init(appDate, {
-        format: "yyyy-mm-dd",
-        setDefaultDate: false,
-        autoClose: true
-    });
-
-})
-
-Array.prototype.forEach.call(
-    document.querySelectorAll(".file-upload-button"),
-    function(button) {
-        const hiddenInput = button.parentElement.querySelector("#resume-file");
-        const label = button.parentElement.querySelector(".file-upload-label");
-        const defaultLabelText = "No file selected";
-
-        label.textContent = defaultLabelText;
-        label.title = defaultLabelText;
-
-        button.addEventListener("click", function() {
-        hiddenInput.click();
+    $(document).ready(function () {
+        const dueDate = $("#id_dueDate");
+        M.Datepicker.init(dueDate, {
+            format: "yyyy-mm-dd",
+            setDefaultDate: false,
+            autoClose: true
         });
+    });
+    $(document).ready(function () {
+        const appDate = $("#id_applicationDate");
+        M.Datepicker.init(appDate, {
+            format: "yyyy-mm-dd",
+            setDefaultDate: false,
+            autoClose: true
+        });
+    });
 
-        hiddenInput.addEventListener("change", function() {
-            const filenameList = Array.prototype.map.call(hiddenInput.files, function(file) {
-                return file.name;
+    Array.prototype.forEach.call(
+        document.querySelectorAll(".file-upload-button"),
+        function (button) {
+            const hiddenInput = button.parentElement.querySelector(
+                "#resume-file"
+            );
+            const label = button.parentElement.querySelector(
+                ".file-upload-label"
+            );
+            const defaultLabelText = "No file selected";
+
+            label.textContent = defaultLabelText;
+            label.title = defaultLabelText;
+
+            button.addEventListener("click", function () {
+                hiddenInput.click();
             });
 
-            label.textContent = filenameList.join(", ") || defaultLabelText;
-            label.title = label.textContent;
-        });
-    }
-);
+            hiddenInput.addEventListener("change", function () {
+                const filenameList = Array.prototype.map.call(
+                    hiddenInput.files,
+                    function (file) {
+                        return file.name;
+                    }
+                );
 
-
+                label.textContent = filenameList.join(", ") || defaultLabelText;
+                label.title = label.textContent;
+            });
+        }
+    );
 </script>
 {% endblock %}

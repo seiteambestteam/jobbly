@@ -4,13 +4,11 @@
 <script src="{% static 'scripts/landmarkListener.js' %}" defer></script>
 <script src="{% static 'scripts/contactListener.js' %}" defer></script>
 
-<script
-    src="https://code.jquery.com/jquery-3.4.1.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-    crossorigin="anonymous">
-</script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous">
+    </script>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/materialize.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/materialize.min.css' %}">
 
 {% endblock %}
 {% block content %}
@@ -18,111 +16,118 @@
 <h2 class="txt-center title">Application For {{ application.jobtitle }} at {{ application.company }}</h2>
 
 <div class="center container-lg container-sml">
-        {% if application.joblisting %}
-            <h6 class="txt-medium"><a href='{{ application.joblisting }}'>Job Listing</a></h6>
-        {% endif %}
-        {% if application.resume %}
+    {% if application.joblisting %}
+    <h6 class="txt-medium"><a href='{{ application.joblisting }}'>Job Listing</a></h6>
+    {% endif %}
+    {% if application.resume %}
 
-        {% endif %}
-        <p class="txt-medium">Resume:</p>
-        <a href="{{ application.resume }}" class="txt-sml">{{ application.resume }}</a>
-        <p class="txt-medium">Applied:</p>
-        <p class="txt-sml">{{ application.applied }}</p>
-        <p class="txt-medium">Apply Date:</p>
-        <p class="txt-sml">{{ application.applicationDate }}</p>
-        <p class="txt-medium">Apply By:</p>
-        <p class="txt-sml">{{ application.dueDate }}</p>
-        {% if application.notes %}
-            <h6 class="txt-medium">{{ application.notes }}</h6>
-        {% endif %}
+    {% endif %}
+    <p class="txt-medium">Resume:</p>
+    <a href="{{ application.resume }}" class="txt-sml">{{ application.resume }}</a>
+    <p class="txt-medium">Applied:</p>
+    <p class="txt-sml">{{ application.applied }}</p>
+    <p class="txt-medium">Apply Date:</p>
+    <p class="txt-sml">{{ application.applicationDate }}</p>
+    <p class="txt-medium">Apply By:</p>
+    <p class="txt-sml">{{ application.dueDate }}</p>
+    {% if application.notes %}
+    <h6 class="txt-medium">{{ application.notes }}</h6>
+    {% endif %}
 
     <div class="flex">
-        <button class="btn center txt-sml btn-md forced-margin"><a href="{% url 'applications_update' application.id %}">Edit</a></button>
-        <button class="btn center txt-sml btn-md forced-margin"><a href="{% url 'applications_delete' application.id %}">Delete</a></button>
+        <button class="btn center txt-sml btn-md forced-margin"><a
+                href="{% url 'applications_update' application.id %}">Edit</a></button>
+        <button class="btn center txt-sml btn-md forced-margin"><a
+                href="{% url 'applications_delete' application.id %}">Delete</a></button>
         <button class="btn center txt-sml btn-md forced-margin" id='landmark-btn'>Add Event</button>
         <button class="btn center txt-sml btn-md forced-margin" id='contact-btn'>Add Contact</button>
     </div>
     <div class='hidden' id='landmark-form'>
         <form method='POST' action='{% url "add_landmark" application.id %}'>
-        {% csrf_token %}
-        {{ landmark_form.as_p }}
-        <input type='submit' class='btn' value='Add Landmark'>
+            {% csrf_token %}
+            {{ landmark_form.as_p }}
+            <input type='submit' class='btn' value='Add Landmark'>
         </form>
     </div>
     <div class='hidden' id='contact-form'>
         <form method='POST' action='{% url "add_contact" application.id %}'>
-        {% csrf_token %}
-        {{ contact_form.as_p }}
-        <input type='submit' class='btn' value='Add Contact'>
+            {% csrf_token %}
+            {{ contact_form.as_p }}
+            <input type='submit' class='btn' value='Add Contact'>
         </form>
     </div>
     <div>
-    {% for landmark in application.landmark_set.all %}
+        {% for landmark in application.landmark_set.all %}
         <div class='card'>
             <p>{{ landmark.name }}
-            {% if landmark.start_date_time %}
-                 on {{landmark.start_date_time}}
-            {% endif %}
-            {% if landmark.end_date_time %}
+                {% if landmark.start_date_time %}
+                on {{landmark.start_date_time}}
+                {% endif %}
+                {% if landmark.end_date_time %}
                 until {{ landmark.end_date_time }}
-            {% endif %}
-            {% if landmark.location %}
+                {% endif %}
+                {% if landmark.location %}
                 at {{ landmark.location }}
-            {% endif %}
-             for the {{ application.jobtitle }} position at {{ application.company }}. 
-             {% if landmark.followup %}
+                {% endif %}
+                for the {{ application.jobtitle }} position at {{ application.company }}.
+                {% if landmark.followup %}
                 You have a follow-up reminder scheduled for {{ landmark.followup }}
-            {% endif %}
+                {% endif %}
             </p>
-            <button class="btn center txt-sml btn-md forced-margin"><a href="{% url 'landmarks_update' landmark.id %}">Edit</a></button>
-            <button class="btn center txt-sml btn-md forced-margin"><a href="{% url 'landmarks_delete' landmark.id %}">Delete</a></button>
+            <button class="btn center txt-sml btn-md forced-margin"><a
+                    href="{% url 'landmarks_update' landmark.id %}">Edit</a></button>
+            <button class="btn center txt-sml btn-md forced-margin"><a
+                    href="{% url 'landmarks_delete' landmark.id %}">Delete</a></button>
         </div>
-    {% endfor %}
+        {% endfor %}
     </div>
     <div>
-    {% for contact in application.contact_set.all %}
+        {% for contact in application.contact_set.all %}
         <div class='card'>
-            <p>{{ contact.name }}<p/>
-            {% if contact.email %}
+            <p>{{ contact.name }}
+                <p />
+                {% if contact.email %}
                 <p>Email: {{ contact.email }} </p>
-            {% endif %}
-            {% if contact.phone_number %}
+                {% endif %}
+                {% if contact.phone_number %}
                 <p>Phone Number: {{ contact.phone_number }} </p>
-            {% endif %}
-            {% if contact.linkedin %}
+                {% endif %}
+                {% if contact.linkedin %}
                 <p><a href='{{ landmark.location }}'>Linkedin</a></p>
-            {% endif %}
-             {% if contact.notes %}
+                {% endif %}
+                {% if contact.notes %}
                 <p>{{ contact.notes }}</p>
-            {% endif %}
+                {% endif %}
             </p>
-            <button class="btn center txt-sml btn-md forced-margin"><a href="{% url 'contacts_update' contact.id %}">Edit</a></button>
-            <button class="btn center txt-sml btn-md forced-margin"><a href="{% url 'contacts_delete' contact.id %}">Delete</a></button>
+            <button class="btn center txt-sml btn-md forced-margin"><a
+                    href="{% url 'contacts_update' contact.id %}">Edit</a></button>
+            <button class="btn center txt-sml btn-md forced-margin"><a
+                    href="{% url 'contacts_delete' contact.id %}">Delete</a></button>
         </div>
-    {% endfor %}
+        {% endfor %}
     </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
 <script src={% static 'scripts/materializedatetimepicker.js' %} defer></script>
 <script>
-$(document).ready(function(){
-    const endDate = $('#id_end_date_time')
-    M.AutoInit()
-    const endDateField = MaterialDateTimePicker.create(endDate)
-    
-})
-$(document).ready(function(){
-    const startDate = $('#id_start_date_time')
-    M.AutoInit()
-    const startDateField = MaterialDateTimePicker.create(startDate)
-})
-$(document).ready(function(){
-    const followupDate = $('#id_followup')
-    M.Datepicker.init(followupDate, {
-        format: 'yyyy-mm-dd',
-        setDefaultDate: false,
-        autoClose: true
-    });
-})
+    $(document).ready(function () {
+        const endDate = $('#id_end_date_time')
+        M.AutoInit()
+        const endDateField = MaterialDateTimePicker.create(endDate)
+
+    })
+    $(document).ready(function () {
+        const startDate = $('#id_start_date_time')
+        M.AutoInit()
+        const startDateField = MaterialDateTimePicker.create(startDate)
+    })
+    $(document).ready(function () {
+        const followupDate = $('#id_followup')
+        M.Datepicker.init(followupDate, {
+            format: 'yyyy-mm-dd',
+            setDefaultDate: false,
+            autoClose: true
+        });
+    })
 </script>
 {% endblock %}
