@@ -2,6 +2,12 @@
 ## A job application for Bootcamp grads
 As part of the Bootcamp process, graduates are expected to stay on top of their job applications by using a complex Google Sheets document with several different tabs. Jobbly was born out of a desire to streamline this process, allowing users to focus on the job search instead of the tracking process.
 
+![Application Detail View](https://i.imgur.com/oGKKkJh.png)
+Track details of each application, including related events and contacts.
+![Calendar](https://i.imgur.com/aedh1re.png)
+Get a summary of your events and follow-up reminders in the Jobbly Calendar view.
+![Jobbly Dashboard](https://i.imgur.com/B581bnY.png)
+Search for jobs, review tech news, track your applications, and get an overview of upcoming events in the dashboard.
 ## Getting Started
 You can access the app on Heroku [here](https://jobbly-tracker.herokuapp.com/). More into DIY? Feel free to clone the repo, but remember that you will need your own News API, AWS, and CareerJet API keys!
 
@@ -9,7 +15,7 @@ You can access the app on Heroku [here](https://jobbly-tracker.herokuapp.com/). 
 The pitch deck is available [here](https://docs.google.com/presentation/d/10yUvMnNGTcP0CqpA5ak_AdUjC4EvJczOQ4-DEybtLmk/edit#slide=id.p).
 
 ## Models
-[Entity Relationship Diagrams](https://i.imgur.com/uZ5GQLi.jpg)
+![Entity Relationship Diagrams](https://i.imgur.com/uZ5GQLi.jpg)
 
 #### Application Model
 The main purpose of Jobbly is tracking job applications; the Application Model is very much the star of the show. The application model stores pertinent job information, such as the position applied for, company, the link of the job description if there is one. Users can also upload their resume and take notes, both with an aim of providing an easy reference for employees before heading for an interview. Users can also track landmarks associated with each application (phone interviews, technical interviews, etc.) and contact info for individuals associated with the application. The relationship between other models is listed below:
