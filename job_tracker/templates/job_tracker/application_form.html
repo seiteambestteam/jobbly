@@ -5,6 +5,7 @@
 <div>
     {% if object %}
     <h2 class="txt-center title">
+
         Edit <span class="txt-bold">{{object.jobtitle}} Application with {{object.company}}</span>
     </h2>
     {% else %}
@@ -16,7 +17,7 @@
             {{ form.as_table }}
         </table>
         <div class="file-upload container-lg">
-            <input type="file" name="resume-file" id="resume-file">
+            <input type="file" name="resume-file" id="resume-file" />
             <button class="btn file-upload-button" type="button">Add Resume</button>
           <span class="file-upload-label"></span>
         </div>

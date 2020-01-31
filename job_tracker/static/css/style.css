@@ -120,7 +120,7 @@ hr {
 
 .btn {
     padding: 10px;
-    background-color: var(--main-color);
+    background-color: var(--main-color) !important;
     border: 1.1px solid var(--dark-color);
     border-radius: 1000px;
     box-shadow: 2px 2px 5px var(--light-gray-color),
@@ -478,15 +478,15 @@ nav input:checked ~ ul li {
 
 /* modal */
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    display: none;
+    position: fixed;
+    z-index: 1;
     left: 0;
     top: 3rem;
-    width: 70%; /* Full width */
-    height: 70%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(63, 114, 175, 0.6); /* Fallback color */
+    width: 70%;
+    height: 70%;
+    overflow: auto;
+    background-color: rgba(63, 114, 175, 0.6);
 }
 
 .modal-content {

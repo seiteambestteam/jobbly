@@ -19,7 +19,6 @@ $(document).ready(function() {
             .filter(contact => re.test(contact.name))
             .sort((a, b) => a.name.localeCompare(b.name));
 
-        console.log(filteredContacts);
         const html = filteredContacts.map(contact => {
             let newHtml = `
                 <div class="col-sm-6 col-md-4">
@@ -40,7 +39,7 @@ $(document).ready(function() {
                 newHtml += `<h6 class="txt-medium d-inline">Phone: ${contact.phone_number}</h6>
                             <br>`;
             }
-            if (contact.linkedin!= 'None') {
+            if (contact.linkedin != "None") {
                 newHtml += `<h6 class="txt-medium"><a href='${contact.linkedin}'>LinkedIn</a></h6>
                             <br>`;
             }
