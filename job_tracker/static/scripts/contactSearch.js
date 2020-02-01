@@ -13,10 +13,6 @@ $(document).ready(function() {
     });
 
     $("#contacts-search").on("input", function(e) {
-        const CONTACT_DELETE_LINK = document.getElementById("contact_delete")
-            .value;
-        const CONTACT_UPDATE_LINK = document.getElementById("contact_update")
-            .value;
         const search = $(this).val();
         const re = new RegExp(search, "i");
         const filteredContacts = contacts
@@ -28,8 +24,8 @@ $(document).ready(function() {
                 <div class="col-sm-6 col-md-4">
                     <div class="card contacts-card m-3">
                         <div class="card-title">
-                            <a href="${CONTACT_DELETE_LINK}" class="ml-2"><i class="far fa-times-circle"></i></a>
-                            <a href="${CONTACT_UPDATE_LINK}" class="ml-2">
+                            <a href="/contacts/${contact.id}/delete" class="ml-2"><i class="far fa-times-circle"></i></a>
+                            <a href="/contacts/${contact.id}/update" class="ml-2">
                             <i class="far fa-edit"></i>
                         </a>
                             <h5 class="txt-bold txt-center pt-3">${contact.name}</h5>
