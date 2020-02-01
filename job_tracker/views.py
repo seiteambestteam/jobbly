@@ -154,14 +154,16 @@ def get_contacts(request):
                 'linkedin': f'{contact.linkedin}',
                 'notes': f'{contact.notes}',
                 'company': f'{contact.application.company}',
-                'application': f'{contact.application.jobtitle}'
+                'application': f'{contact.application.jobtitle}',
+                'id':f'{contact.id}'
             })
         else:
             contacts_data.append({
                 'name': f'{contact.name}',
                 'email': f'{contact.email}',
                 'linkedin': f'{contact.linkedin}',
-                'notes': f'{contact.notes}'
+                'notes': f'{contact.notes}',
+                'id':f'{contact.id}'
             })
 
 
