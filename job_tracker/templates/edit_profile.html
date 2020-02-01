@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2 class="txt-center title"> Update {{ user.username }}'s Profile </h2>
+<h2 class="text-center title"> Update {{ user.username }}'s Profile </h2>
 {% if error_message %}<p class="red-text">{{ error_message }}</p>{% endif %}
 <form class="center forced-margin" method="post" action="{% url 'edit_profile' %}">
   {% csrf_token %}

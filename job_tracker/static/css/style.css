@@ -29,17 +29,14 @@ body {
     text-shadow: 2px 0 5px var(--light-gray-color);
 }
 
-.txt-center {
-    text-align: center;
-}
-
 .txt-justify {
     text-align: justify;
 }
 
-.txt-bold {
+/* .txt-bold {
     font-weight: bold;
-}
+    font-weight-bold
+} */
 
 .txt-sml {
     font-size: 0.8rem;
@@ -47,6 +44,10 @@ body {
 
 .txt-medium {
     font-size: 1.2rem;
+}
+
+.txt-lg {
+    font-size: 1.5rem;
 }
 
 .red-text {
@@ -99,13 +100,12 @@ a:hover {
     color: var(--dark-color) !important;
 }
 
-h2 {
+/* h2 {
     font-size: 1.2rem;
-    text-align: center;
     margin-block-start: 0;
     margin-block-end: 0;
     margin-top: 1rem;
-}
+} */
 
 p {
     font-size: 1.3rem;
@@ -119,13 +119,16 @@ hr {
 }
 
 .btn {
-    padding: 10px;
+    height: auto;
+    width: auto;
+    padding: 0.5rem 0.8rem;
     background-color: var(--main-color) !important;
     border: 1.1px solid var(--dark-color);
     border-radius: 1000px;
     box-shadow: 2px 2px 5px var(--light-gray-color),
         0 2px 4px var(--light-white-color) inset !important;
     color: var(--dark-color);
+    outline: none;
 }
 
 .btn:hover {
@@ -291,12 +294,6 @@ nav ul li {
     display: block;
 }
 
-nav ul a {
-    text-decoration: none;
-    color: var(--dark-color);
-    font-size: 0.9rem;
-}
-
 nav input {
     display: none;
 }
@@ -347,9 +344,7 @@ nav input:checked ~ ul li {
 }
 
 .line-margin {
-    border-bottom: none;
     width: 0;
-    margin-top: 1rem;
 }
 
 .main-logo {
@@ -427,10 +422,6 @@ nav input:checked ~ ul li {
 
 .forced-margin {
     margin: 0 1rem;
-}
-
-.profile-div-parent {
-    margin: 0 2rem;
 }
 
 #id_applied {
@@ -539,10 +530,6 @@ nav input:checked ~ ul li {
     display: none;
 }
 
-.link-btn:hover {
-    color: #a6b7d7;
-}
-
 .fa-spinner {
     color: #3f72b0;
     margin: 20px;
@@ -552,10 +539,11 @@ nav input:checked ~ ul li {
     width: auto;
 }
 
-.btn.btn-wide {
+/* .btn.btn-wide {
     width: auto;
     background-color: var(--light-gray-color);
-}
+} */
+
 .search-result {
     margin: 50px 0;
 }
@@ -585,9 +573,6 @@ footer div {
 
 /* media queries */
 @media (min-width: 768px) {
-    .content-wrapper {
-    }
-
     /* nav bar */
     #hamburger,
     nav label,
@@ -615,11 +600,7 @@ footer div {
 
     nav ul {
         list-style-type: none;
-        margin: 0;
-        padding: 0;
-        text-decoration: none;
         display: flex;
-        align-items: right;
         padding-top: 5px;
     }
 
@@ -633,23 +614,13 @@ footer div {
     }
 
     nav ul a:hover {
-        color: var(--dark-color);
-        background-color: #c4d3f1;
+        background-color: rgba(63, 114, 176, 0.4);
         border-radius: 1000px;
         cursor: pointer;
     }
 
-    nav ul a li:hover {
-        color: var(--dark-color);
-    }
-
     nav ul a:focus {
         outline: none;
-    }
-
-    nav ul a {
-        color: var(--dark-color);
-        font-size: 1.3rem;
     }
 
     .line {
@@ -713,9 +684,9 @@ footer div {
 
     .btn {
         width: 4.5rem;
-        height: 2.5rem;
+        /* height: 2.5rem; */
         cursor: pointer;
-        color: var(--dark-color) !important;
+        /* color: var(--dark-color) !important; */
     }
 
     .btn-lg {
@@ -744,7 +715,6 @@ footer div {
     }
 
     .main {
-        width: 100vw;
         padding-top: 2.5rem;
     }
 
@@ -819,10 +789,6 @@ footer div {
 
     .contacts-card {
         min-height: 8rem;
-    }
-
-    .profile-div-parent {
-        margin: 0;
     }
 
     .profile-div {

@@ -3,7 +3,6 @@
 {% block scripts %}
 <script src="{% static 'scripts/jobsearch.js' %}" defer></script>
 <script src="{% static 'scripts/calendarList.js' %}" defer></script>
-
 <script
     src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
@@ -13,14 +12,14 @@
 <link href="{% static 'scripts/packages/list/main.css' %}" rel='stylesheet' />
 <script src="{% static 'scripts/packages/core/main.js' %}"></script>
 <script src="{% static 'scripts/packages/list/main.js' %}"></script>
-
 {% endblock %}
+
 {% block content %}
     <input id="csrf_token" value="{{ csrf_token }}" type='hidden'/>
     <input id="application_link" value="{% url 'application_create_from_search' %}" type='hidden'/>
     <section class="api-section">
     <div class="api-block">
-        <h2 class="txt-center">Today's Tech News</h2>
+        <h2 class="text-center txt-lg">Today's Tech News</h2>
         <div id="news">
             <ul>
             {% for new in news.articles %}
@@ -35,7 +34,7 @@
     <div class="line"></div>
     
     <div class="api-block">
-        <h2 class="txt-center"><a href='{% url "calendar" %}'>{{ user.username }}'s Calendar</a></h2>
+        <h2 class="text-center txt-lg"><a href='{% url "calendar" %}'>{{ user.username }}'s Calendar</a></h2>
         <div id="calendar"></div>
     </div>
     
@@ -45,15 +44,15 @@
 
     <div class="scrapper">
         <img class="main-logo" src="{% static 'images/logo_transparent.png' %}" alt="logo" />
-        <h2 class="txt-center">Find a Job:</h2>
+        <h2 class="text-center txt-lg">Find a Job:</h2>
         <br>
-        <div class="center container-xl myflex">
-            <label class="txt-center center" for="search-term">I'm looking for:</label>
+        <div class="mx-auto container-xl myflex">
+            <label class="text-center center" for="search-term">I'm looking for:</label>
             <input class="mr-5" type="text" name="search-term" id="search-term" value='{{ user.profile.jobsearch }}'/>
             <br />
-            <label class="txt-center center search-location" for="search-location">Location:</label>
+            <label class="text-center center search-location" for="search-location">Location:</label>
             <input class="mr-5" type="text" name="search-location" id="search-location" value='{{ user.profile.joblocation }}' />
-            <button class="btn btn-md search-btn"><span class="icon"><i class="fas fa-search search-icon"></i></span><span class="text">Search</span></button>
+            <button class="btn search-btn"><span class="icon"><i class="fas fa-search search-icon"></i></span><span class="text">Search</span></button>
         </div>
         <br>
         <br>
@@ -65,17 +64,17 @@
 
     <div class="main">
     {% if user.application_set %}
-        <h3 class="txt-center">My Applications</h3>
+        <h3 class="text-center">My Applications</h3>
         <section class="row cards">
         {% for application in user.application_set.all %}
-            <div class="col-sm-6 col-md-4 txt-center">
+            <div class="col-sm-6 col-md-4 text-center">
                 <a href="{% url 'applications_detail' application.id %}" target="_blank">
                 <div class="card index-card m-3">
                     <div class="card-body ">
-                        <h5 class="card-title txt-bold">{{ application.jobtitle }}</h5>
+                        <h5 class="card-title font-weight-bold">{{ application.jobtitle }}</h5>
                             <h6 class="card-subtitle mb-1 text-muted">{{ application.company }}</h6>
                             {% if application.applicationDate %}
-                                <span class="text-muted txt-sml">Applied on: {{ application.applicationDate}}</span>
+                                <span class="text-muted">Applied on: {{ application.applicationDate}}</span>
                             {% endif %}
                     </div>
                 </div></a>
