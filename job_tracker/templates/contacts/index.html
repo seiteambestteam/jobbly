@@ -4,18 +4,18 @@
 
 <h2 class="text-center title">Contacts</h2>
 
-<div class="center container-lg">
-    <a href="{% url 'contacts_create' %}"><button class="btn center txt-sml btn-md side">
+<div class="center">
+    <a href="{% url 'contacts_create' %}"><button class="btn center txt-sml side">
         Add</button></a>
 
     <br />
 
     <form class="form center" action="" method="get" id="contacts-search-form">
-        <label class="txt-center center txt-medium" for="contacts-search"
+        <label class="text-center center txt-medium" for="contacts-search"
             >Search a Contact:</label
         >
         <input
-            class="border-bottom txt-center txt-sml"
+            class="txt-sml"
             type="text"
             name="contacts-search"
             id="contacts-search"
@@ -36,7 +36,7 @@
                         <a href="{% url 'contacts_update' contact.id %}" class="ml-2">
                             <i class="far fa-edit"></i>
                         </a>
-                        <h5 class="txt-bold txt-center pt-3">
+                        <h5 class="font-weight-bold text-center pt-3">
                             {{ contact.name }}
                         </h5>
                     </div>

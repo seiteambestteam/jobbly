@@ -26,17 +26,11 @@ body {
 .title {
     font-size: 2rem;
     margin: 1.7rem auto;
-    text-shadow: 2px 0 5px var(--light-gray-color);
 }
 
 .txt-justify {
     text-align: justify;
 }
-
-/* .txt-bold {
-    font-weight: bold;
-    font-weight-bold
-} */
 
 .txt-sml {
     font-size: 0.8rem;
@@ -68,17 +62,8 @@ body {
     padding-bottom: 4rem;
 }
 
-.container {
-    width: 50vw;
-}
-
 .container-lg {
     width: 80vw;
-}
-
-.container-sml {
-    width: 35vw;
-    height: 8rem;
 }
 
 .card {
@@ -87,7 +72,7 @@ body {
 }
 
 .cards {
-    margin: 1rem auto;
+    margin: 1rem 30px;
 }
 
 a {
@@ -99,13 +84,6 @@ a:hover {
     text-decoration: none !important;
     color: var(--dark-color) !important;
 }
-
-/* h2 {
-    font-size: 1.2rem;
-    margin-block-start: 0;
-    margin-block-end: 0;
-    margin-top: 1rem;
-} */
 
 p {
     font-size: 1.3rem;
@@ -129,6 +107,7 @@ hr {
         0 2px 4px var(--light-white-color) inset !important;
     color: var(--dark-color);
     outline: none;
+    cursor: pointer;
 }
 
 .btn:hover {
@@ -139,24 +118,9 @@ hr {
     -ms-transform: scale(1.1);
 }
 
-.btn-sml {
-    margin-left: 0.5rem;
-    width: 1.1rem;
-    height: 1.1rem;
-}
-
 .btn-md {
     width: 3.5rem;
     height: 2.5rem;
-}
-
-.btn-lg {
-    width: 5.5rem;
-    height: 3rem;
-}
-
-.app-btn {
-    width: auto !important;
 }
 
 .btn-inline {
@@ -172,10 +136,15 @@ hr {
     display: block;
     text-align: center;
     margin-top: 2rem;
+    font-weight: bold;
 }
 
 .form p span {
     font-size: 0.9rem;
+}
+
+.form p input {
+    text-align: center;
 }
 
 .form ul li {
@@ -188,35 +157,23 @@ form table label {
 }
 
 form table input {
-    /* height: 0; */
     font-size: 0.8rem;
-}
-
-form table input:focus {
-    outline: none;
 }
 
 form table tr {
     border-bottom: none;
 }
 
-form table th {
-    padding: 0;
-}
-
 input {
     display: block;
     font-family: inherit;
     font-size: 1rem;
-    text-align: center;
     margin: 0.9rem auto;
-    /* width: 70vw; */
     border: none;
     border-bottom: 1px solid var(--dark-gray-color);
     background-color: inherit;
 }
 
-.form p > input,
 .form input:not(.btn) {
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0),
         inset 0 0 0 100px var(--light-white-color) !important;
@@ -225,20 +182,14 @@ input {
 textarea {
     border: 1px solid var(--dark-gray-color);
     background-color: var(--light-white-color);
-    /* width: 70vw; */
     margin: 0.7rem auto;
-}
-
-select {
-    display: block;
-    margin: 0.7rem auto;
-    border: 1px solid var(--dark-gray-color);
 }
 
 .btn:focus,
 input:focus,
 select:focus,
-textarea:focus {
+textarea:focus,
+form table input:focus {
     outline: none;
 }
 
@@ -364,9 +315,6 @@ nav input:checked ~ ul li {
 .scrapper div input {
     width: 50vw;
     background-color: var(--main-color);
-}
-
-.scrapper div input {
     margin: 1rem auto !important;
 }
 
@@ -395,11 +343,6 @@ nav input:checked ~ ul li {
 
 .main {
     padding-top: 1rem;
-}
-
-.border-bottom {
-    border-bottom: 1px solid var(--dark-gray-color);
-    margin-top: 2rem;
 }
 
 #news {
@@ -447,15 +390,6 @@ nav input:checked ~ ul li {
 
 #resume-file {
     display: none;
-}
-
-.file-upload-button {
-    -webkit-appearance: none;
-    border-radius: 1000px;
-    outline: none;
-    padding: 0.5em 0.8em;
-    height: auto;
-    width: auto;
 }
 
 .file-upload-label {
@@ -534,15 +468,6 @@ nav input:checked ~ ul li {
     color: #3f72b0;
     margin: 20px;
 }
-
-.btn.link-btn {
-    width: auto;
-}
-
-/* .btn.btn-wide {
-    width: auto;
-    background-color: var(--light-gray-color);
-} */
 
 .search-result {
     margin: 50px 0;
@@ -623,6 +548,7 @@ footer div {
         outline: none;
     }
 
+    /* Specific Elements */
     .line {
         border-left: 6px solid var(--light-gray-color);
         height: 20rem;
@@ -682,17 +608,6 @@ footer div {
         margin: 1.5rem 0;
     }
 
-    .btn {
-        width: 4.5rem;
-        /* height: 2.5rem; */
-        cursor: pointer;
-        /* color: var(--dark-color) !important; */
-    }
-
-    .btn-lg {
-        height: 3rem;
-    }
-
     .search-btn,
     .search-location {
         margin-left: 20px;
@@ -718,16 +633,8 @@ footer div {
         padding-top: 2.5rem;
     }
 
-    .container {
-        width: 50vw;
-    }
-
     .container-lg {
         width: 75vw;
-    }
-
-    .container-sml {
-        width: 60vw;
     }
 
     .form {
@@ -743,6 +650,7 @@ footer div {
         display: block;
         margin: 0 auto;
         text-align: center;
+        font-size: 1rem;
     }
 
     input {
@@ -775,10 +683,6 @@ footer div {
         margin: 1.5rem auto;
     }
 
-    select {
-        margin: 1.5rem auto;
-    }
-
     .side {
         margin-right: 25%;
     }
@@ -802,16 +706,6 @@ footer div {
 
     form table input {
         font-size: 1.2rem;
-    }
-
-    .del-btn {
-        margin-left: 42%;
-    }
-
-    .file-upload-button {
-        padding: 0.5em 0.8em;
-        height: auto;
-        width: auto;
     }
 
     .file-upload-label {

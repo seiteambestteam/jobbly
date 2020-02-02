@@ -20,6 +20,7 @@
     <section class="api-section">
     <div class="api-block">
         <h2 class="text-center txt-lg">Today's Tech News</h2>
+        <br>
         <div id="news">
             <ul>
             {% for new in news.articles %}
@@ -35,7 +36,7 @@
     
     <div class="api-block">
         <h2 class="text-center txt-lg"><a href='{% url "calendar" %}'>{{ user.username }}'s Calendar</a></h2>
-        <div id="calendar"></div>
+        <div id="calendar" class="pl-4 pr-4"></div>
     </div>
     
     </section>
@@ -48,10 +49,10 @@
         <br>
         <div class="mx-auto container-xl myflex">
             <label class="text-center center" for="search-term">I'm looking for:</label>
-            <input class="mr-5" type="text" name="search-term" id="search-term" value='{{ user.profile.jobsearch }}'/>
+            <input class="text-center mr-5" type="text" name="search-term" id="search-term" value='{{ user.profile.jobsearch }}'/>
             <br />
             <label class="text-center center search-location" for="search-location">Location:</label>
-            <input class="mr-5" type="text" name="search-location" id="search-location" value='{{ user.profile.joblocation }}' />
+            <input class="text-center mr-5" type="text" name="search-location" id="search-location" value='{{ user.profile.joblocation }}' />
             <button class="btn search-btn"><span class="icon"><i class="fas fa-search search-icon"></i></span><span class="text">Search</span></button>
         </div>
         <br>

@@ -1,24 +1,24 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2 class="txt-center title">Delete Contact</h2>
+<h2 class="text-center title">Delete Contact</h2>
 
 <div class="center">
-	<h4 class="txt-center">Are you sure you want to delete <span class="txt-bold">{{ object.name }}</span>?</h4>
+	<h4 class="text-center">Are you sure you want to delete <span class="font-weight-bold">{{ object.name }}</span>?</h4>
 
 	<br>
 	<br>
 
 	<div class="container-lg mx-auto flex">
-		<form class="form d-inline col-sm-2" action="" method="POST">
+		<form class="d-inline" action="" method="POST">
 			{% csrf_token %}
 
-			<input class="btn txt-medium btn-lg forced-margin" type="submit" value="Yes">
+			<input class="btn txt-medium btn-md forced-margin" type="submit" value="Yes">
 		</form>
 		{% if object.application %}
-		<a class="btn txt-medium btn-lg forced-margin d-inline" href='{% url "applications_detail" object.application_id %}'>No</a>
+		<a class="btn txt-medium btn-md forced-margin d-inline" href='{% url "applications_detail" object.application_id %}'>No</a>
 		{% else %}
-		<a class="btn txt-medium btn-lg forced-margin d-inline"
+		<a class="btn txt-medium btn-md forced-margin d-inline"
 				href='{% url "contacts_index" %}'>No</a>
 		{% endif %}
 	</div>
