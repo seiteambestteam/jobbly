@@ -2,8 +2,8 @@
 
 <h2 class="text-center title">Applications</h2>
 
-<div class="center container-lg">
-    <button class="btn center txt-sml btn-md side">
+<div class="center">
+    <button class="btn center txt-sml side">
         <a href="{% url 'applications_create' %}">Add</a>
     </button>
 
@@ -21,7 +21,7 @@
                             <i class="far fa-times-circle"></i>
                         </a>
                         <a href="{% url 'applications_detail' application.id %}">
-                            <h5 class="txt-bold txt-center pt-3">
+                            <h5 class="font-weight-bold text-center pt-3">
                                 {{ application.company }}
                             </h5>
                         </a>

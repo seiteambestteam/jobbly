@@ -1,10 +1,9 @@
 {% extends 'base.html' %} {% block content %}
 <h2 class="text-center title">Delete Application</h2>
 
-<div class="center container-lg container-sml">
-    <h4 class="text-center">
-        Are you sure you want to delete
-        <span class="txt-bold">{{ object.company }}</span>?
+<div class="center">
+    <h4 class="text-center">Are you sure you want to delete <br>
+        <span class="font-weight-bold">{{ object.company }}</span>?
     </h4>
 
     <br />
@@ -13,8 +12,8 @@
 <form class="form center" action="" method="POST">
     {% csrf_token %}
 		<div class="flex">
-			<input class="btn center txt-sml btn-md forced-margin" type="submit" value="Yes">
-			<a class="btn center txt-sml btn-md forced-margin txt-center" href="{% url 'application' %}">No</a>
+			<input class="btn txt-sml btn-md forced-margin" type="submit" value="Yes">
+			<a class="btn txt-sml btn-md forced-margin" href="{% url 'application' %}">No</a>
 		</div>
 </form>
 {% endblock %}

@@ -37,6 +37,9 @@ def index(request):
 def about(request):
     return render(request, 'about.html')
 
+def team(request):
+    return render(request, 'team.html')
+
 def signup(request):
     error_message = ''
     if request.method == 'POST':
@@ -154,14 +157,16 @@ def get_contacts(request):
                 'linkedin': f'{contact.linkedin}',
                 'notes': f'{contact.notes}',
                 'company': f'{contact.application.company}',
-                'application': f'{contact.application.jobtitle}'
+                'application': f'{contact.application.jobtitle}',
+                'id':f'{contact.id}'
             })
         else:
             contacts_data.append({
                 'name': f'{contact.name}',
                 'email': f'{contact.email}',
                 'linkedin': f'{contact.linkedin}',
-                'notes': f'{contact.notes}'
+                'notes': f'{contact.notes}',
+                'id':f'{contact.id}'
             })
 
 
@@ -189,7 +194,6 @@ class ContactCreate(LoginRequiredMixin, CreateView):
 
 class ContactUpdate(LoginRequiredMixin, UpdateView):
     model = Contact
-    # fields = ['name', 'email', 'phone_number', 'linkedin', 'notes']
     success_url = '/contacts/index/'
     form_class = ContactForm
 
@@ -212,7 +216,9 @@ def applications_detail(request, application_id):
 
 def remove_resume(request, application_id):
     application = Application.objects.get(pk=application_id)
-    session = boto3.Session(profile_name='jobbly')
+    #switch sessions to profile if running on local host
+    #session = boto3.Session(profile_name='jobbly')
+    session = boto3.Session()
     jobbly_s3 = session.client('s3')
     try:
         jobbly_s3.delete_object(Bucket=BUCKET, Key=application.resumekey)
@@ -237,7 +243,9 @@ class ApplicationCreate(LoginRequiredMixin, CreateView):
         resume_file = self.request.FILES.get('resume-file', None)
 
         if resume_file:
-            session = boto3.Session(profile_name='jobbly')
+            #switch sessions to profile if running on local host
+            #session = boto3.Session(profile_name='jobbly')
+            session = boto3.Session()
             jobbly_s3 = session.client('s3')
             key = uuid.uuid4().hex[:6] + resume_file.name[resume_file.name.rfind('.'):]
             try:
@@ -246,7 +254,6 @@ class ApplicationCreate(LoginRequiredMixin, CreateView):
                 form.instance.resume = url
                 form.instance.resumekey = key                
             except Exception as e:
-                # return error handling here if it doesn't upload
                 print(e)
                 print('Sorry, an error occurred uploading the file to AWS S3')
         return super().form_valid(form)
@@ -260,7 +267,9 @@ class ApplicationUpdate(LoginRequiredMixin, UpdateView):
         resume_file = self.request.FILES.get('resume-file', None)
 
         if resume_file:
-            session = boto3.Session(profile_name='jobbly')
+            #switch sessions to profile if running on local host
+            #session = boto3.Session(profile_name='jobbly')
+            session = boto3.Session()
             jobbly_s3 = session.client('s3')
             key = uuid.uuid4().hex[:6] + resume_file.name[resume_file.name.rfind('.'):]
             try:
@@ -272,14 +281,15 @@ class ApplicationUpdate(LoginRequiredMixin, UpdateView):
                 form.instance.resume = url
                 form.instance.resumekey = key
             except Exception as e:
-                # return error handling here if it doesn't upload
                 print(e)
                 print('Sorry, an error occurred uploading the file to AWS S3')
         return super().form_valid(form)
 
     def remove_resume(request, application_id):
         application = Application.objects.get(id=application_id)
-        session = boto3.Session(profile_name='jobbly')
+        #switch sessions to profile if running on local host
+        #session = boto3.Session(profile_name='jobbly')
+        session = boto3.Session()
         jobbly_s3 = session.client('s3')
         try:
             jobbly_s3.delete_object(Bucket=BUCKET, Key=application.resumekey)
@@ -296,7 +306,9 @@ class ApplicationDelete(LoginRequiredMixin, DeleteView):
         self.object = self.get_object()
         if (self.object.resume):
             application = Application.objects.get(id=self.object.id)
-            session = boto3.Session(profile_name='jobbly')
+            #switch sessions to profile if running on local host
+            #session = boto3.Session(profile_name='jobbly')
+            session = boto3.Session()
             jobbly_s3 = session.client('s3')
             try:
                 jobbly_s3.delete_object(Bucket=BUCKET, Key=application.resumekey)
