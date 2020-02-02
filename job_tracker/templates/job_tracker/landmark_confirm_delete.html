@@ -1,19 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2 class="txt-center title">Delete Landmark</h2>
+<h2 class="text-center title">Delete Landmark</h2>
 
-<div class="center container-lg container-sml">
-<h4 class="text-center">Are you sure you want to delete <span class="txt-bold">{{ object.name }}</span>?
+<div class="center">
+<h4 class="text-center">Are you sure you want to delete <br> <span class="font-weight-bold">{{ object.name }}</span>?
 </h4>
 
 	<br>
 	<br>
 
-<form class="form center" action="" method="POST">
+<form class="center" action="" method="POST">
     {% csrf_token %}
     <div class="flex">
-			<input class="btn center txt-sml btn-lg forced-margin" type="submit" value="Yes">
-			<a class="btn center txt-sml btn-lg forced-margin txt-center" href="{% url 'applications_detail' object.application_id%}">No</a>
+			<input class="btn txt-sml btn-md forced-margin" type="submit" value="Yes">
+			<a class="btn txt-sml btn-md forced-margin" href="{% url 'applications_detail' object.application_id%}">No</a>
 	</div>
 </form>
 {% endblock %}

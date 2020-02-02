@@ -1,22 +1,32 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} 
+{% block content %}
 
 <div class="flex about-pg">
-<h2 class="txt-center title">About Jobbly</h2>
-<div class="line line-lg"></div>
-<div class="center main container-md txt-justify">
-    <p>
-        Jobbly was developed through the lens of a user's experience during
-        the job application process. 
-    </p>
-    <p>Maintaining organization, a
-        productivity flow, and a sense of direction allows job seekers to
-        stay encouraged, accomplished and pragmatic.</p>
-    <p>The volume, time
-        sensitivity, and organization that goes into applying for your
-        perfect job, can be a full time job in of itself - <span class="txt-bold">Jobbly is here to
-        ease the load and get you organized to show the candidate you truly
-        are.</span></p>
-</div>
+    <h2 class="text-center title">About Jobbly</h2>
+    <div class="line line-lg"></div>
+    <div class="main container-md txt-justify">
+        <p>
+            Jobbly was developed through the lens of a user's experience during
+            the job application process.
+        </p>
+        <p>
+            Maintaining organization, a productivity flow, and a sense of
+            direction allows job seekers to stay encouraged, accomplished and
+            pragmatic.
+        </p>
+        <p>
+            The volume, time sensitivity, and organization that goes into
+            applying for your perfect job, can be a full time job in of itself -
+            <span class="font-weight-bold"
+                >Jobbly is here to ease the load and get you organized to show
+                the candidate you truly are.</span
+            >
+        </p>
+        <br>
+        <div class="container-lg d-flex team-btn">
+        <a class="btn txt-medium" href="{% url 'team' %}">Meet the Team</a>
+        </div>
+    </div>
 </div>
 
 {% endblock %}

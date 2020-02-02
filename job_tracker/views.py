@@ -37,6 +37,9 @@ def index(request):
 def about(request):
     return render(request, 'about.html')
 
+def team(request):
+    return render(request, 'team.html')
+
 def signup(request):
     error_message = ''
     if request.method == 'POST':

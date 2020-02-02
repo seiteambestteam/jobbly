@@ -12,7 +12,7 @@
 {% endblock %}
 {% block content %}
 
-<h2 class="title">Application For {{ application.jobtitle }} at {{ application.company }}</h2>
+<h2 class="title text-center">Application For {{ application.jobtitle }} at {{ application.company }}</h2>
 
 <form class="forced-margin" method="post">
     <table class="container-sm">
@@ -86,47 +86,56 @@
 </form>
 <br>
 
-<div class="flex">
-    <button class="btn center txt-sml file-upload-button ml-1 mr-1"><a href="{% url 'applications_update' application.id %}">Edit</a></button>
-    <button class="btn center txt-sml file-upload-button ml-1 mr-1"><a href="{% url 'applications_delete' application.id %}">Delete</a></button>
-    <button class="btn center txt-sml file-upload-button ml-1 mr-1" id="landmark-btn">Add Event</button>
-    <button class="btn center txt-sml file-upload-button ml-1 mr-1" id="contact-btn">Add Contact</button>
+<div class="flex ml-2 mr-2">
+    <button class="btn txt-sml ml-1 mr-1"><a href="{% url 'applications_update' application.id %}">Edit</a></button>
+    <button class="btn txt-sml ml-1 mr-1"><a href="{% url 'applications_delete' application.id %}">Delete</a></button>
+    <button class="btn txt-sml ml-1 mr-1" id="landmark-btn">Add Event</button>
+    <button class="btn txt-sml ml-1 mr-1" id="contact-btn">Add Contact</button>
 </div>
 
 <br>
 <br>
 
-<div class='modal' id='landmark-form'>
+<div class="modal" id="landmark-form">
     <div class="modal-content">
         <span class="close">&times;</span>
-        <h5 class="txt-center">Add Event</h5>
-        <form method='POST' action='{% url "add_landmark" application.id %}'>
+        <h3 class="text-center">Add Event</h3>
+        <form method="POST" action="{% url 'add_landmark' application.id %}">
+        <table>
         {% csrf_token %}
-        {{ landmark_form.as_p }}
-        <input type='submit' class='btn file-upload-button' value='Add'>
+        {{ landmark_form.as_table }}
+        </table>
+        <input type="submit" class="btn center" value="Add">
         </form>
     </div>
 </div>
 
-<div class='modal' id='contact-form'>
+<div class="modal" id="contact-form">
     <div class="modal-content">
         <span class="close">&times;</span>
-        <h5 class="txt-center">Add Contact</h5>
-        <form method='POST' action='{% url "add_contact" application.id %}'>
+        <h3 class="text-center">Add Contact</h3>
+        <form method="POST" action="{% url 'add_contact' application.id %}">
+        <table>
         {% csrf_token %}
-        {{ contact_form.as_p }}
-        <input type='submit' class='btn file-upload-button' value='Add'>
+        {{ contact_form.as_table }}
+        </table>
+        <input type="submit" class="btn center" value="Add">
         </form>
     </div>
 </div>
+
+<br>
+<br>
 
 <div class="center container-sm">
+    <h3 class="text-center center">Events</h3>
+    <br>
     <div class="row">
         {% for landmark in application.landmark_set.all %}
             <div class="col-sm-6">
                 <div class="card contacts-card m-3">
                     <div class="card-title">
-                        <h5 class="txt-bold txt-center pt-3">{{ landmark.name }}</h5>
+                        <h5 class=" font-weight-bold text-center pt-3">{{ landmark.name }}</h5>
                         <p class="m-3">{% if landmark.start_date_time %} On {{landmark.start_date_time}}
                         {% endif %}
                         {% if landmark.end_date_time %} until {{ landmark.end_date_time }}
@@ -137,8 +146,8 @@
                         {% endif %}
                         </p>
                         <div class="flex">
-                            <a class="btn center txt-sml file-upload-button" href="{% url 'landmarks_update' landmark.id %}">Edit</a>
-                            <a class="btn center txt-sml file-upload-button" href="{% url 'landmarks_delete' landmark.id %}">Delete</a>
+                            <a class="btn txt-sml mr-4" href="{% url 'landmarks_update' landmark.id %}">Edit</a>
+                            <a class="btn txt-sml" href="{% url 'landmarks_delete' landmark.id %}">Delete</a>
                         </div>
                     </div>
                 </div>
@@ -147,16 +156,18 @@
     </div>
 </div>
 
-
-
+<br>
+<br>
 
 <div class="center container-sm">
+    <h3 class="text-center center">Contacts</h3>
+    <br>
     <div class="row">
         {% for contact in application.contact_set.all %}
             <div class="col-sm-6">
                 <div class="card contacts-card m-3">
                     <div class="card-title">
-                        <h5 class="txt-bold txt-center pt-3">{{ contact.name }}</h5>
+                        <h5 class="font-weight-bold text-center pt-3">{{ contact.name }}</h5>
                         {% if contact.email %}
                             <p class="m-3">Email: {{ contact.email }} </p>
                         {% endif %}
@@ -170,8 +181,8 @@
                             <p class="m-3">{{ contact.notes }}</p>
                         {% endif %}
                         <div class="flex">
-                            <a class="btn center txt-sml file-upload-button" href="{% url 'contacts_update' contact.id %}">Edit</a>
-                            <a class="btn center txt-sml file-upload-button" href="{% url 'contacts_delete' contact.id %}">Delete</a>
+                            <a class="btn txt-sml mr-4" href="{% url 'contacts_update' contact.id %}">Edit</a>
+                            <a class="btn txt-sml" href="{% url 'contacts_delete' contact.id %}">Delete</a>
                         </div>
                     </div>
                 </div>
