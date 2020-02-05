@@ -496,7 +496,9 @@ footer div {
     margin-right: 1rem;
     color: var(--light-white-color);
 }
-
+.delete-btn-container{
+    width: 250px;
+}
 /* media queries */
 @media (min-width: 768px) {
     /* nav bar */

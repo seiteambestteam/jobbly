@@ -79,6 +79,17 @@ def edit_profile(request):
         'error_message': error_message,
     })
 
+@login_required
+def delete(request):
+    user = request.user
+    user.is_active = False
+    user.save()
+    return redirect('home')
+
+@login_required
+def confirm_delete(request):
+    return render(request, 'users/account_confirm_delete.html')
+
 def job_search_api(request):
     search_term = request.GET.get('searchTerm')
     location = request.GET.get('location') 
